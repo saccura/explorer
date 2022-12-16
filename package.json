@@ -12,7 +12,7 @@
     "url": "https://github.com/xops/expedition.git"
   },
   "scripts": {
-    "explorer": "REACT_APP_ETH_RPC_URL=http://blockchain.popularex.com:51781 npm start",
+    "explorer": "REACT_APP_ETH_RPC_URL=https://rpc.api.moonbeam.network/ npm start",
     "build": "react-scripts build && cp build/index.html build/404.html",
     "start": "react-scripts start",
     "test": "react-scripts test",

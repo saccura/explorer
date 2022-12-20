@@ -8,10 +8,10 @@ import React from "react";
 export default function() {
   const [chains, setChains] = React.useState<Chain[]>([
     {
-      name: "NET123",
+      name: "POPXChain",
       network: "13579",
-      // rpc: ["https://blockchain.popularex.com/rpc"],
-      rpc: ["https://rpc.api.moonbeam.network/"],
+      rpc: ["https://rpc.popxchain.com/"],
+      // rpc: ["https://rpc.api.moonbeam.network/"],
     },
   ]);
 

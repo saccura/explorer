@@ -27,7 +27,7 @@ const config = {
 export default (props: any) => {
   const [erpc] = useEthRPCStore();
   const theme = useTheme<Theme>();
-  const victoryTheme = getTheme(theme);
+  //const victoryTheme = getTheme(theme);
   const [blockNumber] = useBlockNumber(erpc);
   const [chainId, setChainId] = useState<string>();
   const [block, setBlock] = useState<IBlock>();
@@ -132,7 +132,9 @@ export default (props: any) => {
           </Grid>
         </Grid>
       </Grid>
-      <StatCharts victoryTheme={victoryTheme} blocks={blocks} />
+      <StatCharts 
+      // victoryTheme={victoryTheme} 
+      blocks={blocks} />
       <Grid container justify="flex-end">
         <Button
           color="primary"

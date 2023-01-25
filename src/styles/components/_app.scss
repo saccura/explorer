@@ -1,0 +1,56 @@
+@import "../variables";
+#root {
+    .app-header {
+        .MuiGrid-root {
+            flex-wrap: nowrap;
+            display: flex;
+        }
+        .logo {
+            flex-grow: 1;
+        }
+        .search {
+            flex-grow: 2;
+            align-items: center;
+            display: flex;
+            justify-content: flex-end;
+            &-icon {
+                order: 1;
+            }
+            &-input {
+                padding: 10px 17px 10px 10px;
+                font-size: $mobileFont;
+            }
+            &-input.hidden {
+                display: none;
+            }
+            &-input.visible {
+                display: block;
+            }
+        }
+    }
+}
+
+
+@media screen and (min-width: 768px) {
+    #root {
+        .app-header {
+            font-size: $desktopFont;
+            .search {
+                display: flex;
+                align-items: center;
+                border: 1px solid #E6E8EC;
+                border-radius: 8px;
+                &-icon {
+                    display: inline-block;
+                    margin-left: 10px;
+                    order: 0; 
+                }
+
+                &-input {
+                    font-size: $desktopFont;
+                }
+            }
+        }
+    }
+    
+}

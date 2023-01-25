@@ -34,7 +34,7 @@ export default (props: IProps) => {
   const [blockNumber] = useBlockNumber(erpc);
   const [blocks, setBlocks] = useState<IBlock[]>();
   const theme = useTheme<Theme>();
-  const victoryTheme = getTheme(theme);
+  //const victoryTheme = getTheme(theme);
   const { block } = props.match.params;
   const blockNum = block !== undefined ? parseInt(block, 10) : blockNumber;
   const from = Math.max(blockNum - 99, 0);
@@ -84,7 +84,10 @@ export default (props: IProps) => {
           props.history.push(`/stats/miners/${newQuery}`);
         }}
       ></BlockPagination>
-      <StatCharts blocks={blocks} victoryTheme={victoryTheme} />
+      <StatCharts 
+      blocks={blocks} 
+      //victoryTheme={victoryTheme} 
+      />
       <MinerStats blocks={blocks} config={config} />
       <MinerStatsTable blocks={blocks} />
     </>

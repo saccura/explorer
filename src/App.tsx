@@ -17,6 +17,7 @@ import React, {
   KeyboardEvent,
   useState,
   useEffect,
+  SyntheticEvent,
 } from "react";
 import { Link as RouterLink, Router, Route, Switch } from "react-router-dom";
 import useDarkMode from "use-dark-mode";
@@ -53,6 +54,9 @@ import useChainListStore from "./stores/useChainListStore";
 import useEthRPCStore from "./stores/useEthRPCStore";
 import AddChain from "./components/AddChain/AddChain";
 import { NetworkWifi } from "@material-ui/icons";
+import { ReactComponent as Logo } from "./assets/logo.svg";
+import { ReactComponent as SearchIcon } from "./assets/searchIcon.svg";
+import { useWindowSize } from 'usehooks-ts'
 
 const history = createPreserveQueryHistory(createBrowserHistory, [
   "network",
@@ -68,6 +72,9 @@ function App(props: any) {
   const [selectedChain, setSelectedChain] = useState<Chain>();
   const [chains, setChains] = useChainListStore<[Chain[], Dispatch<Chain[]>]>();
   const [ethRPC, setEthRPCChain] = useEthRPCStore();
+  const { width } = useWindowSize()
+  const [isMobile, setMobile] = useState(() => width >= 768 ? false : true)
+  const [isVisibleInput, setVisibleInput] = useState(() => isMobile ? false : true)
 
   const [addChainDialogIsOpen, setAddChainDialogIsOpen] =
     useState<boolean>(false);
@@ -165,6 +172,12 @@ function App(props: any) {
     true
   );
 
+  // toggling search bar when mobile endpoint
+  useEffect(() => {
+    setMobile(width >= 768 ? false : true)
+    setVisibleInput( isMobile ? false : true)
+  }, [width])
+
   const isAddress = (q: string): boolean => {
     const re = new RegExp(ETHJSONSpec.components.schemas.Address.pattern);
     return re.test(q);
@@ -235,18 +248,24 @@ function App(props: any) {
     setSelectedChain(c);
   };
 
+  const handleSearchIconClick = () => {
+    if(!isMobile) {
+      return;
+    }
+    setVisibleInput(!isVisibleInput)
+  }
+
   return (
     <Router history={history}>
-      <ThemeProvider theme={theme}>
-        <AppBar position="sticky" color="default" elevation={0}>
+      {/* <ThemeProvider theme={theme}> */}
+        <AppBar className="app-header" position="sticky" color="default" elevation={0}>
           <Toolbar>
             <Grid
-              justify="space-between"
               alignItems="center"
               alignContent="center"
               container
             >
-              <Grid item style={{ marginTop: "8px" }}>
+              <Grid className="logo" item>
                 <Link
                   component={({
                     className,
@@ -261,11 +280,11 @@ function App(props: any) {
                   )}
                 >
                   <Grid container>
-                    <Grid>
+                    <Logo />
+                    {/* <Grid>
                       <img
                         alt="expedition-logo"
                         height="30"
-                        style={{ marginRight: "10px" }}
                         src={expeditionLogo}
                       />
                     </Grid>
@@ -273,12 +292,17 @@ function App(props: any) {
                       <Typography color="textSecondary" variant="h6">
                         {t("Expedition")}
                       </Typography>
-                    </Grid>
+                    </Grid> */}
                   </Grid>
                 </Link>
               </Grid>
-              <Grid item md={6} xs={12}>
+              <Grid className="search" item>
+                <SearchIcon 
+                className="search-icon"
+                onClick={() => handleSearchIconClick()}
+                />
                 <InputBase
+                  className={`search-input ${isVisibleInput ? 'visible' : 'hidden'}`}
                   placeholder={t(
                     "Enter an Address, Transaction Hash or Block Number"
                   )}
@@ -294,15 +318,9 @@ function App(props: any) {
                     }
                   }}
                   fullWidth
-                  style={{
-                    background: "rgba(0,0,0,0.1)",
-                    borderRadius: "4px",
-                    padding: "5px 10px 0px 10px",
-                    marginRight: "5px",
-                  }}
                 />
               </Grid>
-              <Grid item>
+              {/* <Grid item>
                 {selectedChain ? (
                   <ChainDropdown
                     chains={chains}
@@ -353,7 +371,7 @@ function App(props: any) {
                     {darkMode.value ? <Brightness3Icon /> : <WbSunnyIcon />}
                   </IconButton>
                 </Tooltip>
-              </Grid>
+              </Grid> */}
             </Grid>
           </Toolbar>
         </AppBar>
@@ -362,9 +380,9 @@ function App(props: any) {
           onCancel={cancelAddChainDialog}
           onSubmit={submitAddChainDialog}
         />
-        <div style={{ margin: "0px 25px 0px 25px" }}>
+        <div>
           <QueryParamProvider ReactRouterRoute={Route}>
-            <CssBaseline />
+            {/* <CssBaseline /> */}
             <Switch>
               <Route path={"/"} component={Dashboard} exact={true} />
               <Route
@@ -386,7 +404,7 @@ function App(props: any) {
             </Switch>
           </QueryParamProvider>
         </div>
-      </ThemeProvider>
+      {/* </ThemeProvider> */}
     </Router>
   );
 }

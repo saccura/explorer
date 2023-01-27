@@ -14,7 +14,7 @@ import { useTranslation } from "react-i18next";
 import { ArrowForwardIos } from "@material-ui/icons";
 import StatCharts from "../components/StatCharts";
 import { Block as IBlock, IsSyncingResult as ISyncing} from "@etclabscore/ethereum-json-rpc";
-import { VictoryBar, VictoryChart } from "victory";
+import { VictoryBar, VictoryChart, VictoryContainer } from "victory";
 import BigNumber from "bignumber.js";
 
 const useState = React.useState;
@@ -23,7 +23,7 @@ const config = {
   blockTime: 15, // seconds
   blockHistoryLength: 100,
   chartHeight: 200,
-  chartWidth: 400,
+  chartWidth: 450,
 };
 
 export default (props: any) => {
@@ -109,7 +109,6 @@ export default (props: any) => {
     if(!txCount && !gasUsed) {
       return {x: hexToNumber(block.number), y: 0}
     }
-
     return {
       x: hexToNumber(block.number),
       y: new BigNumber(block.gasUsed).dividedBy(txCount)
@@ -130,7 +129,7 @@ export default (props: any) => {
               <VictoryChart height={config.chartHeight} width={config.chartWidth}>
                 <VictoryBar
                 //barWidth={6}
-                cornerRadius={4}
+                //cornerRadius={4}
                 style={{
                   data: {fill: "#3772FF"}
                 }}
@@ -152,7 +151,7 @@ export default (props: any) => {
                   <VictoryChart height={config.chartHeight} width={config.chartWidth}>
                     <VictoryBar
                     //barWidth={6}
-                    cornerRadius={4}
+                    //cornerRadius={4}
                     style={{
                       data: {fill: "#18B04D"}
                     }}
@@ -188,17 +187,29 @@ export default (props: any) => {
             <div className="entity-right">
               <Grid key="gasUsedPerTx" item>
                 <ChartCard title={t("Gas Used per Tx")}>
-                  <VictoryChart domainPadding={2}>
-                    <VictoryBar 
+                  <VictoryChart height={config.chartHeight} width={config.chartWidth}>
+                    <VictoryBar
                     //barWidth={6}
                     padding={{left: 2, right: 2}}
-                    cornerRadius={4}
+                    //cornerRadius={4}
                     style={{
                       data: {fill: "#FD9821"},
                     }}
                     data={blocks.map(blockMapGasUsedPerTx)} 
                     />
                   </VictoryChart>
+                    {/* <VictoryBar
+                    containerComponent={<VictoryContainer responsive={false}/>}
+                    width={310}
+                    height={158}
+                    barWidth={6}
+                    padding={{left: 2, right: 2}}
+                    cornerRadius={4}
+                    style={{
+                      data: {fill: "#FD9821"},
+                    }}
+                    data={blocks.map(blockMapGasUsedPerTx)} 
+                    /> */}
                 </ChartCard>
               </Grid>
             </div>

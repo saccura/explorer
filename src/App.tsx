@@ -73,9 +73,8 @@ function App(props: any) {
   const [chains, setChains] = useChainListStore<[Chain[], Dispatch<Chain[]>]>();
   const [ethRPC, setEthRPCChain] = useEthRPCStore();
   const { width } = useWindowSize()
-  const [isMobile, setMobile] = useState(() => width >= 768 ? false : true)
-  const [isVisibleInput, setVisibleInput] = useState(() => isMobile ? false : true)
-
+  const [isMobile, setMobile] = useState(false)
+  const [isVisibleInput, setVisibleInput] = useState(false)
   const [addChainDialogIsOpen, setAddChainDialogIsOpen] =
     useState<boolean>(false);
 
@@ -174,8 +173,12 @@ function App(props: any) {
 
   // toggling search bar when mobile endpoint
   useEffect(() => {
+    if(!width){
+      return
+    }
     setMobile(width >= 768 ? false : true)
-    setVisibleInput( isMobile ? false : true)
+    setVisibleInput(width >= 768 ? true : false)
+
   }, [width])
 
   const isAddress = (q: string): boolean => {
@@ -303,6 +306,7 @@ function App(props: any) {
                 />
                 <InputBase
                   className={`search-input ${isVisibleInput ? 'visible' : 'hidden'}`}
+                  //className={`search-input`}
                   placeholder={t(
                     "Enter an Address, Transaction Hash or Block Number"
                   )}

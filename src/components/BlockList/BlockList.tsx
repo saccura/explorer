@@ -5,10 +5,9 @@ import { hexToDate, hexToNumber, hexToString } from "@etclabscore/eserialize";
 import { Link as RouterLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-const rightPaddingFix = {
-  paddingRight: "24px",
-};
-
+// const rightPaddingFix = {
+//   paddingRight: "24px",
+// };
 function BlockList({ blocks }: any) {
   const { t } = useTranslation();
   if (!blocks) {
@@ -18,20 +17,22 @@ function BlockList({ blocks }: any) {
     return b.number - a.number;
   });
   return (
-    <div style={{ width: "100%", overflowX: "auto" }}>
+        <div className="table-wrapper" 
+    //style={{ width: "100%", overflowX: "auto" }}
+    >
       <Table>
         <TableHead>
-          <TableRow>
-            <TableCell><Typography>{t("Author")}</Typography></TableCell>
-            <TableCell><Typography>{t("Block Number")}</Typography></TableCell>
-            <TableCell><Typography>{t("Timestamp")}</Typography></TableCell>
-            <TableCell><Typography>{t("#Txs")}</Typography></TableCell>
-            <TableCell><Typography>{t("Gas Usage")}</Typography></TableCell>
-            <TableCell><Typography>{t("Gas Limit")}</Typography></TableCell>
-            <TableCell><Typography>{t("Uncles")}</Typography></TableCell>
-            <TableCell><Typography>{t("Hash")}</Typography></TableCell>
-          </TableRow>
-        </TableHead>
+            <TableRow>
+              <TableCell><Typography>{t("Author")}</Typography></TableCell>
+              <TableCell><Typography>{t("Block Number")}</Typography></TableCell>
+              <TableCell><Typography>{t("Timestamp")}</Typography></TableCell>
+              <TableCell><Typography>{t("#Txs")}</Typography></TableCell>
+              <TableCell><Typography>{t("Gas Usage")}</Typography></TableCell>
+              <TableCell><Typography>{t("Gas Limit")}</Typography></TableCell>
+              {/* <TableCell><Typography>{t("Uncles")}</Typography></TableCell> */}
+              <TableCell><Typography>{t("Hash")}</Typography></TableCell>
+            </TableRow>
+          </TableHead>
         <TableBody>
           {sortedBlocks.map((b: any, index: number) => {
             const filledPercent = (hexToNumber(b.gasUsed) / hexToNumber(b.gasLimit)) * 100;
@@ -41,11 +42,11 @@ function BlockList({ blocks }: any) {
               "—" + b.hash.substring(b.hash.length - 5, b.hash.length - 1);
             const authorHashShort = b.miner.substring(2, 6) + "—" +
               b.miner.substring(b.miner.length - 5, b.miner.length - 1);
-
             // Colorize left border derived from author credit account.
-            const authorHashStyle = {
-              borderLeft: `1em solid #${b.miner.substring(2, 8)}`,
-            };
+            // const authorHashStyle = {
+            //   //borderLeft: `6px solid #${b.miner.substring(2, 8)}`,
+            //   borderLeft: `6px solid ${colors[index]}`,
+            // };
 
             // Tally transactions which create contracts vs transactions with addresses.
             const txTypes = {
@@ -72,8 +73,12 @@ function BlockList({ blocks }: any) {
             }
 
             return (
-              <TableRow key={b.number} style={authorHashStyle}>
-                <TableCell style={rightPaddingFix}>
+              <TableRow 
+              key={b.number} 
+              className={`tr-indent-${index}`} 
+              //style={authorHashStyle}
+              >
+                <TableCell className={`td-label-${index}`}>
                   <Typography>
                     <Link
                       component={({ className, children }: { children: any, className: string }) => (
@@ -86,7 +91,7 @@ function BlockList({ blocks }: any) {
                     &nbsp;<sup>{hexToString(b.extraData).substring(0, 20)}</sup>
                   </Typography>
                 </TableCell>
-                <TableCell component="th" scope="row">
+                <TableCell scope="row">
                   <Link
                     component={({ className, children }: { children: any, className: string }) => (
                       <RouterLink className={className} to={`/block/${b.hash}`} >
@@ -96,13 +101,15 @@ function BlockList({ blocks }: any) {
                     {parseInt(b.number, 16)}
                   </Link>
                 </TableCell>
-                <TableCell style={rightPaddingFix}>
-                  <Typography>{t("Timestamp Date", { date: hexToDate(b.timestamp) })}
-                    &nbsp;
-                    <sub>({tdfp > 0 ? `+${tdfp}` : `-${tdfp}`}s)</sub>
+                <TableCell>
+                  <Typography style={{color: "#18B04D"}}>{t("Timestamp Date", { date: hexToDate(b.timestamp) })}
+                    &nbsp;<sub>({tdfp > 0 ? `+${tdfp}` : `-${tdfp}`}s)</sub>
                   </Typography>
+                  {/* <Typography style={{color: "#18B04D"}}>
+                    Date (+12s)
+                  </Typography> */}
                 </TableCell>
-                <TableCell style={rightPaddingFix}>
+                <TableCell>
                   <Tooltip
                     title={t("Create Transactions", {count: txTypes.create}) as string}
                     placement="top"
@@ -111,18 +118,22 @@ function BlockList({ blocks }: any) {
                       {txTypes.create === 0 ? "" : txTypes.create}
                     </Typography>
                   </Tooltip>
-                  <Typography>{txTypes.transact}</Typography>
+                  <Typography style={{color: "#18B04D"}}> 
+                    {txTypes.transact}
+                  </Typography>
                 </TableCell>
-                <TableCell style={rightPaddingFix}>
+                <TableCell>
                   <LinearProgress value={filledPercent} variant="determinate" />
                 </TableCell>
                 <TableCell>
-                  <Typography>{hexToNumber(b.gasLimit)}</Typography>
+                  <Typography style={{color: "#18B04D"}}>
+                    {hexToNumber(b.gasLimit)}
+                  </Typography>
                 </TableCell>
-                <TableCell>
+                {/* <TableCell>
                   <Typography>{b.uncles.length === 0 ? "" : b.uncles.length}</Typography>
-                </TableCell>
-                <TableCell style={rightPaddingFix}>
+                </TableCell> */}
+                <TableCell>
                   <Link
                     component={({ className, children }: { children: any, className: string }) => (
                       <RouterLink className={className} to={`/block/${b.hash}`} >
@@ -138,6 +149,7 @@ function BlockList({ blocks }: any) {
         </TableBody>
       </Table>
     </div>
+
 
   );
 }

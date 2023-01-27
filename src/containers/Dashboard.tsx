@@ -1,4 +1,4 @@
-import { Grid, Typography, CircularProgress, Theme, Button } from "@material-ui/core";
+import { Grid, Typography, CircularProgress, Theme, Button, CssBaseline } from "@material-ui/core";
 import useEthRPCStore from "../stores/useEthRPCStore";
 import * as React from "react";
 import { weiToGwei } from "../components/formatters";
@@ -14,6 +14,8 @@ import { useTranslation } from "react-i18next";
 import { ArrowForwardIos } from "@material-ui/icons";
 import StatCharts from "../components/StatCharts";
 import { Block as IBlock, IsSyncingResult as ISyncing} from "@etclabscore/ethereum-json-rpc";
+import { VictoryBar, VictoryChart } from "victory";
+import BigNumber from "bignumber.js";
 
 const useState = React.useState;
 
@@ -86,19 +88,80 @@ export default (props: any) => {
     return <CircularProgress />;
   }
 
+  const blockMapTransactionCount = (block: any) => {
+    return {
+      x: hexToNumber(block.number),
+      y: block.transactions.length,
+    };
+  };
+
+  const blockMapGasUsed = (block: any) => {
+    return {
+      x: hexToNumber(block.number),
+      y: new BigNumber(block.gasUsed).dividedBy(1000000),
+    };
+  };
+
+  const blockMapGasUsedPerTx = (block: any) => {
+    const txCount = block.transactions.length
+    const gasUsed = hexToNumber(block.gasUsed)
+
+    if(!txCount && !gasUsed) {
+      return {x: hexToNumber(block.number), y: 0}
+    }
+
+    return {
+      x: hexToNumber(block.number),
+      y: new BigNumber(block.gasUsed).dividedBy(txCount)
+    };
+  };
+
   return (
-    <div>
-      <Grid container spacing={3} direction="column">
-        <Grid item container justify="space-between">
-          <Grid item key="blockHeight">
-            <ChartCard title={t("Block Height")}>
-              <Typography variant="h4">{blockNumber}</Typography>
-            </ChartCard>
+    <div className="dashboard">
+      <Grid className="dashboard-entities" item container justify="space-between">
+          <Grid className="dashboard-entity blockHeightEntity" item key="blockHeightEntity">
+            <div className="entity-left">
+              <ChartCard title={t("Block Height")}>
+                <Typography variant="h4">{blockNumber}</Typography>
+              </ChartCard>
+            </div>
+            <div className="entity-right">
+              <ChartCard title={t("Transaction count")}>
+              <VictoryChart height={config.chartHeight} width={config.chartWidth}>
+                <VictoryBar
+                //barWidth={6}
+                cornerRadius={4}
+                style={{
+                  data: {fill: "#3772FF"}
+                }}
+                data={blocks.map(blockMapTransactionCount)} 
+                />
+              </VictoryChart>
+              </ChartCard>
+            </div>
           </Grid>
-          <Grid key="chainId" item>
-            <ChartCard title={t("Chain ID")}>
-              <Typography variant="h4">{hexToNumber(chainId)}</Typography>
-            </ChartCard>
+          <Grid className="dashboard-entity chainIdEntity" key="chainIdEntity" item>
+            <div className="entity-left">
+              <ChartCard title={t("Chain ID")}>
+                <Typography variant="h4">{hexToNumber(chainId)}</Typography>
+              </ChartCard>
+            </div>
+            <div className="entity-right">
+              <Grid key="gasUsed" item>
+                <ChartCard title={t("Gas Used (Millions)")}>
+                  <VictoryChart height={config.chartHeight} width={config.chartWidth}>
+                    <VictoryBar
+                    //barWidth={6}
+                    cornerRadius={4}
+                    style={{
+                      data: {fill: "#18B04D"}
+                    }}
+                    data={blocks.map(blockMapGasUsed)}
+                    />
+                  </VictoryChart>
+                </ChartCard>
+              </Grid>
+            </div>
           </Grid>
           {syncing &&
             <div key="syncing">
@@ -111,12 +174,36 @@ export default (props: any) => {
               </ChartCard>
             </div>
           }
-          <Grid key="gasPrice" item>
-            <ChartCard title={t("Gas Price")}>
-              <Typography variant="h4">{weiToGwei(hexToNumber(gasPrice))} Gwei</Typography>
-            </ChartCard>
+          <Grid className="dashboard-entity gasPriceEntity" key="gasPriceEntity" item>
+            <div className="entity-left">
+              <ChartCard title={t("Gas Price")}>
+                <Typography variant="h4">{weiToGwei(hexToNumber(gasPrice))} Gwei</Typography>
+              </ChartCard>
+              <Grid key="peers" item>
+                <ChartCard title={t("Peers")}>
+                  <Typography variant="h4">{hexToNumber(peerCount)}</Typography>
+                </ChartCard>
+              </Grid>
+            </div>
+            <div className="entity-right">
+              <Grid key="gasUsedPerTx" item>
+                <ChartCard title={t("Gas Used per Tx")}>
+                  <VictoryChart domainPadding={2}>
+                    <VictoryBar 
+                    //barWidth={6}
+                    padding={{left: 2, right: 2}}
+                    cornerRadius={4}
+                    style={{
+                      data: {fill: "#FD9821"},
+                    }}
+                    data={blocks.map(blockMapGasUsedPerTx)} 
+                    />
+                  </VictoryChart>
+                </ChartCard>
+              </Grid>
+            </div>
           </Grid>
-          <Grid key="hRate" item>
+          {/* <Grid key="hRate" item>
             <ChartCard title={t("Network Hash Rate")}>
               {block &&
                 <HashRate block={block} blockTime={config.blockTime}>
@@ -124,18 +211,12 @@ export default (props: any) => {
                 </HashRate>
               }
             </ChartCard>
-          </Grid>
-          <Grid key="peers" item>
-            <ChartCard title={t("Peers")}>
-              <Typography variant="h4">{hexToNumber(peerCount)}</Typography>
-            </ChartCard>
-          </Grid>
-        </Grid>
+          </Grid> */}
       </Grid>
-      <StatCharts 
+      {/* <StatCharts 
       // victoryTheme={victoryTheme} 
-      blocks={blocks} />
-      <Grid container justify="flex-end">
+      blocks={blocks} /> */}
+      {/* <Grid container justify="flex-end">
         <Button
           color="primary"
           variant="outlined"
@@ -143,7 +224,7 @@ export default (props: any) => {
           onClick={() => props.history.push("/stats/miners")}
         >More Stats</Button>
       </Grid>
-      <br />
+      <br /> */}
 
       <BlockListContainer
         from={Math.max(blockNumber - 14, 0)}

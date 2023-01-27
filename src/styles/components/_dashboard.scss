@@ -1,0 +1,183 @@
+@import "../variables";
+#root {
+    .dashboard {
+        * {
+            padding: 0;
+            font-family: 'Poppins';
+            font-style: normal;
+            ::-webkit-scrollbar-track {
+                background: #ddd;
+                border-radius: 0;
+            }
+
+            ::-webkit-scrollbar-thumb {
+                border-bottom: 4px solid $gray;
+            }
+
+            ::-webkit-scrollbar {
+                height: 4px;
+            }
+        }
+        &-entities {
+
+        }
+        &-entity {
+            color: $black;
+            padding: 0px;
+            margin: 32px;
+            h4 {
+                color: $blue;
+                font-size: 32px;
+                font-weight: 700;
+            }
+
+            h6 {
+                font-size: 16px;
+                font-weight: 500;
+            }
+
+            .entity-left {
+                display: flex;
+                flex-direction: row;
+                div {
+                    &:first-child {
+                        margin-right: 26px;
+                    }
+                }
+            }
+
+            .entity-right {
+                svg {
+                    g {
+                        line {
+                            stroke: transparent!important;
+                        }
+                    }
+                }
+            }
+        }
+        .table {
+            * {
+                font-size: 14px;
+
+            }
+            margin: 0 32px;
+            // .th {
+            //     min-width: 160px;
+            //     padding: 18px 16px 18px 0px;
+            // }
+            thead {
+                tr {
+                    th {
+                        //color: $gray;
+                        //min-width: 160px;
+                        padding: 18px 16px 18px 0px;
+                    }
+                }
+            }
+
+            .table-wrapper {
+                overflow-x: auto;
+                transform: rotateX(180deg);
+    
+                table {
+                    tbody {
+                        tr {
+                            position: relative;
+                            //display: block;
+                            //padding: 12px;
+                            td {
+                                &:first-child {
+                                    padding: 0 12px;
+                                }
+                                padding: 0px 12px 0px 0px;
+                                min-width: 160px;
+                            }
+                            td, a {
+                                color: $red;
+                            }
+                        }
+                        //font-size: 14px;
+                    }
+                    transform: rotateX(180deg);
+                }
+            }
+        }
+
+    }
+}
+
+
+@media screen and (min-width: 768px) {
+    #root {
+        .dashboard {
+            background: $white;
+            &-entities {
+ 
+            }
+            &-entity {
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+
+                .VictoryContainer {
+                    min-width: 480px;
+                }
+
+                .entity-left {
+                    flex-direction: column;
+                    min-width: 208px;
+                }
+
+
+            }
+
+            .table {
+                thead {
+                    tr {
+                        th {
+                        }
+                    }
+                }
+    
+                .table-wrapper {
+                    table {
+                        tbody {
+                            tr {
+                                td {
+                                    min-width: 200px;
+                                }
+                                td, a {
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+@media screen and (min-width: 1600px) {
+    #root {
+        .dashboard {
+            &-entities {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+            }
+            &-entity {
+                //display: flex;
+                flex-direction: column;
+                //width: 100%;
+                //justify-content: space-between;
+                .entity-left {
+                    justify-content: space-between;
+                    flex-direction: row;
+                    //min-width: 208px;
+                }
+            }
+        }
+    }
+}

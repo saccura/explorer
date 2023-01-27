@@ -30,15 +30,15 @@ export default function BlockListContainer(props: IProps) {
     return <CircularProgress />;
   }
   return (
-    <div style={style}>
-      <Grid container justify="flex-end">
+    <div className="table">
+      {/* <Grid container justify="flex-end">
         <IconButton onClick={props.onPrev} disabled={props.disablePrev}>
           <ArrowBackIos />
         </IconButton>
         <IconButton onClick={props.onNext} disabled={props.disableNext}>
           <ArrowForwardIos />
         </IconButton>
-      </Grid>
+      </Grid> */}
       <BlockList blocks={blocks} />
     </div>
   );

@@ -1,6 +1,9 @@
 @import "../variables";
 #root {
     .app-header {
+        margin-bottom: 16px;
+        background: $white;
+        
         .MuiGrid-root {
             flex-wrap: nowrap;
             display: flex;
@@ -9,6 +12,7 @@
             flex-grow: 1;
         }
         .search {
+            max-width: 840px;
             flex-grow: 2;
             align-items: center;
             display: flex;

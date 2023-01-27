@@ -1,20 +1,61 @@
+@import './variables';
+
 html {
     body {
         font-family: 'Poppins', sans-serif;
         font-size: 14px;
+        background: $bgColor;
     }
 
 }
+
+$colors: ("0": #3772FF, "1":#FD9821, "2": #BF37FF, "3":#FF37A3, "4":#37FFB7, "5":#F43F3F, "6":#37B7FF, "7":#3772FF, "8":#FD9821, "9":#BF37FF, "10":#FF37A3, "11":#37FFB7, "12":#F43F3F, "13":#37B7FF, "14": #3772FF, "15":#FD9821);
+@each $ndx, $color in $colors {
+    .tr-indent-#{$ndx} {
+        &::after {
+            content: "";
+            width: 1px;
+            height: 56px;
+            display: inline-block;
+            background: $color;
+            background: transparent;
+        }
+
+    }
+  }
+
+  @each $ndx, $color in $colors {
+    .td-label-#{$ndx} {
+        &::after {
+            content: "";
+            width: 6px;
+            height: 40px;
+            display: inline-block;
+            background: $color;
+            position: absolute;
+            left: 0;
+            top: 12px;
+        }
+    }
+  }
 
 // @media screen and (min-width: 768px) {
     
 // }
 
-@media screen and (min-width: 960px) {
-    html {
-        body {
-            font-family: 'Poppins', sans-serif;
-            font-size: 16px;
-        }
-    }
+// @media screen and (min-width: 960px) {
+//     html {
+//         body {
+//             font-family: 'Poppins', sans-serif;
+//             font-size: 16px;
+//         }
+//     }
+// }
+
+// material ui overwrite
+.MuiLinearProgress-colorPrimary {
+    background-color: #D6E2FF!important;
+}
+.MuiLinearProgress-barColorPrimary {
+    background-color: #3772FF!important;
 }

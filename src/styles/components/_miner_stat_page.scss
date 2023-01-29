@@ -1,0 +1,275 @@
+@import "../variables";
+
+#root {
+    .miner {
+        //margin: 0 45px;
+        // min-width: 684px;
+        margin: 0 32px;
+        * {
+            padding: 0;
+            font-family: 'Poppins';
+            font-style: normal;
+            ::-webkit-scrollbar-track {
+                background: #ddd;
+                border-radius: 0;
+            }
+
+            ::-webkit-scrollbar-thumb {
+                border-bottom: 4px solid $gray;
+            }
+
+            ::-webkit-scrollbar {
+                height: 4px;
+            }
+        }
+
+        &-stat {
+            .MuiGrid-item {
+                flex-direction: column;
+            }
+        }
+
+        &-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        h6 {
+            font-size: 16px;
+        }
+
+        display: flex;
+        flex-direction: column;
+
+        &-charts {
+            .MuiGrid-item {
+                display: flex;
+                div {
+                    &:last-child {
+                        div {
+                            div {
+                                // display: flex;
+                                // flex-direction: column;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // &-info {
+        //     display: flex;
+        //     //max-width: 324px;
+            
+        //     //margin-left: auto;
+        //     //margin-top: -50%;
+
+        // }
+
+        // .miner-right {
+        //     position: relative;
+        //     .dynamic-thead {
+        //         position: absolute;
+        //         top: -35px;
+        //     }
+        // }
+
+        table {
+            thead {
+                tr {
+                    th {
+                        padding: 18px 16px 18px 0px;
+                        color: $gray;
+                        font-weight: 500;
+                        font-size: 14px;
+                        padding-right: 59px;
+                        white-space: nowrap;
+                    }
+                }
+            }
+
+            tbody {
+                tr {
+                    position: relative;
+                    td {
+                        table {
+                            tbody {
+                                tr {
+                                    td {
+                                        display: flex;
+                                        button {
+                                            //background: $lightGreen;
+                                            margin: 4px;
+                                            padding: 4px 16px;
+                                            color: $green;
+                                            border: 1px solid green;
+                                            max-width: 98px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        &:first-child {
+                            padding: 0 12px;
+                        }
+                        padding: 0px 12px 0px 0px;
+                        min-width: 160px;
+                    }
+                    // td, a {
+                    //     color: $red;
+                    // }
+                }
+            }
+        }
+
+        &-table {
+
+        }
+
+        &-pagination {
+            div {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                div {
+                    &:first-child {
+                        order: 1;
+                        transform: translateY(-20px);
+                    }
+                    &:nth-child(2) {
+                        //max-width: 156px;
+                        p {
+                            color: $blue;
+                            font-size: 12px;
+                        }
+                    }
+                }
+            }
+
+            button {
+                width: 40px;
+                height: 40px;
+            }
+            .left-button {
+                margin: 0 6.5px;
+            }
+
+            .left-button.active {
+                border: 2px solid #E6E8EC;
+                border-radius: 40px;
+            }
+
+
+            .right-button {
+                transform: rotate(180deg);
+                margin: 0 6.5px;
+            }
+
+            .right-button.active {
+                border: 2px solid #E6E8EC;
+                border-radius: 40px;
+            }
+        }
+
+        .miner-table {
+            overflow-x: auto;
+            transform: rotateX(180deg);
+            table {
+                transform: rotateX(180deg);
+                tbody {
+                    tr {
+                        td {
+                            table {
+                                tbody {
+                                    tr {
+                                        td {
+                                            transform: rotateX(180deg);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    #root { 
+        .miner {
+            min-width: 684px;
+            margin: 0 42px;
+            &-charts {
+                .MuiGrid-item {
+                    justify-content: space-between;
+                    .chart-item {
+                        max-width: 320px;
+                    }
+                }
+            }
+
+            &-pagination {
+                margin: 5px 0;
+                div {
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: nowrap;
+                }
+            }
+
+
+        }
+    }
+}
+
+@media screen and (min-width: 1600px) {
+    #root { 
+        .miner {
+            // min-width: 684px;
+            // margin: 0 42px;
+            &-charts {
+                .MuiGrid-item {
+                    .chart-item {
+                        &:nth-child(4) {
+                            //background-color: red;
+                            min-width: 555px;
+                        }
+                    }
+                }
+            }
+
+
+            &-pagination {
+                margin: 0;
+                div {
+                    div {
+                        &:first-child {
+                            order: 1;
+                            transform: translateY(0);
+                            width: 110px;
+                        }
+    
+                        &:nth-child(2) {
+                            width: 156px;
+                            margin: 0 41px;
+                        }
+                    }
+                }
+            }
+
+            &-stat {
+                .MuiGrid-item {
+                    width: 100%;
+                }
+            }
+
+            &-info {
+                display: flex;
+                flex-direction: row;
+            }
+
+        }
+    }
+}

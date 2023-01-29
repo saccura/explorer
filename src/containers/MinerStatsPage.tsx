@@ -2,14 +2,15 @@ import { CircularProgress, useTheme, Theme } from "@material-ui/core";
 import useEthRPCStore from "../stores/useEthRPCStore";
 import * as React from "react";
 import getBlocks, { useBlockNumber } from "../helpers";
-import MinerStats from "../components/MinerStats";
+// import MinerStats from "../components/MinerStats";
 import MinerStatsTable from "../components/MinerStatsTable";
 import StatCharts from "../components/StatCharts";
-import getTheme from "../themes/victoryTheme";
-import BlockPagination from "../components/BlockPagination";
+// import getTheme from "../themes/victoryTheme";
+// import BlockPagination from "../components/BlockPagination";
 import { History } from "history";
 import _ from "lodash";
 import { Block as IBlock } from "@etclabscore/ethereum-json-rpc";
+import MinerStatsWithBlockPagination from "../components/MinerStatsWithBlockPagination";
 
 const useState = React.useState;
 
@@ -33,7 +34,7 @@ export default (props: IProps) => {
   const [erpc] = useEthRPCStore();
   const [blockNumber] = useBlockNumber(erpc);
   const [blocks, setBlocks] = useState<IBlock[]>();
-  const theme = useTheme<Theme>();
+  //const theme = useTheme<Theme>();
   //const victoryTheme = getTheme(theme);
   const { block } = props.match.params;
   const blockNum = block !== undefined ? parseInt(block, 10) : blockNumber;
@@ -69,27 +70,69 @@ export default (props: IProps) => {
   }
 
   return (
-    <>
-      <BlockPagination
-        from={from}
-        to={to}
-        disablePrev={blockNum >= blockNumber}
-        disableNext={blockNum === 0}
-        onPrev={() => {
-          const newQuery = blockNum + 100;
-          props.history.push(`/stats/miners/${newQuery}`);
-        }}
-        onNext={() => {
-          const newQuery = Math.max(blockNum - 100, 0);
-          props.history.push(`/stats/miners/${newQuery}`);
-        }}
-      ></BlockPagination>
-      <StatCharts 
-      blocks={blocks} 
-      //victoryTheme={victoryTheme} 
-      />
-      <MinerStats blocks={blocks} config={config} />
-      <MinerStatsTable blocks={blocks} />
-    </>
+    <div className="miner">
+      <div className="miner-left">
+        <div className="miner-charts">
+          <StatCharts 
+          blocks={blocks}
+          minerChart={
+            <MinerStatsWithBlockPagination
+            blocks={blocks} config={config}
+            from={from}
+            to={to}
+            disablePrev={blockNum >= blockNumber}
+            disableNext={blockNum === 0}
+            onPrev={() => {
+              const newQuery = blockNum + 100;
+              props.history.push(`/stats/miners/${newQuery}`);
+            }}
+            onNext={() => {
+              const newQuery = Math.max(blockNum - 100, 0);
+              props.history.push(`/stats/miners/${newQuery}`);
+            }}
+          />
+          }
+          //victoryTheme={victoryTheme} 
+          />
+        </div>
+        {/* <div className="miner-info"> */}
+          {/* <MinerStatsWithBlockPagination
+            blocks={blocks} config={config}
+            from={from}
+            to={to}
+            disablePrev={blockNum >= blockNumber}
+            disableNext={blockNum === 0}
+            onPrev={() => {
+              const newQuery = blockNum + 100;
+              props.history.push(`/stats/miners/${newQuery}`);
+            }}
+            onNext={() => {
+              const newQuery = Math.max(blockNum - 100, 0);
+              props.history.push(`/stats/miners/${newQuery}`);
+            }}
+          /> */}
+          {/* <MinerStats blocks={blocks} config={config} />
+          <BlockPagination
+            from={from}
+            to={to}
+            disablePrev={blockNum >= blockNumber}
+            disableNext={blockNum === 0}
+            onPrev={() => {
+              const newQuery = blockNum + 100;
+              props.history.push(`/stats/miners/${newQuery}`);
+            }}
+            onNext={() => {
+              const newQuery = Math.max(blockNum - 100, 0);
+              props.history.push(`/stats/miners/${newQuery}`);
+            }}
+          ></BlockPagination> */}
+        {/* </div> */}
+      </div>
+      <div className="miner-right">
+        <div className="miner-table">
+          <MinerStatsTable blocks={blocks} />
+        </div>
+      </div>
+    </div>
   );
 };

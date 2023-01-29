@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Grid, IconButton, Typography } from "@material-ui/core";
-import { ArrowForwardIos, ArrowBackIos } from "@material-ui/icons";
+import { KeyboardBackspace } from "@material-ui/icons";
 
 interface IProps {
   from: number;
@@ -14,19 +14,18 @@ interface IProps {
 }
 
 const BlockPagination: React.FC<IProps> = (props) => {
-
   return (
     <Grid container>
       <Grid container justify="flex-end">
-        <IconButton onClick={props.onPrev} disabled={props.disablePrev}>
-          <ArrowBackIos />
+        <IconButton className={`left-button ${props.disablePrev ? '' : 'active'}`} onClick={props.onPrev} disabled={props.disablePrev}>
+          <KeyboardBackspace />
         </IconButton>
-        <IconButton onClick={props.onNext} disabled={props.disableNext}>
-          <ArrowForwardIos />
+        <IconButton className={`right-button ${props.disableNext ? '' : 'active'}`} onClick={props.onNext} disabled={props.disableNext}>
+          <KeyboardBackspace />
         </IconButton>
       </Grid>
       <Grid container justify="flex-end">
-        <Typography>Showing {(props.to - props.from) + 1} Block Range: <b>{props.to}</b> - {props.from}</Typography>
+        <Typography>Showing {(props.to - props.from) + 1} Block Range: <b>{props.to}</b> - <b>{props.from}</b></Typography>
       </Grid>
     </Grid>
   );

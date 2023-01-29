@@ -53,12 +53,12 @@ const MinerStats: React.FC<IProps> = ({blocks}) => {
 
   return (
     <Grid container justify="space-evenly">
-      <Grid key="uncles" item xs={12} md={4} lg={4}>
+      <Grid key="uncles-address" item xs={12} md={4} lg={4}>
         <ChartCard title={t("Miners by address")}>
           <VictoryPie
             cornerRadius={1}
             // innerRadius={50}
-            colorScale="cool"
+            colorScale={["#3772FF", "#BDD1FF"]}
             data={blockTopMinerCountByAddress(blocks)}
             events={[{
               target: "data",
@@ -81,7 +81,7 @@ const MinerStats: React.FC<IProps> = ({blocks}) => {
           </VictoryPie>
         </ChartCard>
       </Grid>
-      <Grid key="uncles" item xs={12} md={3} lg={3}>
+      {/* <Grid key="uncles-extra" item xs={12} md={3} lg={3}>
         <ChartCard title={t("Miners by extraData", { count: config.blockHistoryLength })}>
           <VictoryPie
             colorScale="cool"
@@ -89,7 +89,7 @@ const MinerStats: React.FC<IProps> = ({blocks}) => {
             data={blockTopMinerCount(blocks)}
           />
         </ChartCard>
-      </Grid>
+      </Grid> */}
     </Grid>
   );
 };

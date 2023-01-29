@@ -14,7 +14,7 @@ import { useTranslation } from "react-i18next";
 import { ArrowForwardIos } from "@material-ui/icons";
 import StatCharts from "../components/StatCharts";
 import { Block as IBlock, IsSyncingResult as ISyncing} from "@etclabscore/ethereum-json-rpc";
-import { VictoryBar, VictoryChart, VictoryContainer } from "victory";
+import { VictoryAxis, VictoryBar, VictoryChart, VictoryContainer, VictoryGroup } from "victory";
 import BigNumber from "bignumber.js";
 
 const useState = React.useState;
@@ -22,8 +22,8 @@ const useState = React.useState;
 const config = {
   blockTime: 15, // seconds
   blockHistoryLength: 100,
-  chartHeight: 200,
-  chartWidth: 450,
+  chartHeight: 300,
+  chartWidth: 600,
 };
 
 export default (props: any) => {
@@ -128,12 +128,26 @@ export default (props: any) => {
               <ChartCard title={t("Transaction count")}>
               <VictoryChart height={config.chartHeight} width={config.chartWidth}>
                 <VictoryBar
-                //barWidth={6}
-                //cornerRadius={4}
+                barWidth={4}
+                cornerRadius={2}
                 style={{
                   data: {fill: "#3772FF"}
                 }}
                 data={blocks.map(blockMapTransactionCount)} 
+                />
+                <VictoryAxis
+                  style={{
+                    axis: {stroke: 'transparent'},
+                    tickLabels: {fontSize: 14, fill: "#23262F"}
+                  }}
+                />
+                <VictoryAxis
+                  dependentAxis
+                      //domain={[0, 80]}
+                  style={{
+                    axis: {stroke: 'transparent'},
+                    tickLabels: {fontSize: 10, fill: "#777E90"}
+                  }}
                 />
               </VictoryChart>
               </ChartCard>
@@ -150,12 +164,26 @@ export default (props: any) => {
                 <ChartCard title={t("Gas Used (Millions)")}>
                   <VictoryChart height={config.chartHeight} width={config.chartWidth}>
                     <VictoryBar
-                    //barWidth={6}
-                    //cornerRadius={4}
+                    barWidth={4}
+                    cornerRadius={2}
                     style={{
                       data: {fill: "#18B04D"}
                     }}
                     data={blocks.map(blockMapGasUsed)}
+                    />
+                    <VictoryAxis
+                      style={{
+                        axis: {stroke: 'transparent'},
+                        tickLabels: {fontSize: 14, fill: "#23262F"}
+                      }}
+                    />
+                    <VictoryAxis
+                      dependentAxis
+                      //domain={[0, 80]}
+                      style={{
+                        axis: {stroke: 'transparent'},
+                        tickLabels: {fontSize: 10, fill: "#777E90"}
+                      }}
                     />
                   </VictoryChart>
                 </ChartCard>
@@ -189,13 +217,28 @@ export default (props: any) => {
                 <ChartCard title={t("Gas Used per Tx")}>
                   <VictoryChart height={config.chartHeight} width={config.chartWidth}>
                     <VictoryBar
-                    //barWidth={6}
+                    barWidth={4}
+                    cornerRadius={2}
                     padding={{left: 2, right: 2}}
                     //cornerRadius={4}
                     style={{
                       data: {fill: "#FD9821"},
                     }}
                     data={blocks.map(blockMapGasUsedPerTx)} 
+                    />
+                    <VictoryAxis
+                      style={{
+                        axis: {stroke: 'transparent'},
+                        tickLabels: {fontSize: 14, fill: "#23262F"}
+                      }}
+                    />
+                    <VictoryAxis
+                      dependentAxis
+                      //domain={[0, 80]}
+                      style={{
+                        axis: {stroke: 'transparent'},
+                        tickLabels: {fontSize: 10, fill: "#777E90"}
+                      }}
                     />
                   </VictoryChart>
                     {/* <VictoryBar

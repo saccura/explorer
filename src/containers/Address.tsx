@@ -8,6 +8,7 @@ import { hexToNumber } from "@etclabscore/eserialize";
 import AddressTransactions from "../components/AddressTransactions";
 import { History } from "history";
 import { Transaction } from "@etclabscore/ethereum-json-rpc";
+import BigNumber from "bignumber.js";
 
 const unit = require("ethjs-unit"); //tslint:disable-line
 
@@ -90,15 +91,18 @@ const Address: React.FC<IProps> = ({ match, history }) => {
   if (transactionCount === undefined || balance === undefined || code === undefined) {
     return <CircularProgress />;
   }
+
   return (
-    <>
+    <div className="address-page">
       <AddressView
         address={address}
         txCount={transactionCount ? hexToNumber(transactionCount) : 0}
-        balance={unit.fromWei(balance || 0, "ether")}
+        balance={String(Number(unit.fromWei(balance || 0, "ether")).toFixed())}
         code={code}
+        className="view"
       />
       <AddressTransactions
+        className="transactions"
         from={from}
         to={to}
         transactions={transactions}
@@ -113,7 +117,7 @@ const Address: React.FC<IProps> = ({ match, history }) => {
           history.push(`/address/${address}/${newQuery}`);
         }}
       />
-    </>
+    </div>
   );
 };
 

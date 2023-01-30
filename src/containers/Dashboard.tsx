@@ -204,7 +204,7 @@ export default (props: any) => {
           <Grid className="dashboard-entity gasPriceEntity" key="gasPriceEntity" item>
             <div className="entity-left">
               <ChartCard title={t("Gas Price")}>
-                <Typography variant="h4">{weiToGwei(hexToNumber(gasPrice))} Gwei</Typography>
+                <Typography variant="h4">{weiToGwei(hexToNumber(gasPrice))} POPX</Typography>
               </ChartCard>
               <Grid key="peers" item>
                 <ChartCard title={t("Peers")}>

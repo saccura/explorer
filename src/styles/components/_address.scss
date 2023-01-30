@@ -1,0 +1,248 @@
+@import "../variables";
+#root {
+    .address-page {
+        margin: 0 16px;
+        h6 {
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            margin: 0;
+            margin-bottom: 8px;
+        }
+        .view {
+            box-shadow: none;
+            border-radius: 0px;
+            .content {
+                color: $blue;
+                font-weight: 500;
+                font-size: 20px;
+                line-height: 24px;
+            }
+
+            &-address {
+                display: flex;
+                flex-direction: column;
+                max-width: 250px;
+
+                &__content {
+                    word-break: break-all;
+                }
+            }
+
+            &-balancewithtxs {
+                display: flex;
+                position: relative;
+                margin: 16px 0 26px 0;
+                &__left {
+                    flex-grow: 1;
+                    &::after {
+                        content: "";
+                        width: 1px;
+                        height: 56px;
+                        background: #E6E8EC;
+                        display: inline-block;
+                        position: absolute;
+                        top: 0;
+                        right: 50%;
+                    }
+                }
+            
+                &__right {
+
+                }
+
+                // &__title {
+
+                // }
+
+                // &__content {
+                    
+                // }
+
+                h6 {
+                    &:first-child {
+                        // &::after {
+                        //     content: "";
+                        // }
+                        //border-right: 1px solid #E6E8EC;
+                        //padding-right: 60px;
+                    }
+
+                    // &:nth-child(2) {
+                    //     width: 153px;
+                    // }
+                }
+            }
+
+            &-code {
+
+                &__title {
+                    color: #777E91;
+                }
+
+                &__content.content {
+                    color: $green;
+                    font-size: 14px;
+                    word-break: break-all;
+                }
+
+            }
+        }
+
+        .transactions {
+            display: flex;
+            flex-direction: column;
+            &-top {
+                display: flex;
+                margin-bottom: 32px;
+
+                &__blockrange {
+                    max-width: 212px;
+                    padding-left: 16px;
+                    color: $blue;
+                }
+
+                &__arrows {
+                    button {
+                        width: 40px;
+                        height: 40px;
+                    }
+
+                    .left-button {
+                        margin: 0 6.5px;
+                    }
+
+                    .left-button.active {
+                        border: 2px solid #E6E8EC;
+                        border-radius: 40px;
+                    }
+
+                    .right-button {
+                        transform: rotate(180deg);
+                        margin: 0 6.5px;
+                    }
+        
+                    .right-button.active {
+                        border: 2px solid #E6E8EC;
+                        border-radius: 40px;
+                    }
+
+                }
+            }
+
+            &-bottom {
+                .empty-transactions {
+                    transform: rotate(180deg);
+                }
+                overflow-x: auto;
+                transform: rotate(180deg);
+
+                .txlist-table {
+                    transform: rotate(180deg);
+
+                    thead {
+                        tr {
+                            th {
+                                min-width: 201px;
+                            }
+                        }
+                    }
+
+                    tbody {
+                        a {
+                            color: $red;
+                            text-decoration: none;
+                        }
+                    }
+                }
+            }
+        }
+
+        // table {
+        //     width: 1848px;
+        // }
+    }
+}
+
+
+@media screen and (min-width: 768px) {
+    #root {
+        .address-page {
+            .view {
+                &-address {
+                    max-width: 100%;
+                }
+
+                &-balancewithtxs {
+                    max-width: 306px;
+                    justify-content: space-between;
+                }
+            }
+
+            .transactions {
+                &-top {
+                    justify-content: center;
+                    margin-bottom: 62px;
+                }
+                // &-bottom {
+
+                // }
+            }
+        }
+    }
+}
+
+
+@media screen and (min-width: 1600px) {
+    #root {
+        .address-page {
+            .view {
+                &-wrapper {
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-items: center;
+                }
+
+                &-address {
+                    position: relative;
+                    margin-right: 140px;
+                    &::after {
+                        content: "";
+                        width: 1px;
+                        height: 56px;
+                        background: #E6E8EC;
+                        display: inline-block;
+                        position: absolute;
+                        top: 0;
+                        right: -15%;
+                    }
+                }
+
+                &-balancewithtxs {
+                    &__left {
+                        margin-right: 80px;
+ 
+                    }
+                }
+
+                &-code {
+                    min-width: 100%;
+                }
+
+            }
+
+            .transactions {
+                &-top {
+                    position: absolute;
+                    right: 30px;
+                    top: 110px;
+                    // justify-content: center;
+                    // margin-bottom: 62px;
+                }
+                // &-bottom {
+
+                // }
+            }
+        }
+    }
+}

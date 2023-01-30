@@ -13,7 +13,7 @@ function TxListItem({ tx, showblockNumber }: { tx: any, showblockNumber?: boolea
       <TableCell>
         <Link
           component={({ className, children }: { children: any, className: string }) => (
-            <RouterLink className={className} to={`/tx/${tx.hash}`} >
+            <RouterLink to={`/tx/${tx.hash}`} >
               {children}
             </RouterLink>
           )}>
@@ -24,7 +24,7 @@ function TxListItem({ tx, showblockNumber }: { tx: any, showblockNumber?: boolea
       <TableCell>
         <Link
           component={({ className, children }: { children: any, className: string }) => (
-            <RouterLink className={className} to={`/address/${tx.from}`} >
+            <RouterLink to={`/address/${tx.from}`} >
               {children}
             </RouterLink>
           )}>
@@ -36,7 +36,7 @@ function TxListItem({ tx, showblockNumber }: { tx: any, showblockNumber?: boolea
         {tx.to !== null ?
           <Link
             component={({ className, children }: { children: any, className: string }) => (
-              <RouterLink className={className} to={`/address/${tx.to}`} >
+              <RouterLink to={`/address/${tx.to}`} >
                 {children}
               </RouterLink>
             )}>
@@ -57,7 +57,7 @@ export interface ITxListProps {
 
 function TxList(props: ITxListProps) {
   return (
-    <Table>
+    <Table className="txlist-table">
       <TableHead>
         <TableRow>
           {props.showBlockNumber && <TableCell>Block Number</TableCell>}

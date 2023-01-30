@@ -29,7 +29,7 @@ export default {
   // block view
   "Number": "수량",
   "ParentHash": "ParentHash",
-  "Miner": "마이너",
+  "Collator": "조합기",
   "Nonce": "목하",
   "Difficulty": "난이도",
   "Extra Data": "추가 데이터",

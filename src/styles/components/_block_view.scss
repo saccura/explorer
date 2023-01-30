@@ -1,0 +1,154 @@
+@import "../variables";
+
+#root {
+    * {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+
+        ::-webkit-scrollbar-track {
+            background: #ddd;
+            border-radius: 0;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            border-bottom: 4px solid $gray;
+        }
+
+        ::-webkit-scrollbar {
+            height: 4px;
+        }
+
+    }
+    .block-view {
+        margin: 0 16px;
+        .bottom {
+            overflow-x: auto;
+            transform: rotateX(180deg);
+
+            .table-wrapper {
+                transform: rotateX(180deg);
+            }
+
+
+            .blockinfo-table {
+                tbody {
+                    tr {
+                        border-bottom: 1px solid rgba(224, 224, 224, 1);
+                        td {
+                            //padding: 23px 36px;
+                            border-bottom: none;
+                        }
+                    }
+                }
+            }
+
+            .txlist-table {
+                thead {
+                    tr {
+                        th {
+                            //padding: 13px 36px 8px 36px;
+                            border-bottom: none;
+                            padding-bottom: 0px;
+                        }
+                    }
+                }
+
+                tbody {
+                    tr {
+                        // &:first-child {
+                        //     border-bottom: none;
+                        // }
+                        td {
+                            //padding: 0 36px 32px 36px;
+                            &:first-child {
+                                padding-top: 0px;
+                            }
+
+                            a {
+                                color: $blue;
+                            }
+                        }
+                    }
+                }
+            }
+
+            table {
+                min-width: 1580px;
+                tr {
+                    td {
+                        padding: 23px 16px;
+
+                        a {
+                            color: $blue;
+                        }
+                    }
+                }
+            }
+        }
+
+        .view-raw {
+            color: $blue;
+            font-size: 14px;
+            text-transform: none;
+        }
+
+        &__number {
+            color: $red;
+        }
+        &__number + button {
+            padding: 23px 0;
+        }
+
+        &__gasusage {
+            color: $green;
+        }
+
+        &__parenthash {
+        }
+
+        &__parenthash.value {
+            color: $blue;
+            text-decoration: underline;
+
+            // &:visited {
+            //     color: $blue;
+            // }
+        }
+
+        &__collator {
+
+        }
+
+        &__collator.value {
+            color: $blue;
+            text-decoration: underline;
+            // &:visited {
+            //     color: $blue;
+            // }
+        }
+
+        &__mingasprice.value {
+            display: flex;
+            &::before {
+                content: url("../../assets/gasPriceIcon.svg");
+                display: inline-block;
+                width: 10px;
+                height: 14px;
+                margin-right: 6px;
+            }
+        }
+
+        &__maxgasprice.value {
+            display: flex;
+            &::before {
+                content: url("../../assets/gasPriceIcon.svg");
+                display: inline-block;
+                width: 10px;
+                height: 14px;
+                margin-right: 6px;
+            }
+        }
+    }
+
+}

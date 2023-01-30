@@ -19,7 +19,7 @@ const BlockRaw: React.FC<IProps> = (props) => {
         onClick={() => {
           history.push(`/block/${block.hash}`);
         }}
-        style={{ position: "absolute", right: "10px", top: "75px", zIndex: 1 }}
+        style={{ position: "absolute", right: "30px", top: "75px", zIndex: 1, textTransform: "none", color: "#3772FF" }}
       >View Block</Button>
       <Editor
         options={{

@@ -25,7 +25,7 @@ export default {
   "Transactions": "Transactions",
   "Number": "Number",
   "ParentHash": "ParentHash",
-  "Miner": "Miner",
+  "Collator": "Collator",
   "Nonce": "Nonce",
   "Difficulty": "Difficulty",
   "Extra Data": "Extra Data",

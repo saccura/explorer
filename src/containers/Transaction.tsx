@@ -32,6 +32,5 @@ export default function TransactionContainer(props: any) {
   if (!transaction || !receipt) {
     return (<CircularProgress />);
   }
-
   return (<TxView tx={transaction} receipt={receipt} />);
 }

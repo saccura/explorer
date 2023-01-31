@@ -39,7 +39,11 @@ $colors: ("0": #3772FF, "1":#FD9821, "2": #BF37FF, "3":#FF37A3, "4":#37FFB7, "5"
     }
   }
 
-
+button.view-raw {
+    color: $blue;
+    font-size: 14px;
+    text-transform: none;
+}
 // @media screen and (min-width: 768px) {
     
 // }

@@ -30,6 +30,10 @@
             }
 
             &-balancewithtxs {
+                &__content.content {
+                    max-width: 150px;
+                    word-break: break-all;
+                }
                 display: flex;
                 position: relative;
                 margin: 16px 0 26px 0;

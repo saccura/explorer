@@ -1,0 +1,182 @@
+@import './variables';
+
+// &::before {
+//     content: url("../../assets/gasPriceIcon.svg");
+//     display: inline-block;
+//     width: 10px;
+//     height: 14px;
+//     margin-right: 6px;
+// }
+
+#root {
+    .transaction-view {
+        h6 {
+            margin: 19px 0;
+        }
+
+        .tx-title {
+
+        }
+        .receipt-title {
+            margin: 45px 0 19px 0;
+        }
+        .view-raw {
+            //style={{ position: "absolute", right: "10px", top: "75px" }}
+            position: absolute;
+            right: 23px;
+            top: 80px;
+            display: none;
+        }
+        a {
+            color: $blue;
+            text-decoration: underline;
+        }
+        margin: 0 16px;
+        h6 {
+            padding: 0 16px;
+        }
+
+        // .transaction-view__firsttable {
+        //     table {
+        //         tbody {
+        //             tr {
+        //                 td {
+        //                     padding: 23px 16px;
+        //                     &:first-child {
+        //                         width: 280px;
+        //                         display: inline-block;
+        //                         //padding-right: 190px;
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
+
+        // .transaction-view__secondtable {
+        //     table {
+        //         tbody {
+        //             tr {
+        //                 td {
+        //                     padding: 23px 16px;
+        //                     &:first-child {
+        //                         width: 280px;
+        //                         display: inline-block;
+        //                         //padding-right: 190px;
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
+
+        table {
+            tbody {
+                tr {
+                    display: flex;
+                    td {
+                        padding: 23px 16px;
+                        &:first-child {
+                            min-width: 260px;
+                            //padding-right: 192px;
+                        }
+                    }
+                }
+            }
+        }
+
+        &__firsttable {
+            overflow-x: auto;
+            transform: rotateX(180deg);
+            table {
+                transform: rotateX(180deg);
+            }
+        }
+
+        &__secondtable {
+            overflow-x: auto;
+            transform: rotateX(180deg);
+            table {
+                transform: rotateX(180deg);
+            }
+        }
+
+        .gasprice {
+            &-content {
+                &::before {
+                    content: url("../../assets/gasPriceIcon.svg");
+                    display: inline-block;
+                    width: 10px;
+                    height: 14px;
+                    margin-right: 6px;
+                    vertical-align: middle;
+                    //display: flex;
+                }
+            }
+        }
+        .value {
+            &-content {
+                &::before {
+                    content: url("../../assets/gasPriceIcon.svg");
+                    display: inline-block;
+                    width: 10px;
+                    height: 14px;
+                    margin-right: 6px;
+                    vertical-align: middle;
+                    //display: flex;
+                }
+            }
+        }
+
+    }
+}
+
+@media screen and (min-width: 768px) {
+    #root {
+        .transaction-view {
+            table {
+                tbody {
+                    tr {
+                        td {
+                            &:first-child {
+                               //all: unset;
+                               //width: 100%;
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+@media screen and (min-width: 1600px) {
+    //
+    #root {
+        .transaction-view {
+            table {
+                tbody {
+                    tr {
+                        td {
+                            word-break: break-all;
+                            &:first-child {
+                                //max-width: 280px;
+                            }
+
+                            //width: 646px;
+                        }
+                    }
+                }
+            }
+            
+            .view-raw {
+                position: absolute;
+                right: 23px;
+                top: 80px;
+                display: block;
+            }
+
+        }
+    }
+}

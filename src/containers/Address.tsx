@@ -9,6 +9,7 @@ import AddressTransactions from "../components/AddressTransactions";
 import { History } from "history";
 import { Transaction } from "@etclabscore/ethereum-json-rpc";
 import BigNumber from "bignumber.js";
+import { weiToGwei } from "../components/formatters";
 
 const unit = require("ethjs-unit"); //tslint:disable-line
 

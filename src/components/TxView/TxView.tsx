@@ -22,126 +22,21 @@ function TxView(props: ITxViewProps) {
   }
 
   return (
-    <div>
+    <div className="transaction-view">
       <Button
         onClick={() => {
           history.push(`/tx/${tx.hash}/raw`);
         }}
-        style={{ position: "absolute", right: "10px", top: "75px" }}
+        className="view-raw"
+        //style={{ position: "absolute", right: "10px", top: "75px" }}
       >View Raw</Button>
-      <Typography variant="h6">Transaction</Typography>
-      <Table>
-        <TableBody>
-          <TableRow>
-            <TableCell>{t("Hash")}</TableCell>
-            <TableCell>{tx.hash}</TableCell>
-          </TableRow>
-
-          <TableRow>
-            <TableCell>{t("Block")}</TableCell>
-            <TableCell>
-              <Link
-                component={({ className, children }: { children: any, className: string }) => (
-                  <RouterLink className={className} to={`/block/${tx.blockHash}`} >
-                    {children}
-                  </RouterLink>
-                )}>
-                {tx.blockHash}
-              </Link>
-            </TableCell>
-          </TableRow>
-
-          <TableRow>
-            <TableCell>{t("Block Number")}</TableCell>
-            <TableCell>{hexToNumber(tx.blockNumber)}</TableCell>
-          </TableRow>
-
-          <TableRow>
-            <TableCell>{t("Gas")}</TableCell>
-            <TableCell>{hexToNumber(tx.gas)}</TableCell>
-          </TableRow>
-
-          <TableRow>
-            <TableCell>{t("Gas Price")}</TableCell>
-            <TableCell>{hexToNumber(tx.gasPrice)} Wei</TableCell>
-          </TableRow>
-
-          <TableRow>
-            <TableCell>{t("Value")}</TableCell>
-            <TableCell>{unit.fromWei(tx.value, "ether")} Ether</TableCell>
-          </TableRow>
-
-          <TableRow>
-            <TableCell>{t("From")}</TableCell>
-            <TableCell>
-              <Link
-                component={({ className, children }: { children: any, className: string }) => (
-                  <RouterLink className={className} to={`/address/${tx.from}`} >
-                    {children}
-                  </RouterLink>
-                )}>
-                {tx.from}
-              </Link>
-            </TableCell>
-          </TableRow>
-
-          <TableRow>
-            <TableCell>{t("To")}</TableCell>
-            <TableCell>
-              {tx.to !== null ?
-                <Link
-                  component={({ className, children }: { children: any, className: string }) => (
-                    <RouterLink className={className} to={`/address/${tx.to}`} >
-                      {children}
-                    </RouterLink>
-                  )}>
-                  {tx.to}
-                </Link>
-                : null
-              }
-            </TableCell>
-          </TableRow>
-
-          <TableRow>
-            <TableCell>{t("Nonce")}</TableCell>
-            <TableCell>{hexToNumber(tx.nonce)}</TableCell>
-          </TableRow>
-
-          <TableRow>
-            <TableCell>{t("Transaction Index")}</TableCell>
-            <TableCell>{hexToNumber(tx.transactionIndex)}</TableCell>
-          </TableRow>
-
-          <TableRow>
-            <TableCell>{t("Input")}</TableCell>
-            <TableCell>{tx.input}</TableCell>
-          </TableRow>
-
-          <TableRow>
-            <TableCell>v</TableCell>
-            <TableCell>{tx.v}</TableCell>
-          </TableRow>
-
-          <TableRow>
-            <TableCell>r</TableCell>
-            <TableCell>{tx.r}</TableCell>
-          </TableRow>
-
-          <TableRow>
-            <TableCell>s</TableCell>
-            <TableCell>{tx.s}</TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-
-      <br />
-      <Typography variant="h6">Receipt</Typography>
-      {receipt &&
+      <Typography className="tx-title" variant="h6">Transaction</Typography>
+      <div className="transaction-view__firsttable">
         <Table>
           <TableBody>
             <TableRow>
               <TableCell>{t("Hash")}</TableCell>
-              <TableCell>{receipt.transactionHash}</TableCell>
+              <TableCell>{tx.hash}</TableCell>
             </TableRow>
 
             <TableRow>
@@ -149,33 +44,34 @@ function TxView(props: ITxViewProps) {
               <TableCell>
                 <Link
                   component={({ className, children }: { children: any, className: string }) => (
-                    <RouterLink className={className} to={`/block/${receipt.blockHash}`} >
+                    <RouterLink className={className} to={`/block/${tx.blockHash}`} >
                       {children}
                     </RouterLink>
                   )}>
-                  {receipt.blockHash}
+                  {tx.blockHash}
                 </Link>
               </TableCell>
             </TableRow>
 
             <TableRow>
               <TableCell>{t("Block Number")}</TableCell>
-              <TableCell>{hexToNumber(receipt.blockNumber)}</TableCell>
+              <TableCell>{hexToNumber(tx.blockNumber)}</TableCell>
             </TableRow>
 
             <TableRow>
-              <TableCell>{t("Gas Used")}</TableCell>
-              <TableCell>{hexToNumber(receipt.gasUsed)}</TableCell>
+              <TableCell>{t("Gas")}</TableCell>
+              <TableCell>{hexToNumber(tx.gas)}</TableCell>
             </TableRow>
 
-            <TableRow>
-              <TableCell>{t("Cumulative Gas Used")}</TableCell>
-              <TableCell>{hexToNumber(receipt.cumulativeGasUsed)}</TableCell>
+            <TableRow className="gasprice">
+              <TableCell className="gasprice-title">{t("Gas Price")}</TableCell>
+              {/* <TableCell className="gasprice-content">{hexToNumber(tx.gasPrice)</TableCell> */}
+              <TableCell className="gasprice-content">{unit.fromWei(tx.gasPrice, "ether")}</TableCell>
             </TableRow>
 
-            <TableRow>
-              <TableCell>{t("Value")}</TableCell>
-              <TableCell>{unit.fromWei(tx.value, "ether")} Ether</TableCell>
+            <TableRow className="value">
+              <TableCell className="value-title">{t("Value")}</TableCell>
+              <TableCell className="value-content">{unit.fromWei(tx.value, "ether")}</TableCell>
             </TableRow>
 
             <TableRow>
@@ -183,11 +79,11 @@ function TxView(props: ITxViewProps) {
               <TableCell>
                 <Link
                   component={({ className, children }: { children: any, className: string }) => (
-                    <RouterLink className={className} to={`/address/${receipt.from}`} >
+                    <RouterLink className={className} to={`/address/${tx.from}`} >
                       {children}
                     </RouterLink>
                   )}>
-                  {receipt.from}
+                  {tx.from}
                 </Link>
               </TableCell>
             </TableRow>
@@ -195,49 +91,158 @@ function TxView(props: ITxViewProps) {
             <TableRow>
               <TableCell>{t("To")}</TableCell>
               <TableCell>
-                <Link
-                  component={({ className, children }: { children: any, className: string }) => (
-                    <RouterLink className={className} to={`/address/${receipt.to}`} >
-                      {children}
-                    </RouterLink>
-                  )}>
-                  {receipt.to}
-                </Link>
+                {tx.to !== null ?
+                  <Link
+                    component={({ className, children }: { children: any, className: string }) => (
+                      <RouterLink className={className} to={`/address/${tx.to}`} >
+                        {children}
+                      </RouterLink>
+                    )}>
+                    {tx.to}
+                  </Link>
+                  : null
+                }
               </TableCell>
             </TableRow>
 
             <TableRow>
-              <TableCell>{t("Contract Address")}</TableCell>
-              <TableCell>
-                <Link
-                  component={({ className, children }: { children: any, className: string }) => (
-                    <RouterLink className={className} to={`/address/${receipt.contractAddress}`} >
-                      {children}
-                    </RouterLink>
-                  )}>
-                  {receipt.contractAddress}
-                </Link>
-              </TableCell>
+              <TableCell>{t("Nonce")}</TableCell>
+              <TableCell>{hexToNumber(tx.nonce)}</TableCell>
             </TableRow>
 
             <TableRow>
               <TableCell>{t("Transaction Index")}</TableCell>
-              <TableCell>{hexToNumber(receipt.transactionIndex)}</TableCell>
+              <TableCell>{hexToNumber(tx.transactionIndex)}</TableCell>
             </TableRow>
 
             <TableRow>
-              <TableCell>{t("Receipt Status")}</TableCell>
-              <TableCell>{receipt.status}</TableCell>
+              <TableCell>{t("Input")}</TableCell>
+              <TableCell>{tx.input}</TableCell>
             </TableRow>
 
             <TableRow>
-              <TableCell>{t("Receipt Logs")}</TableCell>
-              <TableCell>
-                {receipt.logs.length}
-              </TableCell>
+              <TableCell>v</TableCell>
+              <TableCell>{tx.v}</TableCell>
+            </TableRow>
+
+            <TableRow>
+              <TableCell>r</TableCell>
+              <TableCell>{tx.r}</TableCell>
+            </TableRow>
+
+            <TableRow>
+              <TableCell>s</TableCell>
+              <TableCell>{tx.s}</TableCell>
             </TableRow>
           </TableBody>
         </Table>
+      </div>
+      <Typography className="receipt-title" variant="h6">Receipt</Typography>
+      {receipt &&
+        <div className="transaction-view__secondtable">
+          <Table>
+            <TableBody>
+              <TableRow>
+                <TableCell>{t("Hash")}</TableCell>
+                <TableCell>{receipt.transactionHash}</TableCell>
+              </TableRow>
+
+              <TableRow>
+                <TableCell>{t("Block")}</TableCell>
+                <TableCell>
+                  <Link
+                    component={({ className, children }: { children: any, className: string }) => (
+                      <RouterLink className={className} to={`/block/${receipt.blockHash}`} >
+                        {children}
+                      </RouterLink>
+                    )}>
+                    {receipt.blockHash}
+                  </Link>
+                </TableCell>
+              </TableRow>
+
+              <TableRow>
+                <TableCell>{t("Block Number")}</TableCell>
+                <TableCell>{hexToNumber(receipt.blockNumber)}</TableCell>
+              </TableRow>
+
+              <TableRow>
+                <TableCell>{t("Gas Used")}</TableCell>
+                <TableCell>{hexToNumber(receipt.gasUsed)}</TableCell>
+              </TableRow>
+
+              <TableRow>
+                <TableCell>{t("Cumulative Gas Used")}</TableCell>
+                <TableCell>{hexToNumber(receipt.cumulativeGasUsed)}Wei</TableCell>
+              </TableRow>
+
+              <TableRow>
+                <TableCell>{t("Value")}</TableCell>
+                <TableCell>{unit.fromWei(tx.value, "ether")} Tokens</TableCell>
+              </TableRow>
+
+              <TableRow>
+                <TableCell>{t("From")}</TableCell>
+                <TableCell>
+                  <Link
+                    component={({ className, children }: { children: any, className: string }) => (
+                      <RouterLink className={className} to={`/address/${receipt.from}`} >
+                        {children}
+                      </RouterLink>
+                    )}>
+                    {receipt.from}
+                  </Link>
+                </TableCell>
+              </TableRow>
+
+              <TableRow>
+                <TableCell>{t("To")}</TableCell>
+                <TableCell>
+                  <Link
+                    component={({ className, children }: { children: any, className: string }) => (
+                      <RouterLink className={className} to={`/address/${receipt.to}`} >
+                        {children}
+                      </RouterLink>
+                    )}>
+                    {receipt.to}
+                  </Link>
+                </TableCell>
+              </TableRow>
+
+              <TableRow>
+                <TableCell>{t("Contract Address")}</TableCell>
+                <TableCell>
+                  <Link
+                    component={({ className, children }: { children: any, className: string }) => (
+                      <RouterLink className={className} to={`/address/${receipt.contractAddress}`} >
+                        {children}
+                      </RouterLink>
+                    )}>
+                    {receipt.contractAddress}
+                  </Link>
+                  {!receipt.contractAddress && "none"}
+                </TableCell>
+              </TableRow>
+
+              <TableRow>
+                <TableCell>{t("Transaction Index")}</TableCell>
+                <TableCell>{hexToNumber(receipt.transactionIndex)}</TableCell>
+              </TableRow>
+
+              <TableRow>
+                <TableCell>{t("Receipt Status")}</TableCell>
+                <TableCell>{receipt.status}</TableCell>
+              </TableRow>
+
+              <TableRow>
+                <TableCell>{t("Receipt Logs")}</TableCell>
+                <TableCell>
+                  {receipt.logs.length}
+                </TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </div>
       }
     </div>
   );

@@ -10,18 +10,18 @@
             font-family: 'Poppins';
             font-style: normal;
             font-weight: 500;
-            ::-webkit-scrollbar-track {
-                background: #ddd;
-                border-radius: 0;
-            }
+            // ::-webkit-scrollbar-track {
+            //     background: #ddd;
+            //     border-radius: 0;
+            // }
 
-            ::-webkit-scrollbar-thumb {
-                border-bottom: 4px solid $gray;
-            }
+            // ::-webkit-scrollbar-thumb {
+            //     border-bottom: 4px solid $gray;
+            // }
 
-            ::-webkit-scrollbar {
-                height: 4px;
-            }
+            // ::-webkit-scrollbar {
+            //     height: 4px;
+            // }
         }
 
         &-stat {
@@ -152,11 +152,23 @@
             }
         }
 
+        .miner-table::-webkit-scrollbar-track {
+            background: transparent;
+            border-radius: 0;
+        }
+        
+        .miner-table::-webkit-scrollbar-thumb {
+            border-bottom: 1px solid transparent;
+        }
+        .miner-table::-webkit-scrollbar {
+            height: 1px;
+        }
+
         .miner-table {
-            overflow-x: auto;
-            transform: rotateX(180deg);
+            //overflow-x: auto;
+            //transform: rotateX(180deg);
             table {
-                transform: rotateX(180deg);
+                //transform: rotateX(180deg);
                 tbody {
                     tr {
                         td {
@@ -164,7 +176,7 @@
                                 tbody {
                                     tr {
                                         td {
-                                            transform: rotateX(180deg);
+                                            //transform: rotateX(180deg);
                                         }
                                     }
                                 }

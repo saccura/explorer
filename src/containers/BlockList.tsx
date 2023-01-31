@@ -5,6 +5,7 @@ import BlockList from "../components/BlockList";
 import getBlocks from "../helpers";
 import { ArrowForwardIos, ArrowBackIos } from "@material-ui/icons";
 import { Block as IBlock } from "@etclabscore/ethereum-json-rpc";
+import TableScrollCustomize from "../components/TableScrollCustomize";
 
 interface IProps {
   from: number;
@@ -20,6 +21,7 @@ export default function BlockListContainer(props: IProps) {
   const { from, to, style } = props;
   const [erpc] = useEthRPCStore();
   const [blocks, setBlocks] = React.useState<IBlock[]>();
+
   React.useEffect(() => {
     if (!erpc) { return; }
     getBlocks(from, to, erpc).then(setBlocks);
@@ -30,6 +32,13 @@ export default function BlockListContainer(props: IProps) {
     return <CircularProgress />;
   }
   return (
+    <TableScrollCustomize 
+      mainTableWrapperClass="table-wrapper"
+      scrollChildContentWidth={1217} 
+      scrollChildContentHeight={20} 
+      scrollWrappertranslateY={60}
+      scrollWrapperMargin="0px 32px"
+    >
     <div className="table">
       {/* <Grid container justify="flex-end">
         <IconButton onClick={props.onPrev} disabled={props.disablePrev}>
@@ -41,5 +50,6 @@ export default function BlockListContainer(props: IProps) {
       </Grid> */}
       <BlockList blocks={blocks} />
     </div>
+    </TableScrollCustomize>
   );
 }

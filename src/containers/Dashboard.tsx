@@ -37,7 +37,6 @@ export default (props: any) => {
   const [gasPrice, setGasPrice] = useState<string>();
   const [syncing, setSyncing] = useState<ISyncing>();
   const [peerCount, setPeerCount] = useState<string>();
-
   const { t } = useTranslation();
 
   React.useEffect(() => {
@@ -83,7 +82,7 @@ export default (props: any) => {
     if (!erpc) { return; }
     erpc.eth_gasPrice().then(setGasPrice);
   }, [erpc]);
-
+ 
   if (blocks === undefined || chainId === undefined || gasPrice === undefined || peerCount === undefined) {
     return <CircularProgress />;
   }
@@ -114,6 +113,9 @@ export default (props: any) => {
       y: new BigNumber(block.gasUsed).dividedBy(txCount)
     };
   };
+
+
+
 
   return (
     <div className="dashboard">

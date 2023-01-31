@@ -6,18 +6,18 @@
             font-family: 'Poppins';
             font-style: normal;
             font-weight: 500;
-            ::-webkit-scrollbar-track {
-                background: #ddd;
-                border-radius: 0;
-            }
+            // ::-webkit-scrollbar-track {
+            //     background: #ddd;
+            //     border-radius: 0;
+            // }
 
-            ::-webkit-scrollbar-thumb {
-                border-bottom: 4px solid $gray;
-            }
+            // ::-webkit-scrollbar-thumb {
+            //     border-bottom: 4px solid $gray;
+            // }
 
-            ::-webkit-scrollbar {
-                height: 4px;
-            }
+            // ::-webkit-scrollbar {
+            //     height: 4px;
+            // }
         }
         &-entities {
 
@@ -62,11 +62,22 @@
                 }
             }
 
+            .table-wrapper::-webkit-scrollbar-track {
+                background: transparent;
+                border-radius: 0;
+            }
+            
+            .table-wrapper::-webkit-scrollbar-thumb {
+                border-bottom: 1px solid transparent;
+            }
+            .table-wrapper::-webkit-scrollbar {
+                height: 1px;
+            }
+
             .table-wrapper {
-                overflow-x: auto;
-                transform: rotateX(180deg);
-    
+                //overflow-x: auto;
                 table {
+                    //width: 1217px;
                     tbody {
                         tr {
                             position: relative;
@@ -85,7 +96,7 @@
                         }
                         //font-size: 14px;
                     }
-                    transform: rotateX(180deg);
+                    // transform: rotateX(180deg);
                 }
             }
         }

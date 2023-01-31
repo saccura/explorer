@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import TxList from "../TxList";
 import { ArrowBackIos, ArrowForwardIos, KeyboardBackspace } from "@material-ui/icons";
 import { Transaction } from "@etclabscore/ethereum-json-rpc";
+import TableScrollCustomize from "../TableScrollCustomize";
 
 export interface IProps {
   transactions: Transaction[];
@@ -40,23 +41,33 @@ const AddressTransactions: React.FC<IProps> = (props) => {
           </IconButton>
         </Grid>
       </div>
-      <div className="transactions-bottom">
-        {/* <TxList transactions={transactions || []} showBlockNumber={true}></TxList> */}
-        <TxList transactions={props.transactions || []} showBlockNumber={true}></TxList>
-        {/* {(!props.transactions || props.transactions.length === 0) &&
-          <Grid className="empty-transactions" container style={{ padding: "15px" }}>
-            <Typography>{t("No Transactions for this block range.")}</Typography>
-          </Grid>
-        } */}
+      <TableScrollCustomize
+          mainTableWrapperClass="transactions-bottom"
+          scrollChildContentWidth={1217} 
+          scrollChildContentHeight={20} 
+          scrollWrappertranslateY={60}
+          // scrollWrapperMargin="0px 32px"
+        >
+        <div className="transactions-bottom">
+          {/* <TxList transactions={transactions || []} showBlockNumber={true}></TxList> */}
 
-        {/* {
-        transactions.length ? <TxList transactions={transactions || []} showBlockNumber={true}></TxList>
-        : <Grid className="empty-transactions" container style={{ padding: "16px" }}>
-            <Typography>{t("No Transactions for this block range.")}</Typography>
-          </Grid>
-        } */}
+            <TxList transactions={props.transactions || []} showBlockNumber={true}></TxList>
+          {/* {(!props.transactions || props.transactions.length === 0) &&
+            <Grid className="empty-transactions" container style={{ padding: "15px" }}>
+              <Typography>{t("No Transactions for this block range.")}</Typography>
+            </Grid>
+          } */}
 
-      </div>
+          {/* {
+          transactions.length ? <TxList transactions={transactions || []} showBlockNumber={true}></TxList>
+          : <Grid className="empty-transactions" container style={{ padding: "16px" }}>
+              <Typography>{t("No Transactions for this block range.")}</Typography>
+            </Grid>
+          } */}
+
+        </div>
+      </TableScrollCustomize>
+
 
     </div>
   );

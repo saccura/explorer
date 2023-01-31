@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 // const rightPaddingFix = {
 //   paddingRight: "24px",
 // };
-function BlockList({ blocks }: any) {
+function BlockList({ blocks, tableRef }: any) {
   const { t } = useTranslation();
   if (!blocks) {
     return null;
@@ -17,10 +17,10 @@ function BlockList({ blocks }: any) {
     return b.number - a.number;
   });
   return (
-        <div className="table-wrapper" 
+    <div className="table-wrapper" 
     //style={{ width: "100%", overflowX: "auto" }}
     >
-      <Table>
+      <Table ref={tableRef}>
         <TableHead>
             <TableRow>
               <TableCell><Typography>{t("Author")}</Typography></TableCell>

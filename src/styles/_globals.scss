@@ -9,6 +9,23 @@ html {
 
 }
 
+#root {
+    * {
+        ::-webkit-scrollbar-track {
+            background: #ddd;
+            border-radius: 0;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            border-bottom: 4px solid $gray;
+        }
+
+        ::-webkit-scrollbar {
+            height: 4px;
+        }
+    }
+}
+
 $colors: ("0": #3772FF, "1":#FD9821, "2": #BF37FF, "3":#FF37A3, "4":#37FFB7, "5":#F43F3F, "6":#37B7FF, "7":#3772FF, "8":#FD9821, "9":#BF37FF, "10":#FF37A3, "11":#37FFB7, "12":#F43F3F, "13":#37B7FF, "14": #3772FF, "15":#FD9821);
 @each $ndx, $color in $colors {
     .tr-indent-#{$ndx} {
@@ -44,6 +61,49 @@ button.view-raw {
     font-size: 14px;
     text-transform: none;
 }
+
+
+// .table-main__wrapper {
+//     overflow-x: auto;
+// }
+
+// .table-wrapper::-webkit-scrollbar-track {
+//     background: transparent;
+//     border-radius: 0;
+// }
+
+// .table-wrapper::-webkit-scrollbar-thumb {
+//     border-bottom: 1px solid transparent;
+// }
+// .table-wrapper::-webkit-scrollbar {
+//     height: 1px;
+// }
+
+
+// .table-scroll__wrapper {
+//     overflow-x: auto;
+//     transform: translateY(60px);
+//     //margin: 0 32px;
+//     // position: absolute;
+//     // top: 1090px;
+
+//     // .scroll-content {
+//     //     width: 1217px;
+//     //     height: 20px;
+//     // }
+
+//     // ::-webkit-scrollbar-track {
+//     // }
+
+//     // ::-webkit-scrollbar-thumb {
+//     // }
+
+//     // ::-webkit-scrollbar {
+//     // }
+
+// }
+
+
 // @media screen and (min-width: 768px) {
     
 // }
@@ -64,4 +124,5 @@ button.view-raw {
 .MuiLinearProgress-barColorPrimary {
     background-color: #3772FF!important;
 }
+
 

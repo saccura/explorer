@@ -134,15 +134,27 @@
                 }
             }
 
+            .transactions-bottom::-webkit-scrollbar-track {
+                background: transparent;
+                border-radius: 0;
+            }
+            
+            .transactions-bottom::-webkit-scrollbar-thumb {
+                border-bottom: 1px solid transparent;
+            }
+            .transactions-bottom::-webkit-scrollbar {
+                height: 1px;
+            }
+
             &-bottom {
                 .empty-transactions {
-                    transform: rotate(180deg);
+                    // transform: rotate(180deg);
                 }
-                overflow-x: auto;
-                transform: rotate(180deg);
+                // overflow-x: auto;
+                // transform: rotate(180deg);
 
                 .txlist-table {
-                    transform: rotate(180deg);
+                    // transform: rotate(180deg);
 
                     thead {
                         tr {

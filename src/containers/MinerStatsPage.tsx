@@ -11,6 +11,7 @@ import { History } from "history";
 import _ from "lodash";
 import { Block as IBlock } from "@etclabscore/ethereum-json-rpc";
 import MinerStatsWithBlockPagination from "../components/MinerStatsWithBlockPagination";
+import TableScrollCustomize from "../components/TableScrollCustomize";
 
 const useState = React.useState;
 
@@ -128,11 +129,18 @@ export default (props: IProps) => {
           ></BlockPagination> */}
         {/* </div> */}
       </div>
+      <TableScrollCustomize
+      mainTableWrapperClass="miner-table"
+      scrollChildContentWidth={1217} 
+      scrollChildContentHeight={20} 
+      scrollWrappertranslateY={60}
+    >
       <div className="miner-right">
         <div className="miner-table">
           <MinerStatsTable blocks={blocks} />
         </div>
       </div>
+      </TableScrollCustomize>
     </div>
   );
 };

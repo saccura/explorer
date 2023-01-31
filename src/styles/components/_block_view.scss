@@ -6,19 +6,6 @@
         font-style: normal;
         font-weight: 500;
 
-        ::-webkit-scrollbar-track {
-            background: #ddd;
-            border-radius: 0;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            border-bottom: 4px solid $gray;
-        }
-
-        ::-webkit-scrollbar {
-            height: 4px;
-        }
-
     }
     .block-view {
         margin: 0 16px;

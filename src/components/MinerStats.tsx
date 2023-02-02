@@ -34,7 +34,6 @@ const blockTopMinerCountByAddress = (blocks: any[]) => {
     .value();
   return result;
 };
-
 interface IProps {
   blocks: any[];
   config: any;
@@ -50,7 +49,6 @@ const config = {
 const MinerStats: React.FC<IProps> = ({blocks}) => {
   const [showDefaultPieHover, setShowDefaultPieHover] = useState(true);
   const { t } = useTranslation();
-
   return (
     <Grid container justify="space-evenly">
       <Grid key="uncles-address" item xs={12} md={4} lg={4}>

@@ -1,0 +1,58 @@
+.entity-right, .chart-item {
+    position: relative;
+    .x-axis {
+        display: flex;
+        width: 80%;
+        justify-content: space-around;
+        font-size: 12px;
+        position: absolute;
+        bottom: 8%;
+        right: 30px;
+    }
+
+    .y-axis {
+        display: flex;
+        flex-direction: column;
+        width: 17px;
+        height: 50%;
+        // justify-content: space-between;
+        font-size: 10px;
+        position: absolute;
+        bottom: 45px;
+        left: 0;
+        color: #777E90;
+        flex-flow: wrap-reverse;
+
+        .y-item { 
+            margin-top: 8px;
+        }
+    }
+
+
+    .gas-used__chart {
+        .x-axis {
+            //bottom: 35px;
+        }
+    }
+    .gas-used__chart {
+        .y-axis {
+            //bottom: 45px;
+            // .y-item {
+            //     margin-top: 8px;
+            // }
+        }
+    }
+
+    .gas-used__pertx {
+        .x-axis {
+            
+        }
+    }
+
+    .gas-used__pertx {
+        .y-axis {
+            //left: -10px;
+            //bottom: 40px;
+        }
+    }
+}

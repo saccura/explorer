@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Grid } from "@material-ui/core";
 // import ChartCard from "./ChartCard";
-import { VictoryContainer, VictoryPie } from "victory";
+import { VictoryContainer, VictoryLabel, VictoryPie } from "victory";
 //import { hexToString } from "@etclabscore/eserialize";
 import CustomPieChartLabel from "./CustomPieChartLabel";
 import { useTranslation } from "react-i18next";
@@ -35,35 +35,34 @@ const blockTopMinerCountByAddress = (blocks: any[]) => {
   };
 
 
-
-
-interface ChartMutationState {
-  externalMutations: undefined | [object]
+interface ChartMutation {
+  externalMutations: undefined | {}[]
 }
 
 const MinerStatsWithBlockPagination: React.FC<IProps> = ({blocks, config, from, to, disablePrev, disableNext, onPrev, onNext}) => {
-  const [showDefaultPieHover, setShowDefaultPieHover] = useState(true);
-  const [chartMutationState, setChartMutationState] = useState<ChartMutationState>({externalMutations: undefined});
+  //const [showDefaultPieHover, setShowDefaultPieHover] = useState(true);
+  const [activeAddress, setActiveAddress] = useState("");
+  const [eventMutation, setEventMutation] = useState<ChartMutation>({externalMutations: undefined});
+  const [eventKey, setEventKey] = useState(-1)
+
   const { t } = useTranslation();
 
 
   const removeMutation = () => {
-    setChartMutationState({
-      externalMutations: undefined
-    });
+    setEventMutation({externalMutations: undefined})
   }
-  const clearSliceMutation = () => {
-    setChartMutationState({
+
+  const clearClicks = (eventKey: number) => {
+    setEventMutation({
       externalMutations: [
         {
-          //childName: "miner-pie",
           target: ["data"],
-          eventKey: "all",
-          mutation: () => ({ padAngle: 0 }),
+          eventKey: [eventKey],
+          mutation: () => ({ padAngle: 0, radius: 75 }),
           callback: removeMutation
         }
       ]
-    })
+    });
   }
 
   return (
@@ -83,60 +82,74 @@ const MinerStatsWithBlockPagination: React.FC<IProps> = ({blocks, config, from, 
               </div>
           </div>
           <VictoryPie
-            name="miner-pie"
             containerComponent={<VictoryContainer responsive={false}/>}
-            // innerRadius={50}
-            width={255}
-            height={255}
+            width={250}
+            height={250}
             style={{
               parent: {transform: "translate(-50px, -50px)"},
               data: {padding: 12}
             }}
-            // padAngle={(props) => {
-            //   console.log(props.datum.endAngle === chartSliceIndex)
-            //   //console.log(props)
-            //   return 2
-            // }}
             // x={10}
             // y={10}
             colorScale={["#3772FF", "#BDD1FF"]}
             data={blockTopMinerCountByAddress(blocks)}
-            // @ts-ignore
-            externalEventMutations={chartMutationState.externalMutations}
+            //@ts-ignore
+            externalEventMutations={eventMutation.externalMutations}
             events={[{
               target: "data",
               eventHandlers: {
                 //onMouseOver
                 onClick: () => {
                   return [
-                  // {
-                  //   target: "labels",
-                  //   mutation: (props) => {
-                  //     //setShowDefaultPieHover(false);
-                  //     //return { active: true };
-                  //     //console.log("prop: ", props)
-                  //     setShowDefaultPieHover((prev) => !prev);
-                  //     return { active: !props.active};
-                  //   },
-                  // },
-                  //mutation: (props) => ({ style: Object.assign({}, props.style, { fill: "gold" }) })
-                {
-                  target: "data",
-                  mutation: (props) => {
-                    props.padAngle = 4
-                    return { ...props }
-                  },
-                }];
-                },
+                    {
+                      target: "data",
+                      mutation: (props) => {
+                        console.log("props: ", props)
 
+                        if(props.datum.x === activeAddress) {
+                          setActiveAddress("")
+                          return { padAngle: 0, radius: 75 }
+                        }
+
+
+                        clearClicks(eventKey)
+                        setEventKey(props.index)
+                        setActiveAddress(props.datum.x)
+
+                        return { padAngle: 6, radius: 80 }
+ 
+                      },
+                    }
+                  ];
+                },
               },
             }]}
-            labelComponent={<CustomPieChartLabel {...{
-              defaultActive: showDefaultPieHover ? blockTopMinerCountByAddress(blocks)[0] : undefined,
-              
-            }} />}
+            // labelComponent={<CustomPieChartLabel {...{
+            //   defaultActive: showDefaultPieHover ? blockTopMinerCountByAddress(blocks)[0] : undefined,
+            // }} />}
+            labelComponent={<VictoryLabel 
+              //@ts-ignore
+              style={[
+                { fill: "transparent", },
+              ]}
+            />}
           >
           </VictoryPie>
+          
+          {activeAddress && <div 
+              className="curAddress" 
+              style={{
+                width: "45%",
+                background: "#E6E8EC",
+                transform: "translate(170px, -215px)",
+                wordBreak: "break-all",
+                borderRadius: 8,
+                padding: 8
+              }}
+              
+              >
+              {activeAddress}
+            </div>}
       </Grid>
     </Grid>
   );

@@ -16,14 +16,16 @@ import StatCharts from "../components/StatCharts";
 import { Block as IBlock, IsSyncingResult as ISyncing} from "@etclabscore/ethereum-json-rpc";
 import { VictoryAxis, VictoryBar, VictoryChart, VictoryContainer, VictoryGroup } from "victory";
 import BigNumber from "bignumber.js";
+import CustomChartAxises from "../components/CustomChartAxises";
+import { gasUsedChartData, gasUsedPerTxChartData, transactionCountChartData } from "../helpers/chartDataFormating";
 
 const useState = React.useState;
 
 const config = {
   blockTime: 15, // seconds
   blockHistoryLength: 100,
-  chartHeight: 300,
-  chartWidth: 600,
+  chartHeight: 250,
+  chartWidth: 311,
 };
 
 export default (props: any) => {
@@ -106,16 +108,13 @@ export default (props: any) => {
     const gasUsed = hexToNumber(block.gasUsed)
 
     if(!txCount && !gasUsed) {
-      return {x: hexToNumber(block.number), y: 0}
+      return {x: hexToNumber(block.number), y: new BigNumber(0)}
     }
     return {
       x: hexToNumber(block.number),
       y: new BigNumber(block.gasUsed).dividedBy(txCount)
     };
   };
-
-
-
 
   return (
     <div className="dashboard">
@@ -128,27 +127,36 @@ export default (props: any) => {
             </div>
             <div className="entity-right">
               <ChartCard title={t("Transaction count")}>
-              <VictoryChart height={config.chartHeight} width={config.chartWidth}>
+              <CustomChartAxises xItems={transactionCountChartData(blocks, blockMapTransactionCount).slice(0,6)} yItems={[0, 20, 40, 60, 80]}/>
+              <VictoryChart 
+                //height={config.chartHeight} 
+                //width={config.chartWidth}
+                //containerComponent={<VictoryContainer responsive={false}/>}
+                >
                 <VictoryBar
-                barWidth={4}
-                cornerRadius={2}
+                barWidth={8}
+                cornerRadius={4}
                 style={{
                   data: {fill: "#3772FF"}
                 }}
-                data={blocks.map(blockMapTransactionCount)} 
+                //data={blocks.map(blockMapTransactionCount)} 
+                data={transactionCountChartData(blocks, blockMapTransactionCount)}
                 />
+
                 <VictoryAxis
                   style={{
                     axis: {stroke: 'transparent'},
-                    tickLabels: {fontSize: 14, fill: "#23262F"}
+                    tickLabels: {fontSize: 14, fill: "transparent"},
                   }}
+                  tickCount={6}
+                  fixLabelOverlap={true}
                 />
                 <VictoryAxis
                   dependentAxis
-                      //domain={[0, 80]}
+                  tickValues={[0, 20, 40, 60, 80]}
                   style={{
                     axis: {stroke: 'transparent'},
-                    tickLabels: {fontSize: 10, fill: "#777E90"}
+                    tickLabels: {fontSize: 10, fill: "transparent"}
                   }}
                 />
               </VictoryChart>
@@ -162,29 +170,38 @@ export default (props: any) => {
               </ChartCard>
             </div>
             <div className="entity-right">
-              <Grid key="gasUsed" item>
+              <Grid className="gas-used__chart" key="gasUsed" item>
                 <ChartCard title={t("Gas Used (Millions)")}>
-                  <VictoryChart height={config.chartHeight} width={config.chartWidth}>
+                <CustomChartAxises
+                 xItems={gasUsedChartData(blocks, blockMapGasUsed).slice(0,6)} 
+                 yItems={["1.0", "2.0", "3.0", "4.0", "5.0", "6.0"]}/>
+                  <VictoryChart 
+                  // height={config.chartHeight} 
+                  // width={config.chartWidth}
+                  >
                     <VictoryBar
-                    barWidth={4}
-                    cornerRadius={2}
+                    barWidth={8}
+                    cornerRadius={4}
                     style={{
                       data: {fill: "#18B04D"}
                     }}
-                    data={blocks.map(blockMapGasUsed)}
+                    //data={blocks.map(blockMapGasUsed)}
+                    data={gasUsedChartData(blocks, blockMapGasUsed)}
                     />
                     <VictoryAxis
                       style={{
                         axis: {stroke: 'transparent'},
-                        tickLabels: {fontSize: 14, fill: "#23262F"}
+                        tickLabels: {fontSize: 14, fill: "transparent"},
                       }}
+                      tickCount={6}
+                      fixLabelOverlap={true}
                     />
                     <VictoryAxis
                       dependentAxis
-                      //domain={[0, 80]}
+                      tickValues={[1, 2, 3, 4, 5, 6]}
                       style={{
                         axis: {stroke: 'transparent'},
-                        tickLabels: {fontSize: 10, fill: "#777E90"}
+                        tickLabels: {fontSize: 10, fill: "transparent"}
                       }}
                     />
                   </VictoryChart>
@@ -215,31 +232,38 @@ export default (props: any) => {
               </Grid>
             </div>
             <div className="entity-right">
-              <Grid key="gasUsedPerTx" item>
+              <Grid className="gas-used__pertx" key="gasUsedPerTx" item>
                 <ChartCard title={t("Gas Used per Tx")}>
-                  <VictoryChart height={config.chartHeight} width={config.chartWidth}>
+                <CustomChartAxises xItems={gasUsedPerTxChartData(blocks, blockMapGasUsedPerTx).slice(0,6)} yItems={["100,000", "200,000", "300,000", "400,000","500,000"]}/>
+                  <VictoryChart 
+                  // height={config.chartHeight} 
+                  // width={config.chartWidth}
+                  >
                     <VictoryBar
-                    barWidth={4}
-                    cornerRadius={2}
+                    barWidth={8}
+                    cornerRadius={4}
                     padding={{left: 2, right: 2}}
                     //cornerRadius={4}
                     style={{
                       data: {fill: "#FD9821"},
                     }}
-                    data={blocks.map(blockMapGasUsedPerTx)} 
+                    //data={blocks.map(blockMapGasUsedPerTx)} 
+                    data={gasUsedPerTxChartData(blocks, blockMapGasUsedPerTx)}
                     />
                     <VictoryAxis
                       style={{
                         axis: {stroke: 'transparent'},
-                        tickLabels: {fontSize: 14, fill: "#23262F"}
+                        tickLabels: {fontSize: 14, fill: "transparent"},
                       }}
+                      tickCount={6}
+                      fixLabelOverlap={true}
                     />
                     <VictoryAxis
                       dependentAxis
-                      //domain={[0, 80]}
+                      tickValues={[1000000, 2000000, 3000000, 4000000, 5000000]}
                       style={{
                         axis: {stroke: 'transparent'},
-                        tickLabels: {fontSize: 10, fill: "#777E90"}
+                        tickLabels: {fontSize: 10, fill: "transparent"}
                       }}
                     />
                   </VictoryChart>

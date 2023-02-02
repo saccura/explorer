@@ -46,6 +46,34 @@
                     }
                 }
             }
+
+            .entity-right {
+                position: relative;
+                // .x-axis {
+                //     display: flex;
+                //     width: 250px;
+                //     justify-content: space-between;
+                //     font-size: 12px;
+                //     position: absolute;
+                //     bottom: 18px;
+                //     right: 30px;
+                // }
+
+                // .y-axis {
+                //     display: flex;
+                //     flex-direction: column;
+                //     width: 17px;
+                //     height: 112px;
+                //     justify-content: space-between;
+                //     font-size: 10px;
+                //     position: absolute;
+                //     bottom: 25px;
+                //     left: 0;
+                //     color: #777E90;
+                //     flex-flow: wrap-reverse;
+                // }
+
+            }
         }
         .table {
             * {

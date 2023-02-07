@@ -18,6 +18,7 @@ const TxRaw: React.FC<IProps> = (props) => {
   return (
     <div style={{ margin: "0px -25px 0px -25px" }}>
       <Button
+        className="view-raw"
         onClick={() => {
           history.push(`/tx/${tx.hash}`);
         }}

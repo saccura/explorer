@@ -23,14 +23,16 @@ function TxView(props: ITxViewProps) {
 
   return (
     <div className="transaction-view">
-      <Button
+      <Typography className="tx-title" variant="h6">
+        Transaction
+        <Button
         onClick={() => {
           history.push(`/tx/${tx.hash}/raw`);
         }}
         className="view-raw"
         //style={{ position: "absolute", right: "10px", top: "75px" }}
       >View Raw</Button>
-      <Typography className="tx-title" variant="h6">Transaction</Typography>
+      </Typography>
       <div className="transaction-view__firsttable">
         <Table>
           <TableBody>

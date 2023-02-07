@@ -27,8 +27,11 @@
             //style={{ position: "absolute", right: "10px", top: "75px" }}
             position: absolute;
             right: 23px;
-            top: 80px;
-            display: none;
+            transform: translateY(-5px);
+            text-transform: capitalize;
+            color: rgb(55, 114, 255);
+            // top: 80px;
+            // display: none;
         }
         a {
             color: $blue;

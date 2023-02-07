@@ -33,8 +33,14 @@ const Address: React.FC<IProps> = ({ match, history }) => {
   const blockNum = block === undefined ? blockNumber : parseInt(block, 10);
   const [transactions, setTransactions] = React.useState<Transaction[]>([]);
 
+  console.log("parseInt(block, 10): ", parseInt(block, 10))
+
   const from = Math.max(blockNum ? blockNum : 0 - 99, 0);
   const to = blockNum;
+  // const from = blockNumber - 100
+  // const to = blockNumber;
+  // console.log("from: ", from)
+  // console.log("to: ", to)
 
   React.useEffect(() => {
     if (isNaN(blockNum) || isNaN(blockNumber)) {
@@ -79,6 +85,10 @@ const Address: React.FC<IProps> = ({ match, history }) => {
         if (!tx) {
           return false;
         }
+        console.log("tx.to: ", tx.to)
+        console.log("tx.from: ", tx.from)
+        console.log("tx.from == address: ", tx.from == address)
+
         return tx.to === address || tx.from === address;
       });
       const sortedTxes = _.sortBy(filteredTxes, (tx: any) => {

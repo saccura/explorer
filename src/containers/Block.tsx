@@ -17,6 +17,7 @@ export default function Block(props: any) {
     });
   }, [hash, erpc]);
 
-  if (!block) { return (<CircularProgress />); }
+
+  if (!block) { return (<div className="curcular-wrapper"><CircularProgress /></div>); }
   return (<BlockView block={block} />);
 }

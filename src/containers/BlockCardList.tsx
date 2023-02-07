@@ -33,7 +33,7 @@ export default function BlockCardListContainer(props: IProps) {
   }, [from, to]);
 
   if (!blocks) {
-    return <CircularProgress />;
+    return <div className="curcular-wrapper"><CircularProgress /></div>;
   }
   return (
     <Grid container spacing={2} style={style}>

@@ -30,7 +30,7 @@ export default function TransactionContainer(props: any) {
   }, [hash, erpc]);
 
   if (!transaction || !receipt) {
-    return (<CircularProgress />);
+    return (<div className="curcular-wrapper"><CircularProgress /></div>);
   }
   return (<TxView tx={transaction} receipt={receipt} />);
 }

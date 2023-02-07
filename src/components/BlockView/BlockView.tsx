@@ -7,7 +7,6 @@ import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 
 import { Table, TableBody, TableCell, TableRow, Button, LinearProgress, Typography } from "@material-ui/core";
-
 import BlockGasPrice from "./BlockGasPrice";
 
 function BlockView(props: any) {
@@ -22,13 +21,19 @@ function BlockView(props: any) {
   const {
     timestamp, hash, parentHash, miner, nonce, difficulty,
     extraData, stateRoot, transactionsRoot, receiptsRoot, transactions,
-    gasUsed, gasLimit, size,
+    gasUsed, gasLimit, size, baseFeePerGas
   } = block;
 
   const filledPercent = (hexToNumber(gasUsed) / hexToNumber(gasLimit)) * 100;
-
   return (
     <div className="block-view">
+      <Button
+        onClick={() => { history.push(`/block/${block.hash}/raw`); }}
+        //style={{ position: "absolute", right: "10px", top: "75px" }}
+        className="view-raw"
+      >
+      View Raw
+      </Button>
       {/* <div className="top">
         <Button
           onClick={() => { history.push(`/block/${block.hash}/raw`); }}
@@ -45,13 +50,6 @@ function BlockView(props: any) {
               <TableRow>
                 <TableCell>{t("Number")}</TableCell>
                 <TableCell className="block-view__number">{hexToNumber(block.number)}</TableCell>
-                <Button
-                  onClick={() => { history.push(`/block/${block.hash}/raw`); }}
-                  //style={{ position: "absolute", right: "10px", top: "75px" }}
-                  className="view-raw"
-                >
-                View Raw
-                </Button>
               </TableRow>
 
               <TableRow>

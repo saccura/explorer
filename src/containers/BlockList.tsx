@@ -6,6 +6,8 @@ import getBlocks from "../helpers";
 import { ArrowForwardIos, ArrowBackIos } from "@material-ui/icons";
 import { Block as IBlock } from "@etclabscore/ethereum-json-rpc";
 import TableScrollCustomize from "../components/TableScrollCustomize";
+import { useWindowSize } from "usehooks-ts";
+
 
 interface IProps {
   from: number;
@@ -21,6 +23,7 @@ export default function BlockListContainer(props: IProps) {
   const { from, to, style } = props;
   const [erpc] = useEthRPCStore();
   const [blocks, setBlocks] = React.useState<IBlock[]>();
+  const { width } = useWindowSize()
 
   React.useEffect(() => {
     if (!erpc) { return; }
@@ -29,14 +32,14 @@ export default function BlockListContainer(props: IProps) {
   }, [from, to]);
 
   if (!blocks) {
-    return <CircularProgress />;
+    return <div className="curcular-wrapper"><CircularProgress /></div>;
   }
   return (
     <TableScrollCustomize 
       mainTableWrapperClass="table-wrapper"
-      scrollChildContentWidth={1217} 
+      //scrollChildContentWidth={1736} 
       scrollChildContentHeight={20} 
-      scrollWrappertranslateY={60}
+      scrollWrappertranslateY={width < 768 ? 61 : 45}
       scrollWrapperMargin="0px 32px"
     >
     <div className="table">

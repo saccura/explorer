@@ -24,7 +24,14 @@
             // }
         }
 
+        .table-scroll__wrapper {
+            .scroll-content {
+                min-width: 1140px;
+            }
+        }
+
         &-stat {
+            //margin-bottom: -12px;
             .MuiGrid-item {
                 flex-direction: column;
                 max-height: 230px;
@@ -34,6 +41,7 @@
         &-info {
             display: flex;
             flex-direction: column;
+            //margin-top: 2px;
         }
 
         h6 {
@@ -44,6 +52,11 @@
         flex-direction: column;
 
         &-charts {
+            .VictoryContainer {
+                // width: 311px!important;
+                // height: 188px!important;
+            }
+
             .MuiGrid-item {
                 display: flex;
                 div {
@@ -57,17 +70,179 @@
                     }
                 }
             }
+
+            .mobile-block__number, .mobile-chain__id, .mobile-gas__price {
+                h4 {
+                    color: $blue;
+                    font-size: 32px;
+                    font-weight: 700;
+                    //margin: 8px 0;
+                }
+    
+                h6 {
+                    font-size: 16px;
+                    font-weight: 500;
+                }
+            }
+            .mobile-gas__price {
+                margin-bottom: 9px;
+                .gas-price__title {
+                    // font-size: 20px;
+                    // margin-top: 8px;
+                }
+                .peers-title {
+                    font-size: 32px;
+                }
+                // h4 {
+                //     &:first-child {
+                //         font-size: 20px;
+                //     }
+                // }
+ 
+                div {
+                    display: inline-block;
+                    vertical-align: top;
+                    &:first-child {
+                        //width: 177px;
+                        width: 159px;
+                        //margin-right: 26px;
+
+                    }
+
+                    &:nth-child(2) {
+                        width: 44px;
+                    }
+                }
+            }
+
+            .gas-used__pertx {
+                .VictoryContainer {
+                    //margin-left: 20px;
+                }
+            }
+
+            .gas-used {
+                //margin-left: 7px;
+            }
+            .tx-count__chart {
+                //margin-left: 7px;
+            }
+
+            .gas-used {
+                // .VictoryContainer {
+                //     margin-top: -19px;
+                // }
+            }
+            // .mobile-chain__id {
+            //     h4 {
+            //         color: $blue;
+            //         font-size: 32px;
+            //         font-weight: 700;
+            //     }
+    
+            //     h6 {
+            //         font-size: 16px;
+            //         font-weight: 500;
+            //     } 
+            // }
+
+            .tx-count__chart {
+                // h6 {
+                //     margin-top: -6px;
+                // }
+                // .VictoryContainer {
+                //     margin-top: -32px;
+                // }
+            }
+
+            .chart-item {
+                //margin-bottom: 32px;
+                margin-bottom: 26px;
+
+                .MuiGrid-root {
+                    //max-height: 188px;
+                    //margin-bottom: 32px;
+                }
+            }
+            .chart-item.first, .chart-item.second, .chart-item.third {
+                &::after {
+                    content: "";
+                    display: inline-block;
+                    height: 1px;
+                    background: #E6E8EC;
+                    width: 100%;
+                    position: absolute;
+                    bottom: -20px;
+                    //background: #E6E8EC;
+                }
+            }
+            
+            .chart-item.first {
+                //margin-top: 13px;
+
+                .x-axis {
+                    bottom: 1px;
+                    right: -1px;
+                    width: 88%;
+                }
+
+                .y-axis {
+                    bottom: 30px;
+                }
+
+                .VictoryContainer {
+                    margin-left: 15px;
+                }
+            }
+
+            .chart-item.second {
+                //margin-top: 5px;
+
+                .x-axis {
+                    width: 88%;
+                    right: -1px;
+                    bottom: -1px;
+                }
+
+                .y-axis {
+                    bottom: 17px;
+                }
+                .VictoryContainer {
+                    margin-left: 15px;
+                }
+            }
+
+            .chart-item.third {
+                .x-axis {
+                    bottom: 2px;
+                    right: -1px;
+                    width: 86%;
+                }
+
+                .y-axis {
+                    bottom: 28px;
+                }
+
+                .VictoryContainer {
+                    margin-left: 25px;
+                }
+            }
+
+            .chart-item.fourth {
+                //margin-top: 3px;
+            }
+
         }
 
         table {
             thead {
                 tr {
                     th {
-                        padding: 18px 16px 18px 0px;
+                        //padding: 18px 16px 18px 0px;
                         color: $gray;
                         font-weight: 500;
                         font-size: 14px;
-                        padding-right: 59px;
+                        //padding-right: 59px;
                         white-space: nowrap;
                     }
                 }
@@ -76,6 +251,7 @@
             tbody {
                 tr {
                     position: relative;
+                    //height: 96px;
                     td {
                         table {
                             tbody {
@@ -116,7 +292,7 @@
                 div {
                     &:first-child {
                         order: 1;
-                        transform: translateY(-20px);
+                        transform: translate(1px, -20px);
                         //width: 80px;
                     }
                     &:nth-child(2) {
@@ -129,12 +305,23 @@
                 }
             }
 
-            button {
+            // button {
+            //     width: 40px;
+            //     height: 40px;
+            // }
+            .left-button {
                 width: 40px;
                 height: 40px;
-            }
-            .left-button {
-                margin: 0 6.5px;
+                &::before {
+                    content: url("../../assets/arrowLeft.svg");
+                    display: inline-block;
+                    width: 16px;
+                    height: 16px;
+                    margin-right: 21px;
+                    position: absolute;
+                    top: -3%;
+                    left: 29%;
+                }
             }
 
             .left-button.active {
@@ -144,8 +331,16 @@
 
 
             .right-button {
-                transform: rotate(180deg);
-                margin: 0 6.5px;
+                width: 40px;
+                height: 40px;
+                &::after {
+                    content: url("../../assets/arrowRight.svg");
+                    display: inline-block;
+                    width: 16px;
+                    height: 16px;
+                    position: absolute;
+                    top: -10%;
+                }
             }
 
             .right-button.active {
@@ -167,18 +362,51 @@
         }
 
         .miner-table {
+            margin-top: -10px;
             //overflow-x: auto;
             //transform: rotateX(180deg);
+            thead {
+                tr {
+                    th {
+                        //padding-right: 59px;
+                        padding-bottom: 15px;
+                        padding-right: 16px;
+                        &:nth-child(1) {
+                            min-width: 160px;
+                        }
+                        &:nth-child(1) {
+                            min-width: 380px;
+                        }
+                    }
+                }
+            }
             table {
                 //transform: rotateX(180deg);
                 tbody {
                     tr {
+                        //display: flex;
+                        //min-height: 56px;
+                        //align-items: center;
+                        th {
+                            //padding: 40px 16px;
+                            //height: 72px;
+                            //padding: 40px 16px;
+                            //padding-right: 59px;
+                            //padding-top: 33px;
+                            padding: 3.5px 0;
+                        }
                         td {
+                            padding: 3.5px 0;
                             table {
                                 tbody {
                                     tr {
                                         td {
                                             //transform: rotateX(180deg);
+                                            //flex-wrap: wrap;
+                                            display: flex;
+                                            flex-wrap: wrap;
+                                            width: 1142px;
+                                            border: none;
                                         }
                                     }
                                 }
@@ -196,30 +424,128 @@
         .miner {
             min-width: 684px;
             margin: 0 42px;
-            &-charts {
-                .MuiGrid-item {
-                    justify-content: space-between;
-                    .chart-item {
-                        max-width: 320px;
+            .miner-table {
+                margin-top: 77px;
+
+                thead {
+                    tr {
+                        th {
+                            //padding-right: 0px;
+                            &:nth-child(1) {
+                                min-width: 160px;
+                            }
+                            &:nth-child(2) {
+                                min-width: 380px;
+                            }
+                        }
                     }
                 }
             }
+            &-charts {
+                .MuiGrid-item {
+                    justify-content: space-between;
+                    //flex-wrap: nowrap;
+                    .chart-item {
+                        //margin-bottom: 32px;
+                        //max-width: 324px;
+                        max-height: 188px;
+                        width: 47%;
+                    }
+                }
+
+                .chart-item {
+                    margin-bottom: 0px;
+    
+                    .MuiGrid-root {
+                        //max-height: 100%;
+                        //margin-bottom: 32px;
+                    }
+                    h6 {
+                        padding-left: 10px;
+                        padding-top: 10px;
+                    }
+                }
+
+                .chart-item.first {
+                    margin-bottom: 32px;
+                    .VictoryContainer {
+                        margin-top: -310px;
+                    }
+                    .x-axis {
+                        bottom: -12px;
+                        right: -8px;
+                        width: 93%;
+                    }
+                    .y-axis {
+                        bottom: 30px;
+                        left: 10px;
+                    }
+                }
+                .chart-item.second {
+                    margin-bottom: 32px;
+                    .VictoryContainer {
+                        margin-top: -310px;
+                        margin-left: 4px;
+                    }
+                    .x-axis {
+                        bottom: -11px;
+                        width: 93%;
+                        left: 30px;
+                    }
+                    .y-axis {
+                        bottom: 7px;
+                        left: 10px;
+                    }
+                }
+                .chart-item.third {
+                    .VictoryContainer {
+                        margin-top: -310px;
+                    }
+                    .x-axis {
+                        bottom: -12px;
+                        right: -8px;
+                        width: 80%;
+                    }
+                    .y-axis {
+                        bottom: 17px;
+                        left: 10px;
+                    }
+                }
+
+                .chart-item.first, .chart-item.second, .chart-item.third {
+                    &::after {
+                        all: unset;
+                    }
+                }
+
+            }
+            &-info {
+                margin-bottom: 8px;
+            }
 
             &-pagination {
-                margin: 5px 0;
+                height: 20px;
+                margin-bottom: 10px;
+                margin-left: 10px;
                 .block-pagination {
                     display: flex;
                     flex-direction: row;
                     flex-wrap: nowrap;
                 }
             }
-
-
         }
     }
 }
-
-@media screen and (min-width: 1600px) {
+// @media screen and (min-width: 1200px) {
+//     #root {
+//         .miner {
+//             .table {
+//                 max-width: 1816px;
+//             }
+//         }
+//     }
+// }
+@media screen and (min-width: 1900px) {
     #root { 
         .miner {
             // min-width: 684px;
@@ -227,28 +553,98 @@
             &-charts {
                 .MuiGrid-item {
                     .chart-item {
+                        width: 422px;
                         &:nth-child(4) {
                             //background-color: red;
-                            min-width: 555px;
+                            //min-width: 555px;
                         }
                     }
+
+                    h6 {
+                        padding-top: 19px;
+                        padding-left: 0px;
+                    }
                 }
+
+
+                .chart-item.first {
+                    //margin-bottom: 32px;
+                    .VictoryContainer {
+                        margin-left: 0px;
+                        margin-top: -306px;
+                    }
+                    .x-axis {
+                        bottom: -24px;
+                        right: -7px;
+                        width: 93%;
+                    }
+                    .y-axis {
+                        bottom: 18px;
+                        left: 8px;
+                    }
+
+                    h6 {
+                        padding-left: 8px;
+                    }
+                }
+                .chart-item.second {
+                    //margin-bottom: 32px;
+                    .VictoryContainer {
+                        margin-left: -6px;
+                        margin-top: -306px;
+                        //margin-top: -310px;
+                        //margin-left: 4px;
+                    }
+                    .x-axis {
+                        bottom: -25px
+                    }
+                    .y-axis {
+                        bottom: -6px;
+                        left: 3px;
+                    }
+                }
+                .chart-item.third {
+                    .VictoryContainer {
+                        //margin-top: -310px;
+                        margin-left: -22px;
+                        margin-top: -306px;
+                    }
+                    .x-axis {
+                        bottom: -25px;
+                        right: 6px;
+                        width: 90%;
+                    }
+                    .y-axis {
+                        bottom: 17px;
+                        left: -4px;
+                    }
+                }
+
+                .chart-item.fourth {
+                    h6 {
+                        transform: translate(-10px, 8px);
+                        //margin-left: -10px;
+                    }
+                }
+
+
             }
 
-
             &-pagination {
+                width: 252px;
                 margin: 0;
                 .block-pagination {
                     div {
                         &:first-child {
                             order: 1;
-                            transform: translateY(0);
+                            transform: translate(11px,18px);
                             width: 110px;
                         }
     
                         &:nth-child(2) {
                             width: 156px;
-                            margin: 0 41px;
+                            margin: 25px 0px 0px 10px;
+                            //margin: 0 41px;
                         }
                     }
                 }
@@ -265,6 +661,40 @@
                 flex-direction: row;
             }
 
+
+            .miner-table {
+                margin-top: 52px;
+
+                thead {
+                    tr {
+                        th {
+                            &:nth-child(1) {
+                                min-width: 201px;
+                            }
+                            &:nth-child(2) {
+                                min-width: 357px
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .miner-info {
+            margin-bottom: 10px;
+        }
+    }
+}
+
+
+@media screen and (min-width: 1200px) {
+    #root { 
+        .miner {
+            .table-scroll__wrapper {
+                .scroll-content {
+                    min-width: 1736px;
+                }
+            }
         }
     }
 }

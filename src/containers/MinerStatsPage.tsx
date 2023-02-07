@@ -12,6 +12,7 @@ import _ from "lodash";
 import { Block as IBlock } from "@etclabscore/ethereum-json-rpc";
 import MinerStatsWithBlockPagination from "../components/MinerStatsWithBlockPagination";
 import TableScrollCustomize from "../components/TableScrollCustomize";
+import { useWindowSize } from "usehooks-ts";
 
 const useState = React.useState;
 
@@ -35,12 +36,34 @@ export default (props: IProps) => {
   const [erpc] = useEthRPCStore();
   const [blockNumber] = useBlockNumber(erpc);
   const [blocks, setBlocks] = useState<IBlock[]>();
+  const [chainId, setChainId] = useState('')
+  const [gasPrice, setGasPrice] = useState<string>();
+  const [peerCount, setPeerCount] = useState<string>();
   //const theme = useTheme<Theme>();
   //const victoryTheme = getTheme(theme);
   const { block } = props.match.params;
   const blockNum = block !== undefined ? parseInt(block, 10) : blockNumber;
   const from = Math.max(blockNum - 99, 0);
   const to = blockNum;
+  const { width } = useWindowSize()
+
+  React.useEffect(() => {
+    if (!erpc) { return; }
+    erpc.eth_chainId().then((cid) => {
+      if (cid === null) { return; }
+      setChainId(cid);
+    });
+  }, [erpc]);
+
+  React.useEffect(() => {
+    if (!erpc) { return; }
+    erpc.eth_gasPrice().then(setGasPrice);
+  }, [erpc]);
+
+  React.useEffect(() => {
+    if (!erpc) { return; }
+    erpc.net_peerCount().then(setPeerCount);
+  }, [erpc]);
 
   React.useEffect(() => {
     if (blockNum === undefined || blockNumber === undefined) {
@@ -67,7 +90,7 @@ export default (props: IProps) => {
   }, [from, to]);
 
   if (!blocks || blockNumber === undefined || blockNum > blockNumber) {
-    return (<CircularProgress />);
+    return (<div className="curcular-wrapper"><CircularProgress /></div>);
   }
 
   return (
@@ -76,6 +99,10 @@ export default (props: IProps) => {
         <div className="miner-charts">
           <StatCharts 
           blocks={blocks}
+          blockNumber={blockNumber}
+          chainId={chainId}
+          gasPrice={gasPrice || null}
+          peerCount={peerCount || null}
           minerChart={
             <MinerStatsWithBlockPagination
             blocks={blocks} config={config}
@@ -131,9 +158,10 @@ export default (props: IProps) => {
       </div>
       <TableScrollCustomize
       mainTableWrapperClass="miner-table"
-      scrollChildContentWidth={1217} 
+      //scrollChildContentWidth={1736} 
       scrollChildContentHeight={20} 
-      scrollWrappertranslateY={60}
+      scrollWrappertranslateY={width < 768 ? 29 : 116}
+      //scrollWrappertranslateY={0}
     >
       <div className="miner-right">
         <div className="miner-table">

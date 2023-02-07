@@ -1,4 +1,5 @@
 @import "../variables";
+
 #root {
     .dashboard {
         * {
@@ -19,13 +20,30 @@
             //     height: 4px;
             // }
         }
+        .table-scroll__wrapper {
+            margin-left: 41px;
+            .scroll-content {
+                min-width: 1140px;
+            }
+            //transform: translateY(0px);
+        }
         &-entities {
 
         }
         &-entity {
+            margin: 0 32px;
             color: $black;
             padding: 0px;
-            margin: 32px;
+            // .block-height__title {
+
+            // }
+
+            // .chain-id__title {
+
+            // }
+            .gas-price__title {
+                font-size: 20px;
+            }
             h4 {
                 color: $blue;
                 font-size: 32px;
@@ -37,55 +55,144 @@
                 font-weight: 500;
             }
 
+
+            .tx-count__chart {
+                h6 {
+                    margin-top: -6px;
+                }
+                .VictoryContainer {
+                    //margin-top: -30px;
+                }
+            }
+
             .entity-left {
-                display: flex;
-                flex-direction: row;
+                .gas-price__title {
+                    margin-top: 8px;
+                }
+            }
+
+            .entity-left {
                 div {
+                    display: inline-block;
                     &:first-child {
-                        margin-right: 26px;
+                        min-width: 177px;
+                        margin-right: 13px;
+                    }
+                    &:nth-child(2) {
+                        width: 44px;
                     }
                 }
             }
 
             .entity-right {
                 position: relative;
-                // .x-axis {
-                //     display: flex;
-                //     width: 250px;
-                //     justify-content: space-between;
-                //     font-size: 12px;
-                //     position: absolute;
-                //     bottom: 18px;
-                //     right: 30px;
-                // }
+                .VictoryContainer {
+                    // width: 311px!important;
+                    // height: 188px!important;
+                    width: 100%;
+                    height: auto;
+                }
+                .gas-used__chart {
+                    .VictoryContainer {
+                        //margin-top: -32px;
+                    }
+                }
 
-                // .y-axis {
-                //     display: flex;
-                //     flex-direction: column;
-                //     width: 17px;
-                //     height: 112px;
-                //     justify-content: space-between;
-                //     font-size: 10px;
-                //     position: absolute;
-                //     bottom: 25px;
-                //     left: 0;
-                //     color: #777E90;
-                //     flex-flow: wrap-reverse;
-                // }
+                .gas-used__pertx {
+                    .VictoryContainer {
+                        //margin-top: -30px;
+                    }
+                }
 
             }
+
+            .entity-left.second {
+                margin-top: 27px;
+            }
+
+            .entity-left.third {
+                margin-top: 27px;
+                .MuiGrid-item {
+                    vertical-align: top;
+                }
+            }
+
+            .entity-right.first {
+                .y-axis {
+                    bottom: 28px;
+                }
+                .x-axis {
+                    bottom: -1px;
+                    right: 2px;
+                    width: 88%;
+                }
+                .VictoryContainer {
+                    margin-left: 15px;
+                }
+            }
+
+
+            .entity-right.second {
+                margin-top: -5px;
+                .y-axis {
+                    bottom: 17px;
+                }
+                .x-axis {
+                    bottom: 2px;
+                    right: 0px;
+                    width: 88%;
+                }
+                .VictoryContainer {
+                    margin-left: 15px;
+                }
+            }
+
+            .entity-right.third {
+                .y-axis {
+                    bottom: 28px;
+                }
+                .x-axis {
+                    width: 86%;
+                    bottom: -1px;
+                    right: 1px;
+                }
+                .VictoryContainer {
+                    margin-left: 27px;
+                }
+            }
+
         }
+
+        // .chainIdEntity  {
+        //     .entity-left {
+        //         //margin-top: 36px;
+        //     }
+        // }
+
         .table {
+            margin: 0 32px;
+
+            margin-top: 20px;
             * {
                 font-size: 14px;
 
             }
-            margin: 0 32px;
             thead {
                 tr {
+                    display: flex;
+                    //justify-content: space-between;
                     th {
-                        padding: 18px 16px 18px 0px;
+                        //flex-basis: 208px;
+                        padding: 0px 0px 15px 0px;
                         color: $gray;
+                        width: 160px;
+                        &:first-child {
+                            margin-left: 0px;
+                        }
+
+                        &:nth-child(2) {
+                            margin-left: 16px;
+                        }
                     }
                 }
             }
@@ -109,14 +216,26 @@
                     tbody {
                         tr {
                             position: relative;
-                            //display: block;
-                            //padding: 12px;
+                            display: flex;
+                            height: 56px;
+                            //justify-content: space-between;
+
                             td {
+                                display: flex;
+                                align-items: center;
+                                //flex-basis: 208px;
+
+                                //text-align: center;
+                                //margin-left: 16px;
                                 &:first-child {
-                                    padding: 0 12px;
+                                    //text-align: left;
+                                    margin-left: 16px;
                                 }
-                                padding: 0px 12px 0px 0px;
-                                min-width: 160px;
+
+                                &:nth-child(2) {
+                                    //margin-left: 1px;
+                                }
+                                width: 160px;
                             }
                             td, a {
                                 color: $red;
@@ -129,12 +248,43 @@
             }
         }
 
+
+        // .gasPriceEntity {
+        //     .entity-left {
+        //         margin-top: 9px;
+        //         .MuiGrid-item {
+        //             vertical-align: top;
+        //         }
+        //     }
+        // }
+
     }
 }
 
 
 @media screen and (min-width: 768px) {
     #root {
+        .app-header {
+            .logo {
+                min-width: 257px;
+            }
+            .search  {
+                min-width: 479px;
+            }
+            .search-icon {
+                margin: 10px 11px 10px 16px;
+            }
+            .search-input {
+                padding: 0px;
+                //padding: 10px 17px 10px 10px;
+                input {
+                    padding: 10px 17px 10px 0;
+                    font-weight: 400;
+                    font-size: 16px;
+                    //padding: 0px;
+                }
+            }
+        }
         .dashboard {
             background: $white;
             &-entities {
@@ -144,33 +294,208 @@
                 display: flex;
                 width: 100%;
                 justify-content: space-between;
-
-                .VictoryContainer {
-                    min-width: 480px;
+                .tx-count__chart {
+                    h6 {
+                        //margin-top: 9px;
+                        //margin-left: 15px;
+                    }
+                    .VictoryContainer {
+                        //margin-top: -30px;
+                    }
                 }
+
+                .gas-used__chart {
+                    h6 {
+                        //margin-left: 15px;
+                    }
+                }
+
+                .gas-used__pertx {
+                    h6 {
+                        //margin-top: -3px;
+                        //margin-left: -3px;
+                    }
+                }
+                // .VictoryContainer {
+                //     min-width: 480px;
+                // }
 
                 .entity-left {
                     flex-direction: column;
                     min-width: 208px;
+                    max-height: 66px;
+                    .gas-price__title {
+                        margin: 0;
+                    }
                 }
 
 
+                .entity-left.first {
+                    div {
+                        margin-top: 4px;
+                        margin-left: 9px;
+                    }
+                }
+
+                .entity-left.second {
+                    margin-top: -17px;
+
+                    div {
+                        margin-top: 8px;
+                        margin-left: 9px;
+                    }
+                }
+
+                .entity-left.third {
+                    width: 177px;
+                    margin-top: 2px;
+                    .MuiPaper-root {
+                        margin-left: 19px;
+                        margin-bottom: 2px;
+                        .MuiCardContent-root {
+                            margin-bottom: 8px;
+
+                            .gas-price__title {
+                                margin-top: 7px;
+                            }
+                        }
+                    }
+                }
+                .entity-right {
+                    .VictoryContainer {
+                        // min-width: 480px!important;
+                        // height: auto!important;
+                        max-width: 480px;
+                    }
+                }
+
+                .entity-right.first {
+                    .y-axis {
+                        left: 0px;
+                        bottom: 68px;
+                    }
+                    .x-axis {
+                        bottom: 26px;
+                        right: 3px;
+                        width: 93%;
+                    }
+                    .VictoryContainer {
+                        margin-top: -307px;
+                        margin-left: 0px;
+                    }
+                    h6 {
+                        margin-top: 9px;
+                    }
+                }
+    
+    
+                .entity-right.second {
+                    //margin-top: -55px;
+                    .y-axis {
+                        bottom: 43px;
+                        left: 0px;
+                    }
+                    .x-axis {
+                        bottom: 24px;
+                        right: 1px;
+                        width: 93%;
+                    }
+                    .VictoryContainer {
+                        margin-top: -309px;
+                        margin-left: 0px;
+                    }
+
+                    h6 {
+                        margin-top: 6px;
+                    }
+                }
+    
+                .entity-right.third {
+                    .y-axis {
+                        bottom: 66px;
+                        left: -2px;
+                    }
+                    .x-axis {
+                        bottom: 25px;
+                        right: 1px;
+                        width: 90%;
+                    }
+                    .VictoryContainer {
+                        margin-top: -309px;
+                        margin-left: 0px;
+                    }
+
+                    h6 {
+                        margin-top: 4px;
+                    }
+                }
             }
 
+            .chainIdEntity {
+                //margin-top: 23px;
+            }
+
+            // .gasPriceEntity {
+            //     .entity-left {
+            //         margin-top: 0px;
+            //         .MuiGrid-item {
+            //             //margin-top: 15px;
+            //         }
+            //         .MuiPaper-elevation0 {
+            //             margin-bottom: 15px;
+            //         }
+            //     }
+            //     //margin-top: 9px;
+            //     //margin-left: 17px;
+            // }
+
+            .table-scroll__wrapper {
+                transform: translateY(10px);
+            }
             .table {
+                margin-top: 0px;
                 thead {
                     tr {
                         th {
+                            margin-left: 9px;
+                            margin-top: 4px;
+                            &:nth-child(1) {
+                                margin-left: 9px;
+                            }
+                            &:nth-child(3) {
+                                min-width: 260px;
+                                margin-left: 16px;
+                            }
+
+                            &:nth-child(4) {
+                                min-width: 260px;
+                                margin-left: 16px;
+                            }
                         }
                     }
                 }
     
                 .table-wrapper {
+                    //margin-top: -37px;
+                    //margin-left: 10px;
                     table {
                         tbody {
                             tr {
                                 td {
-                                    min-width: 200px;
+                                    //margin: 0px 8px;
+                                    margin-top: 14px;
+                                    &:nth-child(1) {
+                                        margin-left: 27px;
+                                        margin-top: 7px;
+                                    }
+                                    &:nth-child(2) {
+                                        margin-right: 15px;
+                                    }
+
+                                    &:nth-child(3) {
+                                        min-width: 260px;
+                                        margin-right: 15px;
+                                    }
                                 }
                                 td, a {
                                 }
@@ -184,7 +509,79 @@
     }
 }
 
-@media screen and (min-width: 1600px) {
+
+@media screen and (min-width: 1200px) {
+    #root {
+        .dashboard {
+            .table {
+                thead {
+                    tr {
+                        justify-content: space-between;
+                        th {
+                            min-width: 208px;
+                            // &:first-child {
+                            
+                            // }
+                            // &:nth-child(2) {
+                            
+                            // }
+                            &:nth-child(3) {
+                                min-width: 390px;
+                            }
+                            &:nth-child(6) {
+                                min-width: 290px;
+                            }
+                        }
+                    }
+                }
+                .table-wrapper {
+                    //overflow-x: auto;
+                    table {
+                        //width: 1217px;
+                        max-width: 1816px;
+                        tbody {
+                            tr {
+                                justify-content: space-between;
+                                td {
+                                    min-width: 208px;
+                                    // &:first-child {
+                                    
+                                    // }
+                                    // &:nth-child(2) {
+                                    
+                                    // }
+                                    &:nth-child(3) {
+                                        min-width: 390px;
+                                    }
+                                    &:nth-child(6) {
+                                        min-width: 290px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .table-scroll__wrapper {
+                .scroll-content {
+                    min-width: 1736px;
+                }
+            }
+            .gasPriceEntity {
+                .entity-left {
+                    .MuiGrid-item {
+                        //margin-top: 15px;
+                    }
+                    .MuiPaper-elevation0 {
+                        margin-bottom: 0px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1900px) {
     #root {
         .dashboard {
             &-entities {
@@ -193,16 +590,267 @@
                 flex-wrap: nowrap;
             }
             &-entity {
-                //display: flex;
                 flex-direction: column;
-                //width: 100%;
-                //justify-content: space-between;
+                justify-content: start;
+                //margin-top: 10px;
                 .entity-left {
+                    margin-bottom: 20px;
+                    max-height: none;
+
+                    div {
+                        &:nth-child(1){
+                            margin-right: 10px;
+                        }
+                    }
+                }
+
+                .gas-price__title {
+                    font-size: 32px;
+                }
+
+                .tx-count__chart {
+                    //margin-left: 12px;
+                    h6 {
+                        margin-top: 0px;
+                    }
+                    .VictoryContainer {
+
+                    }
+                }
+
+                .gas-used__chart {
+                    h6 {
+                    }
+                }
+
+                .gas-used__pertx {
+                    h6 {
+                    }
+                }
+
+                .entity-left.first {
+                    margin-left: 0px;
+                    margin-top: 10px;
+                    .MuiPaper-root {
+                        .MuiCardContent-root {
+                            //padding: 0px 17px;
+                        }
+                    }
+                }
+
+                .entity-left.second {
+                    margin-left: -5px;
+                    margin-top: 18px;
+                    .MuiPaper-root {
+                        .MuiCardContent-root {
+                            padding: 0px;
+                        }
+                    }
+                    div {
+                        margin-left: 0px;
+                        margin-top: 0px;
+                    }
+                }
+
+                .entity-left.third {
+                    margin-top: 18px;
+                    margin-left: -28px;
+
+                    display: flex;
                     justify-content: space-between;
                     flex-direction: row;
-                    //min-width: 208px;
+                    width: auto;
+                    .MuiGrid-root {
+                        width: 287px;
+                    }
+                    .MuiGrid-item {
+                        text-align: right;
+                    }
+
+                    .MuiPaper-root {
+                        margin-left: 0px;
+                        
+                        .MuiCardContent-root {
+                            margin-bottom: 5px;
+                            .gas-price__title {
+                                margin-top: 0px;
+                            }
+                        }
+                    }
+
                 }
+
+                .entity-right {
+                    h6 {
+                        //margin: 10px 0;
+                    }
+                    .MuiGrid-item {
+
+                    }
+                    .VictoryContainer {
+                    }
+                }
+
+                .entity-right.first {
+                    .y-axis {
+                        bottom: 67px;
+                        left: 18px;
+                    }
+                    .x-axis {
+                        width: 94%;
+                        right: -25px;
+                        bottom: 25px;
+                    }
+                    .VictoryContainer {
+                        margin-top: -306px;
+                    }
+                    .MuiPaper-root {
+                        margin-top: -23px;
+                        margin-left: 18px;
+                    }
+                }
+    
+    
+                .entity-right.second {
+                    .y-axis {
+                        bottom: 44px;
+                        left: -5px;
+                    }
+                    .x-axis {
+                        width: 95%;
+                        right: -3px;
+                        bottom: 25px;
+                    }
+                    .VictoryContainer {
+                        margin-top: -304px;
+                    }
+                    .MuiPaper-root {
+                        margin-top: -18px;
+                        margin-left: -10px;
+                    }
+
+                    h6 {
+                        margin-top: 8px;
+                        margin-left: 7px;
+                    }
+                }
+    
+                .entity-right.third {
+                    .y-axis {
+                        bottom: 67px;
+                        left: -26px;
+                    }
+                    .x-axis {
+                        width: 92%;
+                        bottom: 23px;
+                        left: 28px;
+                    }
+                    .VictoryContainer {
+                        margin-top: -305px;
+                    }
+                    .MuiPaper-root {
+                        margin-top: -23px;
+                        margin-left: -21px;
+                    }
+
+                    h6 {
+                        margin-left: -1px;
+                    }
+                }
+
+
             }
+
+            .table {
+                margin-top: 14px;
+                .table-wrapper {
+                    table {
+                        thead {
+                            tr {
+                                th {
+                                    &:nth-child(3) {
+                                        margin-left: 5px;
+                                    }
+                                    &:nth-child(4) {
+                                        min-width: 208px;
+                                        margin-left: 3px;
+                                    }
+                                }
+                            }
+                        }
+                        tbody {
+                            tr {
+                                td {
+                                    // margin-top: 3px;
+                                    // //margin-left: -18px;
+                                    // margin-left: 16px;
+                                    margin: 0;
+                                    &:nth-child(1) {
+                                        margin-top: 0px;
+                                        min-width: 192px;
+                                    }
+                                    &:nth-child(2) {
+                                        margin-right: 0px;
+                                        margin: 0px 0px 0px 15px;
+                                    }
+                                    &:nth-child(3) {
+                                        margin: 6px 28px 0px 17px;
+                                    }
+                                    &:nth-child(4) {
+                                        margin-left: -17px;
+                                    }
+                                    &:nth-child(6) {
+                                        margin: 0px 20px 0px 30px;
+                                    }
+                                }
+                            } 
+                        }
+                    }  
+                }
+
+            }
+            // .table {
+            //     thead {
+            //         tr {
+            //             justify-content: space-between;
+            //             th {
+            //                 //min-width: 208px;
+            //                 &:first-child {
+            //                 }
+    
+            //                 &:nth-child(2) {
+            //                 }
+            //             }
+            //         }
+            //     }
+            //     .table-wrapper {
+            //         //overflow-x: auto;
+            //         table {
+            //             //width: 1217px;
+            //             max-width: 1816px;
+            //             tbody {
+            //                 tr {
+            //                     justify-content: space-between;
+            //                     td {
+            //                         min-width: 208px;
+            //                         // &:first-child {
+                                    
+            //                         // }
+            //                         // &:nth-child(2) {
+                                    
+            //                         // }
+            //                         &:nth-child(3) {
+            //                             min-width: 390px;
+            //                         }
+            //                         &:nth-child(6) {
+            //                             min-width: 290px;
+            //                         }
+            //                     }
+            //                 }
+            //             }
+            //         }
+            //     }
+            // }
         }
     }
 }

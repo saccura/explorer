@@ -17,7 +17,7 @@ const TableScrollCustomize:FC<IProps> = ({mainTableWrapperClass, scrollWrappertr
     }
 
     const childContentStyles = {
-        width: scrollChildContentWidth ? scrollChildContentWidth : "auto",
+        //width: scrollChildContentWidth ? scrollChildContentWidth : "auto",
         height: scrollChildContentHeight ? scrollChildContentHeight : "auto"
     }
 

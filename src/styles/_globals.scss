@@ -18,6 +18,7 @@ html {
 
         ::-webkit-scrollbar-thumb {
             border-bottom: 4px solid $gray;
+            width: 160px;
         }
 
         ::-webkit-scrollbar {
@@ -41,20 +42,8 @@ $colors: ("0": #3772FF, "1":#FD9821, "2": #BF37FF, "3":#FF37A3, "4":#37FFB7, "5"
     }
   }
 
-  @each $ndx, $color in $colors {
-    .td-label-#{$ndx} {
-        &::after {
-            content: "";
-            width: 6px;
-            height: 40px;
-            display: inline-block;
-            background: $color;
-            position: absolute;
-            left: 0;
-            top: 12px;
-        }
-    }
-  }
+
+
 
 button.view-raw {
     color: $blue;
@@ -62,6 +51,43 @@ button.view-raw {
     text-transform: none;
 }
 
+.curcular-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+
+@each $ndx, $color in $colors {
+    .td-label-#{$ndx} {
+        &::after {
+            content: "";
+            width: 7px;
+            height: 41px;
+            display: inline-block;
+            background: $color;
+            position: absolute;
+            left: 0px;
+            top: 12px;
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    @each $ndx, $color in $colors {
+        .td-label-#{$ndx} {
+            &::after {
+                content: "";
+                width: 7px;
+                height: 41px;
+                display: inline-block;
+                background: $color;
+                position: absolute;
+                left: 8px;
+                top: 12px;
+            }
+        }
+    }
+}
 
 // .table-main__wrapper {
 //     overflow-x: auto;

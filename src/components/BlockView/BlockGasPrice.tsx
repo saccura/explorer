@@ -2,6 +2,7 @@ import * as React from "react";
 import { hexToNumber } from "@etclabscore/eserialize";
 import { useTranslation } from "react-i18next";
 import { TableCell, TableRow } from "@material-ui/core";
+const unit = require("ethjs-unit"); //tslint:disable-line
 
 const BigIntMinBy = (list: [], func: (item: any) => BigInt): any => {
   let min: any;
@@ -44,14 +45,14 @@ function BlockGasPrice(props: any) {
       <TableRow>
         <TableCell className="block-view__mingasprice title">{t("Min Gas Price")}</TableCell>
         <TableCell className="block-view__mingasprice value">
-          {hexToNumber(BigIntMinBy(transactions, (tx: any) => BigInt(tx.gasPrice))?.gasPrice || "")}
+          { unit.fromWei( hexToNumber(BigIntMinBy(transactions, (tx: any) => BigInt(tx.gasPrice) )?.gasPrice), 'ether') || "" }
         </TableCell>
       </TableRow>
 
       <TableRow>
         <TableCell className="block-view__maxgasprice title">{t("Max Gas Price")}</TableCell>
         <TableCell className="block-view__maxgasprice value">
-          {hexToNumber(BigIntMaxBy(transactions, (tx: any) => BigInt(tx.gasPrice))?.gasPrice) || ""}
+          { unit.fromWei( hexToNumber(BigIntMaxBy(transactions, (tx: any) => BigInt(tx.gasPrice) )?.gasPrice ), 'ether' ) || ""}
         </TableCell>
       </TableRow>
     </>

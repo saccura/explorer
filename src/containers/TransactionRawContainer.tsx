@@ -30,7 +30,7 @@ export default function TransactionRawContainer(props: any) {
   }, [hash, erpc]);
 
   if (!transaction || !receipt) {
-    return (<CircularProgress />);
+    return (<div className="curcular-wrapper"><CircularProgress /></div>);
   }
 
   return (<TxRaw tx={transaction} receipt={receipt} />);

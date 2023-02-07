@@ -5,7 +5,8 @@ import Link from "@material-ui/core/Link";
 import { Table, TableBody, TableCell, TableHead, TableRow } from "@material-ui/core";
 import { hexToNumber } from "@etclabscore/eserialize";
 
-function TxListItem({ tx, showblockNumber }: { tx: any, showblockNumber?: boolean }) {
+function TxListItem({ tx, showblockNumber }: { tx: any, showblockNumber?: boolean}) {
+
   return (
     <TableRow>
       {showblockNumber && <TableCell>{hexToNumber(tx.blockNumber)}</TableCell>}
@@ -45,6 +46,7 @@ function TxListItem({ tx, showblockNumber }: { tx: any, showblockNumber?: boolea
           : null}
       </TableCell>
 
+
       <TableCell>{hexToNumber(tx.transactionIndex)}</TableCell>
     </TableRow>
   );
@@ -53,6 +55,7 @@ function TxListItem({ tx, showblockNumber }: { tx: any, showblockNumber?: boolea
 export interface ITxListProps {
   transactions: any[];
   showBlockNumber?: boolean;
+  excludeColumnIndex?: number
 }
 
 function TxList(props: ITxListProps) {

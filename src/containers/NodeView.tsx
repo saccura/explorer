@@ -35,7 +35,7 @@ export default function NodeView(props: any) {
     }
   }, [blockNumber, blockNum, props.history]);
   if (blockNumber === undefined || blockNum > blockNumber) {
-    return (<CircularProgress />);
+    return (<div className="curcular-wrapper"><CircularProgress /></div>);
   }
   return (
     <BlockList

@@ -90,7 +90,7 @@ const Address: React.FC<IProps> = ({ match, history }) => {
   }, [from, to]);
 
   if (transactionCount === undefined || balance === undefined || code === undefined) {
-    return <CircularProgress />;
+    return <div className="curcular-wrapper"><CircularProgress /></div>;
   }
 
   return (

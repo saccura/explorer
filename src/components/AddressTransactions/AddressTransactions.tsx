@@ -5,6 +5,7 @@ import TxList from "../TxList";
 import { ArrowBackIos, ArrowForwardIos, KeyboardBackspace } from "@material-ui/icons";
 import { Transaction } from "@etclabscore/ethereum-json-rpc";
 import TableScrollCustomize from "../TableScrollCustomize";
+import { useWindowSize } from "usehooks-ts";
 
 export interface IProps {
   transactions: Transaction[];
@@ -20,6 +21,8 @@ export interface IProps {
 
 const AddressTransactions: React.FC<IProps> = (props) => {
   const { t } = useTranslation();
+  const { width } = useWindowSize()
+
   return (
     <div className={props.className} style={props.style}>
       <div className="transactions-top">
@@ -33,20 +36,16 @@ const AddressTransactions: React.FC<IProps> = (props) => {
           <IconButton onClick={props.onNext} disabled={props.disableNext}>
             <ArrowForwardIos />
           </IconButton> */}
-          <IconButton className={`left-button ${props.disablePrev ? '' : 'active'}`} onClick={props.onPrev} disabled={props.disablePrev}>
-            <KeyboardBackspace />
-          </IconButton>
-          <IconButton className={`right-button ${props.disableNext ? '' : 'active'}`} onClick={props.onNext} disabled={props.disableNext}>
-            <KeyboardBackspace />
-          </IconButton>
+          <IconButton className={`left-button ${props.disablePrev ? '' : 'active'}`} onClick={props.onPrev} disabled={props.disablePrev}/>
+          <IconButton className={`right-button ${props.disableNext ? '' : 'active'}`} onClick={props.onNext} disabled={props.disableNext}/>
         </Grid>
       </div>
       <TableScrollCustomize
           mainTableWrapperClass="transactions-bottom"
-          scrollChildContentWidth={1217} 
+          //scrollChildContentWidth={1736} 
           scrollChildContentHeight={20} 
-          scrollWrappertranslateY={60}
-          // scrollWrapperMargin="0px 32px"
+          scrollWrappertranslateY={width < 768 ? 67 : 85}
+          scrollWrapperMargin="0px 0px 0px 24px"
         >
         <div className="transactions-bottom">
           {/* <TxList transactions={transactions || []} showBlockNumber={true}></TxList> */}

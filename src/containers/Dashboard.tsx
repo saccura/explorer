@@ -17,15 +17,21 @@ import { Block as IBlock, IsSyncingResult as ISyncing} from "@etclabscore/ethere
 import { VictoryAxis, VictoryBar, VictoryChart, VictoryContainer, VictoryGroup } from "victory";
 import BigNumber from "bignumber.js";
 import CustomChartAxises from "../components/CustomChartAxises";
-import { gasUsedChartData, gasUsedPerTxChartData, transactionCountChartData } from "../helpers/chartDataFormating";
-
+import { 
+  gasUsedChartData, gasUsedPerTxChartData, transactionCountChartData,
+  victoryBarDynamicProps, calcChartDataCount
+} from "../helpers/chartDataFormating";
+import { useWindowSize } from "usehooks-ts";
+const unit = require("ethjs-unit"); //tslint:disable-line
 const useState = React.useState;
 
 const config = {
   blockTime: 15, // seconds
   blockHistoryLength: 100,
-  chartHeight: 250,
-  chartWidth: 311,
+  // chartHeight: 452,
+  // chartWidth: 740,
+  chartHeight: 385,
+  chartWidth: 740,
 };
 
 export default (props: any) => {
@@ -40,6 +46,7 @@ export default (props: any) => {
   const [syncing, setSyncing] = useState<ISyncing>();
   const [peerCount, setPeerCount] = useState<string>();
   const { t } = useTranslation();
+  const { width } = useWindowSize()
 
   React.useEffect(() => {
     if (!erpc) { return; }
@@ -86,7 +93,7 @@ export default (props: any) => {
   }, [erpc]);
  
   if (blocks === undefined || chainId === undefined || gasPrice === undefined || peerCount === undefined) {
-    return <CircularProgress />;
+    return <div className="curcular-wrapper"><CircularProgress /></div>;
   }
 
   const blockMapTransactionCount = (block: any) => {
@@ -116,31 +123,122 @@ export default (props: any) => {
     };
   };
 
+  const victoryChartDynamicProps = (resolution: number) => {
+    const isMobile: boolean = resolution < 768 ? true : false
+
+    return {
+      containerComponent: <VictoryContainer responsive={isMobile ? true : false}/>,
+      width: isMobile ? 740 : 1000,
+      height: isMobile ? 385 : 500
+    }
+  }
+  
+  const domainPadding = (resolution: number, chartName: string) => {
+    enum ChartNames {
+      "TransactionCount" = "TransactionCount",
+      "GasUsed" = "GasUsed",
+      "GasPrice" = "GasPrice",
+    }
+  
+    switch (chartName) {
+      case ChartNames.TransactionCount:
+        if (resolution < 768) {
+          return {
+            y: [0, 0],
+            x: [0, 0],
+          };
+        }
+        if (resolution >= 1900) {
+          return {
+            y: [0, 0],
+            x: [-20, 480],
+          };
+        }
+        if (resolution >= 768) {
+          return {
+            y: [0, 0],
+            x: [-25, 10],
+          };
+        }
+  
+        break;
+      case ChartNames.GasUsed:
+        if (resolution < 768) {
+          return {
+            y: [0, 0],
+            x: [0, 0],
+          };
+        }
+        if (resolution >= 1900) {
+          return {
+            y: [0, 0],
+            x: [-20, 480],
+          };
+        }
+        if (resolution >= 768) {
+          return {
+            y: [0, 0],
+            x: [-25, 10],
+          };
+        }
+        break;
+      case ChartNames.GasPrice:
+        if (resolution < 768) {
+          return {
+            y: [0, 0],
+            x: [0, 35],
+          };
+        }
+        if (resolution >= 1900) {
+          return {
+            y: [0, 0],
+            x: [20, 442],
+          };
+        }
+        if (resolution >= 768) {
+          return {
+            y: [0, 0],
+            x: [0, 0],
+          };
+        }
+  
+        break;
+      default:
+        return {
+          y: [0, 0],
+          x: [0, 0],
+        };
+    }
+  };
+
   return (
     <div className="dashboard">
       <Grid className="dashboard-entities" item container justify="space-between">
           <Grid className="dashboard-entity blockHeightEntity" item key="blockHeightEntity">
-            <div className="entity-left">
+            <div className="entity-left first">
               <ChartCard title={t("Block Height")}>
-                <Typography variant="h4">{blockNumber}</Typography>
+                <Typography className="block-height__title"  variant="h4">{blockNumber}</Typography>
               </ChartCard>
             </div>
-            <div className="entity-right">
+            <div className="entity-right tx-count__chart first">
               <ChartCard title={t("Transaction count")}>
-              <CustomChartAxises xItems={transactionCountChartData(blocks, blockMapTransactionCount).slice(0,6)} yItems={[0, 20, 40, 60, 80]}/>
-              <VictoryChart 
-                //height={config.chartHeight} 
-                //width={config.chartWidth}
-                //containerComponent={<VictoryContainer responsive={false}/>}
+              <CustomChartAxises 
+              xItems={transactionCountChartData(blocks, blockMapTransactionCount).slice(0, width < 768 ? 6 : 10)} 
+              yItems={[0, 20, 40, 60, 80]}/>
+              <VictoryChart
+                //containerComponent={<VictoryContainer responsive={width < 768 ? true : false}/>}
+                {...victoryChartDynamicProps(width)}
+                //@ts-ignore
+                //domainPadding={domainPadding(width)}
+                domainPadding={domainPadding(width, "TransactionCount")}
                 >
                 <VictoryBar
-                barWidth={8}
-                cornerRadius={4}
+                {...victoryBarDynamicProps(width)}
                 style={{
                   data: {fill: "#3772FF"}
                 }}
-                //data={blocks.map(blockMapTransactionCount)} 
-                data={transactionCountChartData(blocks, blockMapTransactionCount)}
+                //data={blocks.map(blockMapTransactionCount)}
+                data={transactionCountChartData(blocks, blockMapTransactionCount, calcChartDataCount(width))}
                 />
 
                 <VictoryAxis
@@ -164,29 +262,30 @@ export default (props: any) => {
             </div>
           </Grid>
           <Grid className="dashboard-entity chainIdEntity" key="chainIdEntity" item>
-            <div className="entity-left">
+            <div className="entity-left second">
               <ChartCard title={t("Chain ID")}>
-                <Typography variant="h4">{hexToNumber(chainId)}</Typography>
+                <Typography className="chain-id__title" variant="h4">{hexToNumber(chainId)}</Typography>
               </ChartCard>
             </div>
-            <div className="entity-right">
+            <div className="entity-right second">
               <Grid className="gas-used__chart" key="gasUsed" item>
                 <ChartCard title={t("Gas Used (Millions)")}>
                 <CustomChartAxises
-                 xItems={gasUsedChartData(blocks, blockMapGasUsed).slice(0,6)} 
+                 xItems={gasUsedChartData(blocks, blockMapGasUsed).slice(0, width < 768 ? 6 : 10)} 
                  yItems={["1.0", "2.0", "3.0", "4.0", "5.0", "6.0"]}/>
                   <VictoryChart 
-                  // height={config.chartHeight} 
-                  // width={config.chartWidth}
+                    {...victoryChartDynamicProps(width)}
+                    //@ts-ignore
+                    // domainPadding={domainPadding(width)}
+                    domainPadding={domainPadding(width, "GasUsed")}
                   >
                     <VictoryBar
-                    barWidth={8}
-                    cornerRadius={4}
+                    {...victoryBarDynamicProps(width)}
                     style={{
                       data: {fill: "#18B04D"}
                     }}
                     //data={blocks.map(blockMapGasUsed)}
-                    data={gasUsedChartData(blocks, blockMapGasUsed)}
+                    data={gasUsedChartData(blocks, blockMapGasUsed, calcChartDataCount(width))}
                     />
                     <VictoryAxis
                       style={{
@@ -221,9 +320,9 @@ export default (props: any) => {
             </div>
           }
           <Grid className="dashboard-entity gasPriceEntity" key="gasPriceEntity" item>
-            <div className="entity-left">
+            <div className="entity-left third">
               <ChartCard title={t("Gas Price")}>
-                <Typography variant="h4">{weiToGwei(hexToNumber(gasPrice))} POPX</Typography>
+                <Typography variant="h4" className="gas-price__title">{unit.fromWei(hexToNumber(gasPrice), 'ether')} POPX</Typography>
               </ChartCard>
               <Grid key="peers" item>
                 <ChartCard title={t("Peers")}>
@@ -231,41 +330,43 @@ export default (props: any) => {
                 </ChartCard>
               </Grid>
             </div>
-            <div className="entity-right">
+            <div className="entity-right third">
               <Grid className="gas-used__pertx" key="gasUsedPerTx" item>
                 <ChartCard title={t("Gas Used per Tx")}>
-                <CustomChartAxises xItems={gasUsedPerTxChartData(blocks, blockMapGasUsedPerTx).slice(0,6)} yItems={["100,000", "200,000", "300,000", "400,000","500,000"]}/>
-                  <VictoryChart 
-                  // height={config.chartHeight} 
-                  // width={config.chartWidth}
-                  >
-                    <VictoryBar
-                    barWidth={8}
-                    cornerRadius={4}
-                    padding={{left: 2, right: 2}}
-                    //cornerRadius={4}
+                <CustomChartAxises 
+                xItems={gasUsedPerTxChartData(blocks, blockMapGasUsedPerTx).slice(0, width < 768 ? 6 : 10)} 
+                yItems={["100,000", "200,000", "300,000", "400,000","500,000"]}/>
+                <VictoryChart 
+                  // domainPadding={{x: [chartSizeCalculate("domainPaddingX", width), 0]}}
+                  {...victoryChartDynamicProps(width)}
+                  //domainPadding={ {y: width >= 768 ? [0, 160] : [0, 0], x: width >= 768 ? [-20, 480] : [0, 30]} }
+                  //@ts-ignore
+                  domainPadding={domainPadding(width, "GasPrice")}
+                >
+                  <VictoryBar
+                    {...victoryBarDynamicProps(width)}
                     style={{
-                      data: {fill: "#FD9821"},
+                      data: {fill: () => "#FD9821"}
                     }}
                     //data={blocks.map(blockMapGasUsedPerTx)} 
-                    data={gasUsedPerTxChartData(blocks, blockMapGasUsedPerTx)}
-                    />
-                    <VictoryAxis
-                      style={{
-                        axis: {stroke: 'transparent'},
-                        tickLabels: {fontSize: 14, fill: "transparent"},
-                      }}
-                      tickCount={6}
-                      fixLabelOverlap={true}
-                    />
-                    <VictoryAxis
-                      dependentAxis
-                      tickValues={[1000000, 2000000, 3000000, 4000000, 5000000]}
-                      style={{
-                        axis: {stroke: 'transparent'},
-                        tickLabels: {fontSize: 10, fill: "transparent"}
-                      }}
-                    />
+                    data={gasUsedPerTxChartData(blocks, blockMapGasUsedPerTx, calcChartDataCount(width))}
+                  />
+                  <VictoryAxis
+                    style={{
+                      axis: {stroke: 'transparent'},
+                      tickLabels: {fontSize: 14, fill: "transparent"},
+                    }}
+                    tickCount={6}
+                    fixLabelOverlap={true}
+                  />
+                  <VictoryAxis
+                    dependentAxis
+                    tickValues={[1000000, 2000000, 3000000, 4000000, 5000000]}
+                    style={{
+                      axis: {stroke: 'transparent'},
+                      tickLabels: {fontSize: 10, fill: "transparent"}
+                    }}
+                  />
                   </VictoryChart>
                     {/* <VictoryBar
                     containerComponent={<VictoryContainer responsive={false}/>}

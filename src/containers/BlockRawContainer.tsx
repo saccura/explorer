@@ -15,6 +15,6 @@ export default function BlockRawContainer(props: any) {
       setBlock(b);
     });
   }, [hash, erpc]);
-  if (!block) { return (<CircularProgress />); }
+  if (!block) { return (<div className="curcular-wrapper"><CircularProgress /></div>); }
   return (<BlockRaw block={block} />);
 }

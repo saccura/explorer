@@ -1,6 +1,16 @@
 @import "../variables";
 #root {
     .address-page {
+        .table-scroll__wrapper {
+            .scroll-content {
+                min-width: 1736px;
+            }
+        }
+        .view {
+            &-wrapper {
+                padding: 0 16px;
+            }
+        }
         margin: 0 16px;
         h6 {
             font-weight: 500;
@@ -52,29 +62,11 @@
                 }
             
                 &__right {
-
+                    min-width: 115px;
                 }
 
-                // &__title {
-
-                // }
-
-                // &__content {
-                    
-                // }
 
                 h6 {
-                    &:first-child {
-                        // &::after {
-                        //     content: "";
-                        // }
-                        //border-right: 1px solid #E6E8EC;
-                        //padding-right: 60px;
-                    }
-
-                    // &:nth-child(2) {
-                    //     width: 153px;
-                    // }
                 }
             }
 
@@ -88,6 +80,8 @@
                     color: $green;
                     font-size: 14px;
                     word-break: break-all;
+                    line-height: 22px;
+                    margin-top: 4px;
                 }
 
             }
@@ -98,39 +92,63 @@
             flex-direction: column;
             &-top {
                 display: flex;
-                margin-bottom: 32px;
-
+                margin-top: 30px;
                 &__blockrange {
                     max-width: 212px;
                     padding-left: 16px;
                     color: $blue;
+                    margin-right: 19px;
                 }
 
                 &__arrows {
+                    margin-top: -7px;
                     button {
                         width: 40px;
                         height: 40px;
                     }
 
                     .left-button {
-                        margin: 0 6.5px;
+                        width: 40px;
+                        height: 40px;
+                        &::before {
+                            content: url("../../assets/arrowLeft.svg");
+                            display: inline-block;
+                            width: 16px;
+                            height: 16px;
+                            margin-right: 21px;
+                            position: absolute;
+                            top: -3%;
+                            left: 29%;
+                        }
                     }
-
+        
                     .left-button.active {
                         border: 2px solid #E6E8EC;
                         border-radius: 40px;
                     }
-
+        
+        
                     .right-button {
-                        transform: rotate(180deg);
-                        margin: 0 6.5px;
+                        width: 40px;
+                        height: 40px;
+                        &::after {
+                            content: url("../../assets/arrowRight.svg");
+                            display: inline-block;
+                            width: 16px;
+                            height: 16px;
+                            position: absolute;
+                            top: -10%;
+                        }
                     }
         
                     .right-button.active {
                         border: 2px solid #E6E8EC;
                         border-radius: 40px;
                     }
+                }
 
+                p {
+                    line-height: 14px;
                 }
             }
 
@@ -147,24 +165,35 @@
             }
 
             &-bottom {
+                margin-top: 10px;
                 .empty-transactions {
                     // transform: rotate(180deg);
                 }
-                // overflow-x: auto;
-                // transform: rotate(180deg);
 
                 .txlist-table {
-                    // transform: rotate(180deg);
-
                     thead {
                         tr {
                             th {
                                 min-width: 201px;
+                                padding: 16px 8px 17px 20px;
+
+                                &:nth-child(1) {
+                                    padding: 16px 8px 17px 20px;
+                                }
+                                &:nth-child(2) {
+                                    padding: 12px 8px 17px 13px;
+                                }
                             }
                         }
                     }
 
                     tbody {
+                        tr {
+                            height: 56px;
+                            td {
+
+                            }
+                        }
                         a {
                             color: $red;
                             text-decoration: none;
@@ -172,6 +201,7 @@
                     }
                 }
             }
+
         }
 
         // table {
@@ -185,6 +215,7 @@
     #root {
         .address-page {
             .view {
+                padding: 20px 20px 12px 20px;
                 &-address {
                     max-width: 100%;
                 }
@@ -192,27 +223,90 @@
                 &-balancewithtxs {
                     max-width: 306px;
                     justify-content: space-between;
+
+                    &__right {
+                        min-width: 110px;
+                    }
                 }
             }
 
             .transactions {
                 &-top {
-                    justify-content: center;
-                    margin-bottom: 62px;
-                }
-                // &-bottom {
+                    max-width: 308px;
+                    align-self: center;
+                    margin-top: 0;
+                    &__blockrange {
+                        width: 176px;
+                        margin-right: 0px;
+                    }
 
-                // }
+                    &__arrows {
+                        margin-top: -10px;
+                    }
+                }
+
+                &-bottom {
+                    margin-top: 30px;
+
+                    .txlist-table {
+                        thead {
+                            tr {
+                                th {
+                                    &:nth-child(1) {
+                                        padding: 16px 8px 17px 27px;
+                                    }
+                                    &:nth-child(2) {
+                                    }
+                                }
+                            }
+                        }
+    
+                        tbody {
+                            tr {
+                                td {
+                                    &:nth-child(1) {
+                                        padding: 16px 8px 17px 27px;
+                                    }
+    
+                                }
+                            }
+                            a {
+                            }
+                        }
+                    }
+
+                }
             }
         }
     }
 }
 
 
-@media screen and (min-width: 1600px) {
+@media screen and (min-width: 1200px) {
+    #root { 
+        .address-page {
+            .table-scroll__wrapper {
+                .scroll-content {
+                    min-width: 1736px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1900px) {
     #root {
         .address-page {
+            .view-code__content.content {
+                margin-top: 5px;
+            }
+
+            .view-code {
+                margin-top: 8px;
+                height: 44px;
+            }
             .view {
+                padding: 0px 20px 12px 20px;
                 &-wrapper {
                     display: flex;
                     flex-wrap: wrap;
@@ -221,7 +315,7 @@
 
                 &-address {
                     position: relative;
-                    margin-right: 140px;
+                    margin-right: 131px;
                     &::after {
                         content: "";
                         width: 1px;
@@ -235,6 +329,9 @@
                 }
 
                 &-balancewithtxs {
+                    max-width: 0;
+                    min-width: 343px;
+                    margin: 20px 0 26px 0;
                     &__left {
                         margin-right: 80px;
  
@@ -248,13 +345,76 @@
             }
 
             .transactions {
+                margin-top: -16px;
+                //margin-top: -20px;
                 &-top {
-                    position: absolute;
-                    right: 30px;
-                    top: 110px;
-                    // justify-content: center;
-                    // margin-bottom: 62px;
+                    transform: translate(762px, -121px);
                 }
+
+                &-bottom {
+                    .txlist-table {
+                        thead {
+                            tr {
+                                display: flex;
+                                //padding: 16px 0px 16px 16px;
+                                th {
+                                    padding: 16px 0px 16px 10px;
+                                    &:nth-child(1) {
+                                        
+                                    }
+                                    &:nth-child(2) {
+                                        min-width: 586px;
+                                    }
+
+                                    &:nth-child(3) {
+                                        min-width: 414px;
+                                    }
+
+                                    &:nth-child(4) {
+                                        min-width: 410px;
+                                    }
+
+                                    &:nth-child(5) {
+                                        padding-left: 15px;
+                                        min-width: 208px;
+                                    }
+                                }
+                            }
+                        }
+    
+                        tbody {
+                            tr {
+                                display: flex;
+                                td {
+                                    padding: 16px 0px 16px 10px;
+                                    &:nth-child(1) {
+                                        min-width: 208px;
+                                    }
+                                    &:nth-child(2) {
+                                        min-width: 586px;
+                                    }
+
+                                    &:nth-child(3) {
+                                        min-width: 417px;
+                                    }
+
+                                    &:nth-child(4) {
+                                        min-width: 410px;
+                                    }
+
+                                    &:nth-child(5) {
+                                        padding-left: 15px;
+                                        min-width: 208px;
+                                    }
+                                }
+                            }
+                            a {
+                            }
+                        }
+                    }
+
+                }
+
                 // &-bottom {
 
                 // }

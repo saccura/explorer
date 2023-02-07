@@ -10,6 +10,7 @@ import { useTranslation } from "react-i18next";
 // };
 function BlockList({ blocks, tableRef }: any) {
   const { t } = useTranslation();
+
   if (!blocks) {
     return null;
   }
@@ -36,11 +37,10 @@ function BlockList({ blocks, tableRef }: any) {
         <TableBody>
           {sortedBlocks.map((b: any, index: number) => {
             const filledPercent = (hexToNumber(b.gasUsed) / hexToNumber(b.gasLimit)) * 100;
-
             // Shorten hash views by concatenating first and last 4 chars.
             const blockHashShort = b.hash.substring(2, 6) +
               "—" + b.hash.substring(b.hash.length - 5, b.hash.length - 1);
-            const authorHashShort = b.miner.substring(2, 6) + "—" +
+            const authorHashShort = b.miner.substring(2, 6) + "-" +
               b.miner.substring(b.miner.length - 5, b.miner.length - 1);
             // Colorize left border derived from author credit account.
             // const authorHashStyle = {
@@ -123,7 +123,11 @@ function BlockList({ blocks, tableRef }: any) {
                   </Typography>
                 </TableCell>
                 <TableCell>
-                  <LinearProgress value={filledPercent} variant="determinate" />
+                  <LinearProgress style={{
+                    width: "90%",
+                    height: 6,
+                    borderRadius: 100
+                  }} value={filledPercent} variant="determinate" />
                 </TableCell>
                 <TableCell>
                   <Typography style={{color: "#18B04D"}}>

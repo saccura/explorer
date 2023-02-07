@@ -12,13 +12,16 @@
     .transaction-view {
         h6 {
             margin: 19px 0;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
         }
 
         .tx-title {
 
         }
         .receipt-title {
-            margin: 45px 0 19px 0;
+            margin: 37px 0 19px 0;
         }
         .view-raw {
             //style={{ position: "absolute", right: "10px", top: "75px" }}
@@ -36,48 +39,15 @@
             padding: 0 16px;
         }
 
-        // .transaction-view__firsttable {
-        //     table {
-        //         tbody {
-        //             tr {
-        //                 td {
-        //                     padding: 23px 16px;
-        //                     &:first-child {
-        //                         width: 280px;
-        //                         display: inline-block;
-        //                         //padding-right: 190px;
-        //                     }
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
-
-        // .transaction-view__secondtable {
-        //     table {
-        //         tbody {
-        //             tr {
-        //                 td {
-        //                     padding: 23px 16px;
-        //                     &:first-child {
-        //                         width: 280px;
-        //                         display: inline-block;
-        //                         //padding-right: 190px;
-        //                     }
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
-
         table {
             tbody {
                 tr {
                     display: flex;
+                    
                     td {
-                        padding: 23px 16px;
+                        padding: 23px 0px 23px 16px;
                         &:first-child {
-                            min-width: 260px;
+                            //min-width: 260px;
                             //padding-right: 192px;
                         }
                     }
@@ -90,6 +60,15 @@
             transform: rotateX(180deg);
             table {
                 transform: rotateX(180deg);
+
+                tbody {
+                    tr {
+                       max-height: 62px;
+                        td {
+                            min-width: 280px;
+                        }
+                    }
+                }
             }
         }
 
@@ -98,6 +77,15 @@
             transform: rotateX(180deg);
             table {
                 transform: rotateX(180deg);
+
+                tbody {
+                    tr {
+                        max-height: 62px;
+                        td {
+                            min-width: 280px;
+                        }
+                    }
+                }
             }
         }
 
@@ -134,37 +122,91 @@
 @media screen and (min-width: 768px) {
     #root {
         .transaction-view {
+            h6 {
+                padding: 0 25px;
+            }
+    
+            .tx-title {
+                margin-top: 45px;
+            }
+            .receipt-title {
+                margin: 45px 0 19px 0;
+            }
+            .view-raw {
+
+            }
+            a {
+
+            }
+            h6 {
+
+            }
+    
             table {
                 tbody {
                     tr {
+                        
                         td {
-                            &:first-child {
-                               //all: unset;
-                               //width: 100%;
+                            padding: 21px 0px 23px 25px;
+                            &:nth-child(2) {
+                                padding: 21px 0px 24px 16px;
+                                width: 100%;
                             }
                         }
                     }
                 }
             }
+    
+            &__firsttable {
+                table {
+    
+                    tbody {
+                        tr {
+                            td {
 
+                            }
+                        }
+                    }
+                }
+            }
+    
+            &__secondtable {
+                table {
+                    tbody {
+                        tr {
+            
+                            td {
+                
+                            }
+                        }
+                    }
+                }
+            }
+    
+            .gasprice {
+                &-content {
+                }
+            }
+            .value {
+                &-content {
+                }
+            }
+    
         }
     }
 }
 
-@media screen and (min-width: 1600px) {
+@media screen and (min-width: 1900px) {
     //
     #root {
         .transaction-view {
             table {
                 tbody {
                     tr {
+                        max-height: 100%;
                         td {
+                            //padding: 23px;
                             word-break: break-all;
-                            &:first-child {
-                                //max-width: 280px;
-                            }
-
-                            //width: 646px;
                         }
                     }
                 }
@@ -172,9 +214,70 @@
             
             .view-raw {
                 position: absolute;
-                right: 23px;
-                top: 80px;
+                right: 33px;
+                top: 103px;
                 display: block;
+            }
+
+
+            .receipt-title {
+                margin: 0px;
+                margin-top: 45px;
+            }
+
+            table {
+                tbody {
+                    tr {
+                        min-height: 62px;
+                        td {
+                            //padding: 21px 0px 23px 25px;
+                            padding: 16px;
+                            &:nth-child(2) {
+                                // padding: 21px 0px 24px 16px;
+                                //padding: 0;
+                                //margin: 16px;
+                                padding: 0px
+                            }
+                        }
+                    }
+                }
+            }
+
+            &__firsttable {
+                table {
+                    tbody {
+                        tr {
+                            td {
+                                padding: 21px 0px 0px 23px;
+                                &:nth-child(2) {
+                                    // padding: 21px 0px 24px 16px;
+                                    //padding: 0;
+                                    //margin: 16px;
+                                    padding: 21px 0px 0px 16px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+    
+            &__secondtable {
+                margin-top: 18px;
+                table {
+                    tbody {
+                        tr {
+                            td {
+                                padding: 21px 0px 0px 23px;
+                                &:nth-child(2) {
+                                    // padding: 21px 0px 24px 16px;
+                                    //padding: 0;
+                                    //margin: 16px;
+                                    padding: 21px 0px 0px 16px;
+                                }
+                            }
+                        }
+                    }
+                }
             }
 
         }

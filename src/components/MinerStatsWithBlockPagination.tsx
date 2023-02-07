@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import _ from "lodash";
 // import MinerStats from "./MinerStats";
 import BlockPagination from "./BlockPagination";
+import { useWindowSize } from "usehooks-ts";
 
 
 interface IProps {
@@ -44,7 +45,7 @@ const MinerStatsWithBlockPagination: React.FC<IProps> = ({blocks, config, from, 
   const [activeAddress, setActiveAddress] = useState("");
   const [eventMutation, setEventMutation] = useState<ChartMutation>({externalMutations: undefined});
   const [eventKey, setEventKey] = useState(-1)
-
+  const { width } = useWindowSize()
   const { t } = useTranslation();
 
 
@@ -83,12 +84,13 @@ const MinerStatsWithBlockPagination: React.FC<IProps> = ({blocks, config, from, 
           </div>
           <VictoryPie
             containerComponent={<VictoryContainer responsive={false}/>}
-            width={250}
-            height={250}
+            width={255}
+            height={255}
             style={{
-              parent: {transform: "translate(-50px, -50px)"},
+              parent: {transform: width < 768 ? "translate(-49px, -52px)" : (width >= 1900 ? "translate(-60px, -31px)" : "translate(-40px, -48px)") },
               data: {padding: 12}
             }}
+            radius={75}
             // x={10}
             // y={10}
             colorScale={["#3772FF", "#BDD1FF"]}
@@ -104,13 +106,11 @@ const MinerStatsWithBlockPagination: React.FC<IProps> = ({blocks, config, from, 
                     {
                       target: "data",
                       mutation: (props) => {
-                        console.log("props: ", props)
-
                         if(props.datum.x === activeAddress) {
                           setActiveAddress("")
+                          setEventKey(-1)
                           return { padAngle: 0, radius: 75 }
                         }
-
 
                         clearClicks(eventKey)
                         setEventKey(props.index)

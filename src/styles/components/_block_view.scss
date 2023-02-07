@@ -9,6 +9,11 @@
     }
     .block-view {
         margin: 0 16px;
+        margin-top: -19px;
+        position: relative;
+        .view-raw {
+            display: none;
+        }
         .bottom {
             overflow-x: auto;
             transform: rotateX(180deg);
@@ -21,9 +26,15 @@
             .blockinfo-table {
                 tbody {
                     tr {
+                        display: flex;
+                        flex-direction: row;
                         border-bottom: 1px solid rgba(224, 224, 224, 1);
+                        height: 62px;
                         td {
-                            //padding: 23px 36px;
+                            &:nth-child(1) {
+                                min-width: 280px;
+                            }
+                            padding: 23px 0px 23px 16px; 
                             border-bottom: none;
                         }
                     }
@@ -33,11 +44,15 @@
             .txlist-table {
                 thead {
                     tr {
+                        line-height: 16px;
+                        display: flex;
                         th {
-                            //padding: 13px 36px 8px 36px;
                             border-bottom: none;
-                            padding-bottom: 0px;
-                            // min-width: 201px;
+                            padding: 0px 16px;
+
+                            &:nth-child(1) {
+                                min-width: 530px;
+                            }
                         }
                     }
                 }
@@ -45,13 +60,12 @@
                 tbody {
                     tr {
                         vertical-align: baseline;
-                        // &:first-child {
-                        //     border-bottom: none;
-                        // }
+                        height: 32px;
+                        display: flex;
+                        margin: 16px 0;
                         td {
-                            //padding: 0 36px 32px 36px;
+                            padding: 0px 16px;
                             &:first-child {
-                                padding-top: 0px;
                             }
 
                             a {
@@ -63,11 +77,9 @@
             }
 
             table {
-                //width: 1848px;
+                line-height: 16px;
                 tr {
                     td {
-                        padding: 23px 16px;
-
                         a {
                             color: $blue;
                         }
@@ -78,9 +90,6 @@
 
         &__number {
             color: $red;
-        }
-        &__number + button {
-            padding: 23px 0;
         }
 
         &__gasusage {
@@ -93,10 +102,6 @@
         &__parenthash.value {
             color: $blue;
             text-decoration: underline;
-
-            // &:visited {
-            //     color: $blue;
-            // }
         }
 
         &__collator {
@@ -106,9 +111,6 @@
         &__collator.value {
             color: $blue;
             text-decoration: underline;
-            // &:visited {
-            //     color: $blue;
-            // }
         }
 
         &__mingasprice.value {
@@ -134,4 +136,148 @@
         }
     }
 
+}
+
+@media screen and (min-width: 768px) {
+    #root {
+        .block-view {
+            .bottom {
+                .blockinfo-table {
+                    tbody {
+                        tr {
+
+                            td {
+                                padding: 33px 0px 23px 20px;
+                            }
+                        }
+                    }
+                }
+    
+                .txlist-table {
+                    margin-top: 12px;
+                    thead {
+                        tr {
+                            th {
+                                padding: 0px 37px 0 23px;
+                                &:nth-child(1) {
+                                    min-width: 643px;
+                                }
+                                &:nth-child(2) {
+                                    min-width: 467px;
+                                }
+                                &:nth-child(3) {
+                                    min-width: 488px;
+                                }
+                            }
+                        }
+                    }
+    
+                    tbody {
+                        tr {
+
+                            margin: 0;
+                            margin-bottom: 16px;
+                            td {
+                                padding: 0px 37px 0 23px;
+                                &:nth-child(1) {
+                                    min-width: 643px;
+                                }
+                                &:nth-child(2) {
+                                    min-width: 470px;
+                                }
+                                &:nth-child(3) {
+                                    min-width: 485px;
+                                }  
+                                a {
+                                    color: $blue;
+                                }
+                            }
+                        }
+                    }
+                }
+    
+                table {
+                    tr {
+                        td {
+                            a {
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 900px) {
+    #root {
+        .block-view {
+            .view-raw {
+                display: block;
+                position: absolute;
+                right: 17px;
+                top: 25px;
+            }
+        }
+    }
+}
+
+
+@media screen and (min-width: 1900px) {
+    #root {
+        .block-view {
+
+            .bottom {
+                .blockinfo-table {
+                    tbody {
+                        tr {
+                            td {
+                            }
+                        }
+                    }
+                }
+    
+                .txlist-table {
+                    thead {
+                        tr {
+                            th {
+                                padding: 0 23px;
+                                &:nth-child(1) {
+                                }
+                                &:nth-child(2) {
+                                }
+                                &:nth-child(3) {
+                                }
+                            }
+                        }
+                    }
+    
+                    tbody {
+                        tr {
+                            td {
+                                padding:0 23px;
+                                &:nth-child(1) {
+                                }
+                                &:nth-child(2) {
+                                }
+                                &:nth-child(3) {
+                                }  
+                                a {
+                                }
+                            }
+                        }
+                    }
+                }
+    
+                table {
+                    tr {
+                        td {
+                            a {
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

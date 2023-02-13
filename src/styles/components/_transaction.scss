@@ -31,7 +31,7 @@
             text-transform: capitalize;
             color: rgb(55, 114, 255);
             // top: 80px;
-            // display: none;
+            display: none;
         }
         a {
             color: $blue;
@@ -136,7 +136,8 @@
                 margin: 45px 0 19px 0;
             }
             .view-raw {
-
+                display: block;
+                transform: translate(10px, -30px);
             }
             a {
 
@@ -151,9 +152,17 @@
                         
                         td {
                             padding: 21px 0px 23px 25px;
+
                             &:nth-child(2) {
-                                padding: 21px 0px 24px 16px;
+                                padding: 21px 0px 24px 10px;
                                 width: 100%;
+                            }
+                        }
+
+                        &:nth-child(10) {
+                            td {
+                                // display: inline-block;
+                                // width: 1%;
                             }
                         }
                     }
@@ -161,12 +170,23 @@
             }
     
             &__firsttable {
+                overflow-x: clip;
                 table {
     
                     tbody {
                         tr {
                             td {
+                                min-width: 14%;
+                            }
 
+                            &:nth-child(11) {
+                                max-height: 100%;
+                                td {
+                                    &:nth-child(2) {
+                                        max-width: 100%;
+                                        word-break: break-all;
+                                    }
+                                }
                             }
                         }
                     }
@@ -174,12 +194,19 @@
             }
     
             &__secondtable {
+                overflow-x: clip;
                 table {
                     tbody {
                         tr {
-            
                             td {
-                
+                                min-width: 14%;
+                            }
+
+                            &:nth-child(5) {
+                                td {
+                                    display: inline-block;
+                                    width: 1%;
+                                }
                             }
                         }
                     }
@@ -199,7 +226,96 @@
     }
 }
 
-@media screen and (min-width: 1900px) {
+
+@media screen and (min-width: 1280px) {
+    #root {
+        .transaction-view {
+            h6 {
+            }
+    
+            .tx-title {
+            }
+            .receipt-title {
+            }
+            .view-raw {
+            }
+            a {
+
+            }
+            h6 {
+
+            }
+    
+            table {
+                tbody {
+                    tr {
+                        
+                        td {
+
+                            &:nth-child(2) {
+                            }
+                        }
+
+                        &:nth-child(10) {
+                            td {
+                            }
+                        }
+                    }
+                }
+            }
+    
+            &__firsttable {
+                table {
+    
+                    tbody {
+                        tr {
+                            td {
+                                min-width: 23%;
+                            }
+
+                            &:nth-child(11) {
+                                td {
+                                    &:nth-child(2) {
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+    
+            &__secondtable {
+                table {
+                    tbody {
+                        tr {
+                            td {
+                                min-width: 22.9%;
+                            }
+                            
+
+                            &:nth-child(5) {
+                                td {
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+    
+            .gasprice {
+                &-content {
+                }
+            }
+            .value {
+                &-content {
+                }
+            }
+    
+        }
+    }
+}
+
+@media screen and (min-width: 1920px) {
     //
     #root {
         .transaction-view {
@@ -217,8 +333,8 @@
             
             .view-raw {
                 position: absolute;
-                right: 33px;
-                top: 103px;
+                right: 62px;
+                top: 132px;
                 display: block;
             }
 
@@ -251,6 +367,7 @@
                     tbody {
                         tr {
                             td {
+                                min-width: 15%;
                                 padding: 21px 0px 0px 23px;
                                 &:nth-child(2) {
                                     // padding: 21px 0px 24px 16px;
@@ -270,6 +387,7 @@
                     tbody {
                         tr {
                             td {
+                                min-width: 14.9%;
                                 padding: 21px 0px 0px 23px;
                                 &:nth-child(2) {
                                     // padding: 21px 0px 24px 16px;

@@ -6,9 +6,10 @@ import { ArrowBackIos, ArrowForwardIos, KeyboardBackspace } from "@material-ui/i
 import { Transaction } from "@etclabscore/ethereum-json-rpc";
 import TableScrollCustomize from "../TableScrollCustomize";
 import { useWindowSize } from "usehooks-ts";
+import { AddressTransaction } from "../../containers/Address";
 
 export interface IProps {
-  transactions: Transaction[];
+  transactions: AddressTransaction[];
   from: number;
   to: number;
   disableNext?: boolean;
@@ -18,11 +19,9 @@ export interface IProps {
   style?: any;
   className: string
 }
-
 const AddressTransactions: React.FC<IProps> = (props) => {
   const { t } = useTranslation();
   const { width } = useWindowSize()
-
   return (
     <div className={props.className} style={props.style}>
       <div className="transactions-top">
@@ -45,7 +44,7 @@ const AddressTransactions: React.FC<IProps> = (props) => {
           //scrollChildContentWidth={1736} 
           scrollChildContentHeight={20} 
           scrollWrappertranslateY={width < 768 ? 67 : 85}
-          scrollWrapperMargin="0px 0px 0px 24px"
+          scrollWrapperMargin="0px 0px 0px 17px"
         >
         <div className="transactions-bottom">
           {/* <TxList transactions={transactions || []} showBlockNumber={true}></TxList> */}

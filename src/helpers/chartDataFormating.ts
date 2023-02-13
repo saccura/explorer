@@ -9,8 +9,9 @@ export const transactionCountChartData = (
   procesingCallback: Function,
   sliceCount = 36
 ) => {
-  const maxYaxisValue = 29;
+  //const maxYaxisValue = 29;
   const processedChartData = blocks
+  
     .map(procesingCallback)
     .reduce(
       (
@@ -27,8 +28,10 @@ export const transactionCountChartData = (
       },
       []
     )
-    .filter((item: any) => Number(String(item.y)) <= maxYaxisValue && Number(String(item.y)) > 0)
+    //.filter((item: any) => Number(String(item.y)) <= maxYaxisValue && Number(String(item.y)) > 0)
+    .filter((item: any) => Number(String(item.y)) > 0)
     .slice(0, sliceCount);
+
 // .filter((item: any) => Number(String(item.y)) <= maxYaxisValue)
   return processedChartData;
 };
@@ -38,7 +41,7 @@ export const gasUsedChartData = (
   procesingCallback: Function,
   sliceCount = 36
 ) => {
-  const maxYaxisValue = 2.2;
+  //const maxYaxisValue = 2.2;
   const processedChartData = blocks
     .map(procesingCallback)
     .reduce(
@@ -56,10 +59,10 @@ export const gasUsedChartData = (
       },
       []
     )
-    .filter((item: any) => Number(String(item.y)) <= maxYaxisValue && Number(String(item.y)) > 0)
-    .slice(0, sliceCount);
+    .filter((item: any) => Number(String(item.y)) > 0);
+    //.filter((item: any) => Number(String(item.y)) <= maxYaxisValue && Number(String(item.y)) > 0);
 
-  return processedChartData;
+  return processedChartData.slice(0, sliceCount);
 };
 
 export const gasUsedPerTxChartData = (
@@ -67,7 +70,7 @@ export const gasUsedPerTxChartData = (
   procesingCallback: Function,
   sliceCount = 36
 ) => {
-  const maxYaxisValue = 1800000;
+  //const maxYaxisValue = 1800000;
   const processedChartData = blocks
     .map(procesingCallback)
     .reduce(
@@ -84,7 +87,8 @@ export const gasUsedPerTxChartData = (
       },
       []
     )
-    .filter((item: any) => Number(String(item.y)) <= maxYaxisValue && Number(String(item.y)) > 0)
+    .filter((item: any) => Number(String(item.y)) > 0)
+    // .filter((item: any) => Number(String(item.y)) <= maxYaxisValue && Number(String(item.y)) > 0)
     .slice(0, sliceCount);
 
   return processedChartData;
@@ -103,11 +107,36 @@ export const calcChartDataCount = (resolution: number, custom = 0) => {
   if(custom) {
     return custom
   }
-  if (resolution < 768) {
-    return 32;
-  }
-  if (resolution >= 1900) {
+  
+  if (resolution >= 1920) {
     return 52;
   }
-  return 100;
+
+  if (resolution >= 1280) {
+    return 82;
+  }
+
+  if (resolution >= 768) {
+    return 48;
+  }
+
+  return 32;
+};
+
+export const calcLabelsCount = (resolution: number) => {
+  // > 1280 === 
+  if (resolution >= 1920) {
+    return 10
+  }
+
+  if (resolution >= 1280) {
+    return 8;
+  }
+  
+  if(resolution >= 768) {
+    return 10
+  }
+
+
+  return 6;
 };

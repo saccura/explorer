@@ -67,7 +67,7 @@ button.view-raw {
             background: $color;
             position: absolute;
             left: 0px;
-            top: 12px;
+            top: 8px;
         }
     }
 }
@@ -82,13 +82,12 @@ button.view-raw {
                 display: inline-block;
                 background: $color;
                 position: absolute;
-                left: 8px;
-                top: 12px;
+                left: 9px;
+                top: 20%;
             }
         }
     }
 }
-
 // .table-main__wrapper {
 //     overflow-x: auto;
 // }
@@ -105,30 +104,41 @@ button.view-raw {
 //     height: 1px;
 // }
 
+.table-scroll__wrapper {
+    overflow-x: auto;
+    transform: translateY(60px);
+    //margin: 0 32px;
+    // position: absolute;
+    // top: 1090px;
 
-// .table-scroll__wrapper {
-//     overflow-x: auto;
-//     transform: translateY(60px);
-//     //margin: 0 32px;
-//     // position: absolute;
-//     // top: 1090px;
+    .scroll-content {
+        width: 1217px;
+        height: 20px;
+    }
 
-//     // .scroll-content {
-//     //     width: 1217px;
-//     //     height: 20px;
-//     // }
+    ::-webkit-scrollbar-track {
+    }
 
-//     // ::-webkit-scrollbar-track {
-//     // }
+    ::-webkit-scrollbar-thumb {
+    }
 
-//     // ::-webkit-scrollbar-thumb {
-//     // }
+    ::-webkit-scrollbar {
+    }
 
-//     // ::-webkit-scrollbar {
-//     // }
+}
 
-// }
 
+@media screen and (min-width: 768px) {
+    .table-scroll__wrapper {
+        overflow-x: auto;
+        transform: translateY(60px);
+        .scroll-content {
+            width: 1217px;
+            height: 20px;
+            display: none;
+        }
+    }
+}
 
 // @media screen and (min-width: 768px) {
     

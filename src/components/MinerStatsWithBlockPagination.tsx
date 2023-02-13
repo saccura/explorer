@@ -65,6 +65,18 @@ const MinerStatsWithBlockPagination: React.FC<IProps> = ({blocks, config, from, 
       ]
     });
   }
+  
+  const calcPieChartPosition = (resolution: number) => {
+    if(resolution < 768) {
+      return "translate(-49px, -52px)" 
+    } else if(width >= 1920) {
+      return "translate(-60px, -31px)"
+    } else if(width >= 1280) {
+      return "translate(-50px, -50px)"
+    } else if (width >= 768) {
+      return "translate(-43px, -50px)"
+    }
+  } 
 
   return (
     <Grid container className="miner-stat">
@@ -87,7 +99,7 @@ const MinerStatsWithBlockPagination: React.FC<IProps> = ({blocks, config, from, 
             width={255}
             height={255}
             style={{
-              parent: {transform: width < 768 ? "translate(-49px, -52px)" : (width >= 1900 ? "translate(-60px, -31px)" : "translate(-40px, -48px)") },
+              parent: {transform: calcPieChartPosition(width) },
               data: {padding: 12}
             }}
             radius={75}
@@ -139,9 +151,9 @@ const MinerStatsWithBlockPagination: React.FC<IProps> = ({blocks, config, from, 
           {activeAddress && <div 
               className="curAddress" 
               style={{
-                width: "45%",
+                width: width < 1280 ? "45%" : "61%",
                 background: "#E6E8EC",
-                transform: "translate(170px, -215px)",
+                transform: width < 1280 ? "translate(170px, -215px)" : "translate(170px, -197px)",
                 wordBreak: "break-all",
                 borderRadius: 8,
                 padding: 8

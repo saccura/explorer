@@ -39,7 +39,7 @@ export default function BlockListContainer(props: IProps) {
       mainTableWrapperClass="table-wrapper"
       //scrollChildContentWidth={1736} 
       scrollChildContentHeight={20} 
-      scrollWrappertranslateY={width < 768 ? 61 : 45}
+      scrollWrappertranslateY={width < 768 ? 48 : 45}
       scrollWrapperMargin="0px 32px"
     >
     <div className="table">

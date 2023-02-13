@@ -19,7 +19,7 @@ import BigNumber from "bignumber.js";
 import CustomChartAxises from "../components/CustomChartAxises";
 import { 
   gasUsedChartData, gasUsedPerTxChartData, transactionCountChartData,
-  victoryBarDynamicProps, calcChartDataCount
+  victoryBarDynamicProps, calcChartDataCount, calcLabelsCount
 } from "../helpers/chartDataFormating";
 import { useWindowSize } from "usehooks-ts";
 const unit = require("ethjs-unit"); //tslint:disable-line
@@ -113,7 +113,6 @@ export default (props: any) => {
   const blockMapGasUsedPerTx = (block: any) => {
     const txCount = block.transactions.length
     const gasUsed = hexToNumber(block.gasUsed)
-
     if(!txCount && !gasUsed) {
       return {x: hexToNumber(block.number), y: new BigNumber(0)}
     }
@@ -125,11 +124,11 @@ export default (props: any) => {
 
   const victoryChartDynamicProps = (resolution: number) => {
     const isMobile: boolean = resolution < 768 ? true : false
-
+    const isDesktop: boolean = resolution >= 1280 ? true : false
     return {
       containerComponent: <VictoryContainer responsive={isMobile ? true : false}/>,
-      width: isMobile ? 740 : 1000,
-      height: isMobile ? 385 : 500
+      width: isMobile ? 740 : (isDesktop ? 1000 : 553),
+      height: isMobile ? 385 : 192
     }
   }
   
@@ -157,7 +156,7 @@ export default (props: any) => {
         if (resolution >= 768) {
           return {
             y: [0, 0],
-            x: [-25, 10],
+            x: [0, 0],
           };
         }
   
@@ -178,7 +177,7 @@ export default (props: any) => {
         if (resolution >= 768) {
           return {
             y: [0, 0],
-            x: [-25, 10],
+            x: [0, 0],
           };
         }
         break;
@@ -198,7 +197,7 @@ export default (props: any) => {
         if (resolution >= 768) {
           return {
             y: [0, 0],
-            x: [0, 0],
+            x: [100, 0],
           };
         }
   
@@ -223,7 +222,7 @@ export default (props: any) => {
             <div className="entity-right tx-count__chart first">
               <ChartCard title={t("Transaction count")}>
               <CustomChartAxises 
-              xItems={transactionCountChartData(blocks, blockMapTransactionCount).slice(0, width < 768 ? 6 : 10)} 
+              xItems={transactionCountChartData(blocks, blockMapTransactionCount).slice(0, calcLabelsCount(width))} 
               yItems={[0, 20, 40, 60, 80]}/>
               <VictoryChart
                 //containerComponent={<VictoryContainer responsive={width < 768 ? true : false}/>}
@@ -271,7 +270,7 @@ export default (props: any) => {
               <Grid className="gas-used__chart" key="gasUsed" item>
                 <ChartCard title={t("Gas Used (Millions)")}>
                 <CustomChartAxises
-                 xItems={gasUsedChartData(blocks, blockMapGasUsed).slice(0, width < 768 ? 6 : 10)} 
+                 xItems={gasUsedChartData(blocks, blockMapGasUsed).slice(0, calcLabelsCount(width))} 
                  yItems={["1.0", "2.0", "3.0", "4.0", "5.0", "6.0"]}/>
                   <VictoryChart 
                     {...victoryChartDynamicProps(width)}
@@ -334,11 +333,12 @@ export default (props: any) => {
               <Grid className="gas-used__pertx" key="gasUsedPerTx" item>
                 <ChartCard title={t("Gas Used per Tx")}>
                 <CustomChartAxises 
-                xItems={gasUsedPerTxChartData(blocks, blockMapGasUsedPerTx).slice(0, width < 768 ? 6 : 10)} 
+                xItems={gasUsedPerTxChartData(blocks, blockMapGasUsedPerTx).slice(0, calcLabelsCount(width))} 
                 yItems={["100,000", "200,000", "300,000", "400,000","500,000"]}/>
                 <VictoryChart 
                   // domainPadding={{x: [chartSizeCalculate("domainPaddingX", width), 0]}}
                   {...victoryChartDynamicProps(width)}
+                  //height={200}
                   //domainPadding={ {y: width >= 768 ? [0, 160] : [0, 0], x: width >= 768 ? [-20, 480] : [0, 30]} }
                   //@ts-ignore
                   domainPadding={domainPadding(width, "GasPrice")}
@@ -361,7 +361,7 @@ export default (props: any) => {
                   />
                   <VictoryAxis
                     dependentAxis
-                    tickValues={[1000000, 2000000, 3000000, 4000000, 5000000]}
+                    tickValues={[100000, 200000, 300000, 400000, 500000]}
                     style={{
                       axis: {stroke: 'transparent'},
                       tickLabels: {fontSize: 10, fill: "transparent"}
@@ -384,6 +384,7 @@ export default (props: any) => {
               </Grid>
             </div>
           </Grid>
+
           {/* <Grid key="hRate" item>
             <ChartCard title={t("Network Hash Rate")}>
               {block &&
@@ -392,6 +393,7 @@ export default (props: any) => {
                 </HashRate>
               }
             </ChartCard>
+            
           </Grid> */}
       </Grid>
       {/* <StatCharts 
@@ -406,6 +408,16 @@ export default (props: any) => {
         >More Stats</Button>
       </Grid>
       <br /> */}
+
+      <div className="more-stats__button">
+        <Button
+          color="primary"
+          variant="outlined"
+          onClick={() => props.history.push("/stats/miners")}
+        >
+        More Stats
+        </Button>
+      </div>
 
       <BlockListContainer
         from={Math.max(blockNumber - 14, 0)}

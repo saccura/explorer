@@ -23,7 +23,7 @@
         .table-scroll__wrapper {
             margin-left: 41px;
             .scroll-content {
-                min-width: 1140px;
+                max-width: 768px;
             }
             //transform: translateY(0px);
         }
@@ -171,8 +171,7 @@
 
         .table {
             margin: 0 32px;
-
-            margin-top: 20px;
+            margin-top: 8px;
             * {
                 font-size: 14px;
 
@@ -185,7 +184,7 @@
                         //flex-basis: 208px;
                         padding: 0px 0px 15px 0px;
                         color: $gray;
-                        width: 160px;
+                        min-width: 160px;
                         &:first-child {
                             margin-left: 0px;
                         }
@@ -210,14 +209,14 @@
             }
 
             .table-wrapper {
-                //overflow-x: auto;
+                overflow-x: auto;
                 table {
                     //width: 1217px;
                     tbody {
                         tr {
                             position: relative;
                             display: flex;
-                            height: 56px;
+                            //height: 56px;
                             //justify-content: space-between;
 
                             td {
@@ -235,7 +234,7 @@
                                 &:nth-child(2) {
                                     //margin-left: 1px;
                                 }
-                                width: 160px;
+                                min-width: 160px;
                             }
                             td, a {
                                 color: $red;
@@ -257,6 +256,22 @@
         //         }
         //     }
         // }
+
+        .more-stats__button {
+            text-align: right;
+            margin-top: 28px;
+            margin-right: 16px;
+            button {
+                color: $white;
+                font-size: 14px;
+                line-height: 16px;
+                background: $blue;
+                border-radius: 8px;
+                font-weight: 500;
+                width: 130px;
+                height: 42px;
+            }
+        }
 
     }
 }
@@ -365,23 +380,33 @@
                     .VictoryContainer {
                         // min-width: 480px!important;
                         // height: auto!important;
-                        max-width: 480px;
+                        min-width: 480px;
                     }
-                }
 
-                .entity-right.first {
                     .y-axis {
                         left: 0px;
                         bottom: 68px;
                     }
                     .x-axis {
                         bottom: 26px;
-                        right: 3px;
+                        left: 0px;
                         width: 93%;
+                    } 
+                }
+
+                .entity-right.first {
+                    .y-axis {
+                        bottom: 69px;
+                        left: 2px;
+                    }
+                    .x-axis {
+                        bottom: 25px;
+                        left: 33px;
+                        width: 84.5%;
                     }
                     .VictoryContainer {
-                        margin-top: -307px;
-                        margin-left: 0px;
+                        //margin-top: -307px;
+                        margin-left: -21px;
                     }
                     h6 {
                         margin-top: 9px;
@@ -392,17 +417,17 @@
                 .entity-right.second {
                     //margin-top: -55px;
                     .y-axis {
-                        bottom: 43px;
-                        left: 0px;
+                        bottom: 45px;
+                        left: 2px;
                     }
                     .x-axis {
-                        bottom: 24px;
-                        right: 1px;
-                        width: 93%;
+                        bottom: 25px;
+                        left: 33px;
+                        width: 84.5%;
                     }
                     .VictoryContainer {
-                        margin-top: -309px;
-                        margin-left: 0px;
+                        //margin-top: -309px;
+                        margin-left: -21px;
                     }
 
                     h6 {
@@ -412,21 +437,22 @@
     
                 .entity-right.third {
                     .y-axis {
-                        bottom: 66px;
-                        left: -2px;
+                        bottom: 69px;
+                        margin-left: 15px;
                     }
                     .x-axis {
                         bottom: 25px;
-                        right: 1px;
-                        width: 90%;
+                        left: 60px;
+                        width: 79%;
                     }
                     .VictoryContainer {
-                        margin-top: -309px;
+                        //margin-top: -309px;
                         margin-left: 0px;
                     }
 
                     h6 {
                         margin-top: 4px;
+                        margin-left: 15px;
                     }
                 }
             }
@@ -449,27 +475,53 @@
             //     //margin-left: 17px;
             // }
 
-            .table-scroll__wrapper {
-                transform: translateY(10px);
-            }
+            // .table-scroll__wrapper {
+            //     transform: translateY(10px);
+            // }
             .table {
-                margin-top: 0px;
+                margin-top: 38px;
+                .table-wrapper {
+                    overflow-x: clip;
+                }
                 thead {
                     tr {
+                        //justify-content: space-between;
                         th {
-                            margin-left: 9px;
+                            //min-width: 160px;
+                            //margin-left: 9px;
                             margin-top: 4px;
+                            //margin-left: 16px;
+                            //margin-left: 0.8%;
+                            margin-left: 0px;
+                            margin-right: 0px;
                             &:nth-child(1) {
                                 margin-left: 9px;
+                                min-width: 13.3%;
+                                //min-width: 13.8%;
+                            }
+                            &:nth-child(2) {
+                                //min-width: 124px;
+                                min-width: 17%;
                             }
                             &:nth-child(3) {
-                                min-width: 260px;
-                                margin-left: 16px;
+                                //min-width: 120px;
+                                min-width: 19%;
                             }
 
                             &:nth-child(4) {
-                                min-width: 260px;
-                                margin-left: 16px;
+                                //min-width: 8.6%;
+                                min-width: 8.5%;
+                            }
+                            &:nth-child(5) {
+                                //min-width: 13.9%;
+                                min-width: 14%;
+                            }
+                            &:nth-child(6) {
+                                //min-width: 13.9%;
+                                min-width: 14%;
+                            }
+                            &:nth-child(7) {
+                                //min-width: 11.816%;
                             }
                         }
                     }
@@ -481,20 +533,53 @@
                     table {
                         tbody {
                             tr {
+                                //justify-content: space-between;
                                 td {
+                                    margin-left: 0px;
+                                    margin-right: 0px;
+                                    //margin: 0px 16px;
+                                    //min-width: auto;
                                     //margin: 0px 8px;
-                                    margin-top: 14px;
+                                    //margin-top: 14px;
                                     &:nth-child(1) {
-                                        margin-left: 27px;
-                                        margin-top: 7px;
+                                        margin-left: 26px;
+                                        min-width: 13.3%;
+                                        //min-width: 13.8%;
+                                        //min-width: 15.8%;
+                                        //min-width: 94px;
+                                        //margin-right: -4px;
+                                        
                                     }
                                     &:nth-child(2) {
-                                        margin-right: 15px;
+                                        min-width: 17%;
+                                        //min-width: 15.2%;
+                                        //min-width: 16%;
+                                        //margin-right: 8px;
+                                        //min-width: 100px;
                                     }
 
                                     &:nth-child(3) {
-                                        min-width: 260px;
-                                        margin-right: 15px;
+                                        //min-width: 15%;
+                                        //margin-right: 31px;
+                                        min-width: 19%;
+                                        // p {
+                                        // }
+                                    }
+                                    &:nth-child(4) {
+                                        min-width: 8.5%;
+                                        //min-width: 45px;
+                                    }
+                                    &:nth-child(5) {
+                                        min-width: 14%;
+                                        //min-width: 82px;
+                                    }
+                                    &:nth-child(6) {
+                                        min-width: 14%;
+                                        //min-width: 82px;
+
+                                    }
+                                    &:nth-child(7) {
+                                        //min-width: 101px
                                     }
                                 }
                                 td, a {
@@ -505,91 +590,263 @@
                 }
             }
 
+            .more-stats__button {
+                margin-top: 13px;
+                margin-right: 6px;
+                button {
+                }
+            }
+
+
         }
     }
 }
 
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1280px) {
     #root {
+        .app-header {
+            .search {
+                min-width: auto;
+                max-width: 461px;
+            }
+            .search-icon {
+                //margin: 10px 11px 10px 33px;
+            }
+        }
         .dashboard {
-            .table {
-                thead {
-                    tr {
-                        justify-content: space-between;
-                        th {
-                            min-width: 208px;
-                            // &:first-child {
-                            
-                            // }
-                            // &:nth-child(2) {
-                            
-                            // }
-                            &:nth-child(3) {
-                                min-width: 390px;
-                            }
-                            &:nth-child(6) {
-                                min-width: 290px;
+            &-entities {
+                justify-content: start;
+                //margin: 0 30px;
+            }
+            &-entity {
+                flex-direction: column;
+                margin: 0;
+                width: 30.4%;
+                //margin-left: 32px;
+                .tx-count__chart {
+                    h6 {
+                        //margin-top: 9px;
+                        //margin-left: 15px;
+                    }
+                    .VictoryContainer {
+                        //margin-top: -30px;
+                    }
+                }
+
+                .gas-used__chart {
+                    h6 {
+                        //margin-left: 15px;
+                    }
+                }
+
+                .gas-used__pertx {
+                    h6 {
+                        //margin-top: -3px;
+                        //margin-left: -3px;
+                    }
+                }
+                .entity-left {
+                    .gas-price__title {
+                    }
+                }
+
+
+                .entity-left.first {
+                    div {
+                        margin-left: 0px;
+                    }
+                }
+
+                .entity-left.second {
+                    div {
+                        margin-left: 0;
+                        margin-top: 13px;
+
+                    }
+                }
+
+                .entity-left.third {
+                    display: flex;
+                    flex-direction: row;
+                    width: auto;
+                    justify-content: space-between;
+                    .MuiPaper-root {
+                        margin-left: 0px;
+                        .MuiCardContent-root {
+                            margin-top: 6px;
+                            .gas-price__title {
                             }
                         }
                     }
                 }
+                .entity-right {
+                    .VictoryContainer {
+                        //max-width: auto;
+                        //max-width: 390px;
+                    }
+                }
+
+                .entity-right.first {
+                    .y-axis {
+                    }
+                    .x-axis {
+                        left: 25px;
+                        width: 94%;
+                    }
+                    .VictoryContainer {
+                    }
+                    h6 {
+                    }
+                }
+    
+    
+                .entity-right.second {
+                    .y-axis {
+                    }
+                    .x-axis {
+                        left: 25px;
+                        width: 94%;
+                    }
+                    .VictoryContainer {
+                    }
+
+                    h6 {
+                    }
+                }
+    
+                .entity-right.third {
+                    .y-axis {
+                        bottom: 68px;
+                        left: -16px;
+                    }
+                    .x-axis {
+                        width: 94%;
+                        left: 25px;
+                    }
+                    .VictoryContainer {
+                    }
+
+                    h6 {
+                        margin-left: 0px;
+                    }
+                }
+
+
+            }
+            
+            .blockHeightEntity {
+                //margin-left: 32px;
+                margin-left: 51px;
+            }
+
+            .chainIdEntity {
+                margin-left: 13px;
+            }
+
+            .gasPriceEntity {
+                margin-left: 16px;
+            }
+
+            .table {
+                margin-top: 38px;
+                thead {
+                    tr {
+                        th {
+                            &:nth-child(1) {
+                            }
+                            &:nth-child(2) {
+                                min-width: 11.4%;
+                            }
+                            &:nth-child(3) {
+                                min-width: 15.2%;
+                            }
+
+                            &:nth-child(4) {
+                                min-width: 11.3%;
+                            }
+                            &:nth-child(5) {
+                                min-width: 21%;
+                            }
+                            &:nth-child(6) {
+                                min-width: 14.6%;
+                            }
+                            &:nth-child(7) {
+                            }
+                        }
+                    }
+                }
+    
                 .table-wrapper {
-                    //overflow-x: auto;
+                    //margin-top: -37px;
+                    //margin-left: 10px;
                     table {
-                        //width: 1217px;
-                        max-width: 1816px;
                         tbody {
                             tr {
-                                justify-content: space-between;
+                                //justify-content: space-between;
                                 td {
-                                    min-width: 208px;
-                                    // &:first-child {
-                                    
-                                    // }
-                                    // &:nth-child(2) {
-                                    
-                                    // }
+                                    //margin: 0px 16px;
+                                    //min-width: auto;
+                                    //margin: 0px 8px;
+                                    //margin-top: 14px;
+                                    &:nth-child(1) {
+                                        
+                                    }
+                                    &:nth-child(2) {
+                                        min-width: 11.4%;
+                                    }
+
                                     &:nth-child(3) {
-                                        min-width: 390px;
+                                        min-width: auto;
+                                        max-width: 14.3%;
+                                    }
+                                    &:nth-child(4) {
+                                        min-width: 11.3%;
+                                        margin-left: 12px;
+                                    }
+                                    &:nth-child(5) {
+                                        min-width: 21.2%;
                                     }
                                     &:nth-child(6) {
-                                        min-width: 290px;
+                                        min-width: 14.6%;
                                     }
+                                    &:nth-child(7) {
+                                        //min-width: 101px
+                                        min-width: auto;
+                                    }
+                                }
+                                td, a {
                                 }
                             }
                         }
                     }
                 }
             }
-            .table-scroll__wrapper {
-                .scroll-content {
-                    min-width: 1736px;
-                }
-            }
-            .gasPriceEntity {
-                .entity-left {
-                    .MuiGrid-item {
-                        //margin-top: 15px;
-                    }
-                    .MuiPaper-elevation0 {
-                        margin-bottom: 0px;
-                    }
+
+            .more-stats__button {
+                button {
                 }
             }
         }
     }
 }
 
-@media screen and (min-width: 1900px) {
+@media screen and (min-width: 1920px) {
     #root {
+        .app-header {
+            .search  {
+                min-width: 863px;
+            }
+        }
         .dashboard {
             &-entities {
                 display: flex;
                 flex-direction: row;
                 flex-wrap: nowrap;
+                //justify-content: space-between;
             }
             &-entity {
+                //max-width: 585px;
                 flex-direction: column;
                 justify-content: start;
                 //margin-top: 10px;
@@ -653,8 +910,9 @@
                 }
 
                 .entity-left.third {
-                    margin-top: 18px;
-                    margin-left: -28px;
+                    min-width: 593px;
+                    margin-top: 11px;
+                    //margin-left: -28px;
 
                     display: flex;
                     justify-content: space-between;
@@ -688,92 +946,117 @@
 
                     }
                     .VictoryContainer {
+                        //max-width: 575px;
                     }
                 }
 
                 .entity-right.first {
                     .y-axis {
-                        bottom: 67px;
-                        left: 18px;
+                        bottom: 63px;
+                        left: -1px;
                     }
                     .x-axis {
-                        width: 94%;
-                        right: -25px;
-                        bottom: 25px;
+                        width: 90%;
+                        right: -1px;
+                        bottom: 23px;
                     }
                     .VictoryContainer {
-                        margin-top: -306px;
+                        //margin-top: -306px;
+                        margin-left: -3px;
                     }
                     .MuiPaper-root {
                         margin-top: -23px;
-                        margin-left: 18px;
+                        //margin-left: 18px;
                     }
                 }
     
     
                 .entity-right.second {
                     .y-axis {
-                        bottom: 44px;
+                        bottom: 39px;
                         left: -5px;
                     }
                     .x-axis {
-                        width: 95%;
+                        width: 90%;
                         right: -3px;
-                        bottom: 25px;
+                        bottom: 23px;
                     }
                     .VictoryContainer {
-                        margin-top: -304px;
+                        margin-left: -5px;
                     }
                     .MuiPaper-root {
                         margin-top: -18px;
-                        margin-left: -10px;
+                        //margin-left: -10px;
                     }
 
                     h6 {
                         margin-top: 8px;
-                        margin-left: 7px;
+                        //margin-left: 7px;
                     }
                 }
     
                 .entity-right.third {
+                    //margin-left: 26px;
+                    //width: 596px;
                     .y-axis {
-                        bottom: 67px;
-                        left: -26px;
+                        bottom: 64px;
+                        left: -13px;
                     }
                     .x-axis {
-                        width: 92%;
+                        width: 90%;
                         bottom: 23px;
-                        left: 28px;
+                        left: 55px;
                     }
                     .VictoryContainer {
-                        margin-top: -305px;
+                        //margin-top: -305px;
                     }
                     .MuiPaper-root {
                         margin-top: -23px;
-                        margin-left: -21px;
+                        //margin-left: -21px;
                     }
 
                     h6 {
-                        margin-left: -1px;
+                        //margin-left: -1px;
                     }
                 }
+            }
 
+            .blockHeightEntity {
 
             }
 
+            .chainIdEntity {
+                margin-left: 30px;
+            }
+
+            .gasPriceEntity {
+                margin-left: 23px;
+            }
+
             .table {
-                margin-top: 14px;
+                margin-top: 38px;
                 .table-wrapper {
                     table {
                         thead {
                             tr {
                                 th {
+                                    &:nth-child(1) {
+                                        min-width: 11.3%;
+                                    }
+                                    &:nth-child(2) {
+                                        min-width: 12%;
+                                    }
                                     &:nth-child(3) {
-                                        margin-left: 5px;
+                                        min-width: 21.9%;
                                     }
                                     &:nth-child(4) {
-                                        min-width: 208px;
-                                        margin-left: 3px;
+                                        min-width: 12%;
+                                    }
+                                    &:nth-child(5) {
+                                        min-width: 12.1%;
+                                    }
+                                    &:nth-child(6) {
+                                        min-width: 16.5%;
                                     }
                                 }
                             }
@@ -781,26 +1064,25 @@
                         tbody {
                             tr {
                                 td {
-                                    // margin-top: 3px;
-                                    // //margin-left: -18px;
-                                    // margin-left: 16px;
-                                    margin: 0;
                                     &:nth-child(1) {
-                                        margin-top: 0px;
-                                        min-width: 192px;
+                                        min-width: 11.3%;
                                     }
                                     &:nth-child(2) {
-                                        margin-right: 0px;
-                                        margin: 0px 0px 0px 15px;
+                                        min-width: 12%;
                                     }
                                     &:nth-child(3) {
-                                        margin: 6px 28px 0px 17px;
+                                        min-width: 21%;
+                                        max-width: 14%;
                                     }
                                     &:nth-child(4) {
-                                        margin-left: -17px;
+                                        min-width: 12%;
+                                        margin-left: 1%;
+                                    }
+                                    &:nth-child(5) {
+                                        min-width: 12.1%;
                                     }
                                     &:nth-child(6) {
-                                        margin: 0px 20px 0px 30px;
+                                        min-width: 16.5%;
                                     }
                                 }
                             } 
@@ -809,48 +1091,26 @@
                 }
 
             }
-            // .table {
-            //     thead {
-            //         tr {
-            //             justify-content: space-between;
-            //             th {
-            //                 //min-width: 208px;
-            //                 &:first-child {
-            //                 }
-    
-            //                 &:nth-child(2) {
-            //                 }
-            //             }
-            //         }
-            //     }
-            //     .table-wrapper {
-            //         //overflow-x: auto;
-            //         table {
-            //             //width: 1217px;
-            //             max-width: 1816px;
-            //             tbody {
-            //                 tr {
-            //                     justify-content: space-between;
-            //                     td {
-            //                         min-width: 208px;
-            //                         // &:first-child {
-                                    
-            //                         // }
-            //                         // &:nth-child(2) {
-                                    
-            //                         // }
-            //                         &:nth-child(3) {
-            //                             min-width: 390px;
-            //                         }
-            //                         &:nth-child(6) {
-            //                             min-width: 290px;
-            //                         }
-            //                     }
-            //                 }
-            //             }
-            //         }
-            //     }
-            // }
+
+
+            .more-stats__button {
+                margin-top: 27px;
+                margin-right: 46px;
+            }
+        }
+    }
+}
+
+
+@media screen and (min-width: 2000px) {
+    #root {
+        .dashboard {
+            &-entities {
+                justify-content: space-between;
+            }
+            &-entity {
+                max-width: 585px;
+            }
         }
     }
 }

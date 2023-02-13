@@ -81,16 +81,24 @@ const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme, minerChart, blockN
   const { width } = useWindowSize()
 
 
+  // const victoryChartDynamicProps = (resolution: number) => {
+  //   const isMobile: boolean = resolution < 768 ? true : false
+  //   return {
+  //     containerComponent: <VictoryContainer responsive={isMobile ? true : false} />,
+  //     width: isMobile ? 740 : 1000,
+  //     height: isMobile ? 385 : 500
+  //   }
+  // }
 
   const victoryChartDynamicProps = (resolution: number) => {
     const isMobile: boolean = resolution < 768 ? true : false
+    const isDesktop: boolean = resolution >= 1280 ? true : false
     return {
-      containerComponent: <VictoryContainer responsive={isMobile ? true : false} />,
-      width: isMobile ? 740 : 1000,
-      height: isMobile ? 385 : 500
+      containerComponent: <VictoryContainer responsive={isMobile ? true : false}/>,
+      width: isMobile ? 740 : (isDesktop ? 1000 : 553),
+      height: isMobile ? 385 : 192
     }
   }
-
   const domainPadding = (resolution: number, chartName: string) => {
     enum ChartNames {
       "TransactionCount" = "TransactionCount",
@@ -170,6 +178,23 @@ const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme, minerChart, blockN
     }
   };
 
+  const calcLabelsCount = (resolution: number) => {
+    // > 1280 === 
+    if (resolution >= 1920) {
+      return 10
+    }
+  
+    if (resolution >= 1280) {
+      return 10;
+    }
+    
+    if(resolution >= 768) {
+      return 7
+    }
+  
+  
+    return 6;
+  };
   return (
     <Grid item container>
       <div className="chart-item first">
@@ -181,7 +206,7 @@ const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme, minerChart, blockN
         <Grid className="transaction-count tx-count__chart">
           <ChartCard title={t("Transaction count")}>
             <CustomChartAxises 
-            xItems={transactionCountChartData(blocks, blockMapTransactionCount).slice(0,6)} 
+            xItems={transactionCountChartData(blocks, blockMapTransactionCount).slice(0, calcLabelsCount(width))} 
             yItems={[0, 20, 40, 60, 80]}/>
               <VictoryChart
                 //containerComponent={<VictoryContainer responsive={width < 768 ? true : false}/>}
@@ -230,7 +255,7 @@ const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme, minerChart, blockN
         <Grid className="gas-used" key="gasUsed" item>
           <ChartCard title={t("Gas Used (Millions)")}>
           <CustomChartAxises
-            xItems={gasUsedChartData(blocks, blockMapGasUsed).slice(0,6)} 
+            xItems={gasUsedChartData(blocks, blockMapGasUsed).slice(0, calcLabelsCount(width))} 
             yItems={["1.0", "2.0", "3.0", "4.0", "5.0", "6.0"]}
             />
           <VictoryChart 
@@ -280,7 +305,7 @@ const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme, minerChart, blockN
           </div>}
           <Grid className="gas-used__pertx" key="gasUsedPerTx" item>
             <ChartCard title={t("Gas Used per Tx")}>
-            <CustomChartAxises xItems={gasUsedPerTxChartData(blocks, blockMapGasUsedPerTx).slice(0,6)} yItems={["100,000", "200,000", "300,000", "400,000","500,000"]}/>
+            <CustomChartAxises xItems={gasUsedPerTxChartData(blocks, blockMapGasUsedPerTx).slice(0, width >= 1280 ? 10 : 5)} yItems={["100,000", "200,000", "300,000", "400,000","500,000"]}/>
             <VictoryChart 
             // domainPadding={{x: [chartSizeCalculate("domainPaddingX", width), 0]}}
             {...victoryChartDynamicProps(width)}
@@ -306,7 +331,7 @@ const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme, minerChart, blockN
             />
             <VictoryAxis
               dependentAxis
-              tickValues={[1000000, 2000000, 3000000, 4000000, 5000000]}
+              tickValues={[100000, 200000, 300000, 400000, 500000]}
               style={{
                 axis: {stroke: 'transparent'},
                 tickLabels: {fontSize: 10, fill: "transparent"}

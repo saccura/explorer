@@ -1,4 +1,5 @@
 import React, {useEffect, FC, DetailedHTMLProps} from 'react'
+import { useWindowSize } from 'usehooks-ts'
 
 interface IProps {
     mainTableWrapperClass: string,
@@ -9,9 +10,9 @@ interface IProps {
 }
 
 const TableScrollCustomize:FC<IProps> = ({mainTableWrapperClass, scrollWrappertranslateY, scrollChildContentWidth, scrollChildContentHeight, scrollWrapperMargin, children}) => {
-
+    const { width } = useWindowSize()
     const wrapperStyles = {
-        overflowX: 'auto' as const,
+        overflowX: width < 768 ? 'auto' as const : 'clip' as const,
         transform: scrollWrappertranslateY ? `translateY(${scrollWrappertranslateY}px)` : "none",
         margin: scrollWrapperMargin
     }
@@ -25,8 +26,13 @@ const TableScrollCustomize:FC<IProps> = ({mainTableWrapperClass, scrollWrappertr
         const scrollWrapper = document.querySelector(".table-scroll__wrapper")
         const tableWrapper = document.querySelector(`.${mainTableWrapperClass}`)
         const table = document.querySelector(`.${mainTableWrapperClass} table`)
-        //@ts-ignore
-        tableWrapper.style.overflowX = 'auto'
+        // if(width < 768) {
+        //   //@ts-ignore
+        //   tableWrapper.style.overflowX = 'auto'
+        // } else {
+        //   //@ts-ignore
+        //   tableWrapper.style.overflowX = 'unset'
+        // }
         //@ts-ignore
         table.style.width = scrollChildContentWidth
 

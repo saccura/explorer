@@ -9,7 +9,7 @@ function TxListItem({ tx, showblockNumber }: { tx: any, showblockNumber?: boolea
 
   return (
     <TableRow>
-      {showblockNumber && <TableCell>{hexToNumber(tx.blockNumber)}</TableCell>}
+      {showblockNumber && <TableCell>{typeof tx.blockNumber === "number" ? tx.blockNumber : hexToNumber(tx.blockNumber)}</TableCell>}
 
       <TableCell>
         <Link
@@ -47,7 +47,7 @@ function TxListItem({ tx, showblockNumber }: { tx: any, showblockNumber?: boolea
       </TableCell>
 
 
-      <TableCell>{hexToNumber(tx.transactionIndex)}</TableCell>
+      <TableCell>{typeof tx.transactionIndex === "number" ? tx.transactionIndex : hexToNumber(tx.transactionIndex)}</TableCell>
     </TableRow>
   );
 }

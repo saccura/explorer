@@ -3,6 +3,7 @@ import { Table, TableRow, TableCell, TableHead, TableBody, Typography, Button } 
 import { hexToString, hexToNumber } from "@etclabscore/eserialize";
 import { useHistory } from "react-router-dom";
 import _ from "lodash";
+import { useWindowSize } from "usehooks-ts";
 
 const blockTopMiners = (blocks: any[]) => {
   const result = _(blocks).chain()
@@ -39,6 +40,8 @@ const MinerStatsTable: React.FC<IProps> = ({ blocks }) => {
   const history = useHistory();
   const topMiners = blockTopMiners(blocks);
   const groupedMiners = Object.assign({}, ...groupByMiner(blocks));
+  const { width } = useWindowSize()
+
   return (
     <Table aria-label="simple table" className="table-root">
       <TableHead>
@@ -51,11 +54,11 @@ const MinerStatsTable: React.FC<IProps> = ({ blocks }) => {
       </TableHead>
       <TableBody>
         {topMiners.map((minerData: any, key) => (
-          <TableRow key={minerData.miner + `_${key}`}>
+          <TableRow className="miner-table__row" key={minerData.miner + `_${key}`}>
             <TableCell component="th" scope="row">
               {minerData.blocksMined}
             </TableCell>
-            <TableCell>{minerData.address}</TableCell>
+            <TableCell>{width < 1920 ? minerData.address.slice(0, 6) + "..." : minerData.address}</TableCell>
             <TableCell colSpan={2}>
               <Table>
                 <TableBody>

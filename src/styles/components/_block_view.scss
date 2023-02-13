@@ -141,32 +141,70 @@
 @media screen and (min-width: 768px) {
     #root {
         .block-view {
+            .view-raw {
+                display: block;
+                position: absolute;
+                right: -3px;
+                top: 12px;
+                z-index: 1;
+            }
             .bottom {
+                margin-top: 45px;
+                overflow-x: clip;
                 .blockinfo-table {
                     tbody {
                         tr {
-
+                            align-items: center;
                             td {
-                                padding: 33px 0px 23px 20px;
+                                padding: 0px;
+                                margin-left: 22px;
+                                &:nth-child(1) {
+                                    min-width: 13.7%;
+                                    margin-left: 23px;
+                                }
+
+                                
+                            }
+                            &:nth-child(13) {
+                                td {
+                                    &:nth-child(1) {
+                                        display: inline-block;
+                                        width: 10%;
+                                    }
+                                    &:nth-child(2) {
+                                        //margin-left: 0px;
+                                        //margin-right: 38px;
+                                    }
+                                }
                             }
                         }
                     }
                 }
     
                 .txlist-table {
-                    margin-top: 12px;
+                    margin: 0 25px;
                     thead {
                         tr {
+                            justify-content: start;
                             th {
-                                padding: 0px 37px 0 23px;
+                                //padding: 0px 37px 0 23px;
+                                padding: 0;
                                 &:nth-child(1) {
-                                    min-width: 643px;
+                                    min-width: 27%;
+                                    //min-width: 18%;
+                                    //min-width: 4.3%;
+                                    //min-width: 643px;
                                 }
                                 &:nth-child(2) {
-                                    min-width: 467px;
+                                    min-width: 26.6%;
+                                    //min-width: 21%;
+                                    //min-width: 20.1%;
+                                    //min-width: 467px;
                                 }
                                 &:nth-child(3) {
-                                    min-width: 488px;
+                                    min-width: 27%;
+                                    //min-width: 28.7%;
+                                    //min-width: 20%;
                                 }
                             }
                         }
@@ -174,22 +212,31 @@
     
                     tbody {
                         tr {
-
+                            justify-content: start;
                             margin: 0;
                             margin-bottom: 16px;
                             td {
-                                padding: 0px 37px 0 23px;
+                                min-width: auto;
+                                //padding: 0px 0px 0px 25px;
+                                padding: 0;
+                                //max-width: 14%;
+
+                                //padding: 0px 37px 0 7px;
                                 &:nth-child(1) {
-                                    min-width: 643px;
+                                    min-width: 27%;
                                 }
                                 &:nth-child(2) {
-                                    min-width: 470px;
+                                    min-width: 26.9%;
                                 }
                                 &:nth-child(3) {
-                                    min-width: 485px;
+                                    min-width: 26.7%;
                                 }  
                                 a {
                                     color: $blue;
+                                    display: inline-block;
+                                    overflow: hidden;
+                                    text-overflow: ellipsis;
+                                    max-width: 182px;
                                 }
                             }
                         }
@@ -205,34 +252,41 @@
                     }
                 }
             }
-        }
-    }
-}
 
-@media screen and (min-width: 900px) {
-    #root {
-        .block-view {
-            .view-raw {
-                display: block;
-                position: absolute;
-                right: 17px;
-                top: 25px;
-                z-index: 1;
+            &__gasusage {
+                span {
+                    font-size: 14px;
+
+                }
             }
         }
     }
 }
 
 
-@media screen and (min-width: 1900px) {
+@media screen and (min-width: 1280px) {
     #root {
         .block-view {
-
+            .view-raw {
+            }
             .bottom {
                 .blockinfo-table {
                     tbody {
                         tr {
                             td {
+                                &:nth-child(1) {
+                                    min-width: 22.1%;
+                                }
+
+                                
+                            }
+                            &:nth-child(13) {
+                                td {
+                                    &:nth-child(1) {
+                                    }
+                                    &:nth-child(2) {
+                                    }
+                                }
                             }
                         }
                     }
@@ -242,12 +296,14 @@
                     thead {
                         tr {
                             th {
-                                padding: 0 23px;
                                 &:nth-child(1) {
+                                    min-width: 29.2%;
                                 }
                                 &:nth-child(2) {
+                                    min-width: 29.4%;
                                 }
                                 &:nth-child(3) {
+                                    min-width: 35.4%;
                                 }
                             }
                         }
@@ -256,14 +312,104 @@
                     tbody {
                         tr {
                             td {
-                                padding:0 23px;
+                                margin-right: 26px;
                                 &:nth-child(1) {
                                 }
                                 &:nth-child(2) {
                                 }
                                 &:nth-child(3) {
+                                    min-width: 33.4%;
                                 }  
                                 a {
+                                    max-width: 339px;
+                                }
+                            }
+                        }
+                    }
+                }
+    
+                table {
+                    tr {
+                        td {
+                            a {
+                            }
+                        }
+                    }
+                }
+            }
+
+            &__gasusage {
+                span {
+                }
+            }
+        }
+    }
+}
+
+
+// @media screen and (min-width: 900px) {
+//     #root {
+//         .block-view {
+//             .view-raw {
+//                 display: block;
+//                 position: absolute;
+//                 right: 17px;
+//                 top: 25px;
+//                 z-index: 1;
+//             }
+//         }
+//     }
+// }
+
+
+@media screen and (min-width: 1920px) {
+    #root {
+        .block-view {
+
+            .bottom {
+                .blockinfo-table {
+                    tbody {
+                        tr {
+                            td {
+                                &:nth-child(1) {
+                                    min-width: 14.6%;
+                                }
+                            }
+                        }
+                    }
+                }
+    
+                .txlist-table {
+                    thead {
+                        tr {
+                            th {
+                                &:nth-child(1) {
+                                    min-width: 36.5%;
+                                }
+                                &:nth-child(2) {
+                                    min-width: 27%;
+                                }
+                                &:nth-child(3) {
+                                    min-width: 28.3%;
+                                }
+                            }
+                        }
+                    }
+    
+                    tbody {
+                        tr {
+                            td {
+                                &:nth-child(1) {
+                                    min-width: 35.1%;
+                                }
+                                &:nth-child(2) {
+                                    min-width: 25.8%;
+                                }
+                                &:nth-child(3) {
+                                    min-width: 26.8%;
+                                }  
+                                a {
+                                    max-width: 100%;
                                 }
                             }
                         }

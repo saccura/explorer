@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 // const rightPaddingFix = {
 //   paddingRight: "24px",
 // };
-function BlockList({ blocks, tableRef }: any) {
+function BlockList({ blocks }: any) {
   const { t } = useTranslation();
 
   if (!blocks) {
@@ -21,7 +21,7 @@ function BlockList({ blocks, tableRef }: any) {
     <div className="table-wrapper" 
     //style={{ width: "100%", overflowX: "auto" }}
     >
-      <Table ref={tableRef}>
+      <Table>
         <TableHead>
             <TableRow>
               <TableCell><Typography>{t("Author")}</Typography></TableCell>
@@ -79,7 +79,6 @@ function BlockList({ blocks, tableRef }: any) {
               //style={authorHashStyle}
               >
                 <TableCell className={`td-label-${index}`}>
-                  <Typography>
                     <Link
                       component={({ className, children }: { children: any, className: string }) => (
                         <RouterLink className={className} to={`/address/${b.miner}`} >
@@ -89,7 +88,6 @@ function BlockList({ blocks, tableRef }: any) {
                       {authorHashShort}
                     </Link>
                     &nbsp;<sup>{hexToString(b.extraData).substring(0, 20)}</sup>
-                  </Typography>
                 </TableCell>
                 <TableCell scope="row">
                   <Link

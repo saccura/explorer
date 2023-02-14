@@ -40,21 +40,21 @@ const Address: React.FC<IProps> = ({ match, history }) => {
   const [code, setCode] = React.useState<string>();
   const blockNum = block === undefined ? blockNumber : parseInt(block, 10);
   const [transactions, setTransactions] = React.useState<AddressTransaction[]>([]);
-
-  const from = Math.max(blockNum ? blockNum : 0 - 99, 0);
-  const to = blockNum;
-
-  React.useEffect(() => {
-    if (isNaN(blockNum) || isNaN(blockNumber)) {
-      return;
-    }
-    if (blockNum > blockNumber) {
-      history.push(`/address/${address}/${blockNumber}`);
-    }
-    if (blockNum < 0) {
-      history.push(`/address/${address}/0`);
-    }
-  }, [blockNumber, blockNum, history, address]);
+  const [transactionsState, setTransactionsState] = React.useState<AddressTransaction[]>([]);
+  const [blockRange, setBlockRange] = React.useState({from: 0, to: 0, offset: 100})
+  // const from = Math.max(blockNum ? blockNum : 0 - 99, 0);
+  // const to = blockNum;
+  // React.useEffect(() => {
+  //   if (isNaN(blockNum) || isNaN(blockNumber)) {
+  //     return;
+  //   }
+  //   if (blockNum > blockNumber) {
+  //     history.push(`/address/${address}/${blockNumber}`);
+  //   }
+  //   if (blockNum < 0) {
+  //     history.push(`/address/${address}/0`);
+  //   }
+  // }, [blockNumber, blockNum, history, address]);
 
   React.useEffect(() => {
     if (blockNumber === undefined || !erpc) {
@@ -83,7 +83,7 @@ const Address: React.FC<IProps> = ({ match, history }) => {
     if (!erpc) { return; }
     
     const body = JSON.stringify({
-       "query": `{\n  ethereum(network: moonbeam) {\nsent: transactions(\noptions: {limit: 1000, desc: ["block.height"]}\ntxSender: {is: \"${address}\"}\n) {\nblock {\nheight\ntimestamp {\nunixtime\n}\n}\nhash\namount\ncurrency {\nname\nsymbol\n}\ngasValue\nsender {\naddress\n}\nto {\naddress\n}\n}\nrec: transactions(\noptions: {limit: 1000, desc: ["block.height"]}\ntxTo: {is: \"${address}\"}\n) {\nblock {\nheight\ntimestamp {\nunixtime\n}\n}\nhash\namount\ncurrency {\nname\nsymbol\n}\ngasValue\nsender {\naddress\n}\nto {\naddress\n}\n}\n}\n}\n`,
+       "query": `{\n  ethereum(network: moonbeam) {\nsent: transactions(\noptions: {limit: ${300}, desc: ["block.height"]}\ntxSender: {is: \"${address}\"}\n) {\nblock {\nheight\ntimestamp {\nunixtime\n}\n}\nhash\namount\ncurrency {\nname\nsymbol\n}\ngasValue\nsender {\naddress\n}\nto {\naddress\n}\n}\nrec: transactions(\noptions: {limit: ${300}, desc: ["block.height"]}\ntxTo: {is: \"${address}\"}\n) {\nblock {\nheight\ntimestamp {\nunixtime\n}\n}\nhash\namount\ncurrency {\nname\nsymbol\n}\ngasValue\nsender {\naddress\n}\nto {\naddress\n}\n}\n}\n}\n`,
        "variables": "{}"
     });
     const apiKeys = ["BQYQCRyWgTrTYOB9DhZVzyT6Ru49idmU", "BQYPeN7UOwazJBEie2CisUPK95JUtkBl", "BQY6dAby8rxSeRRJxLxDK4Ry0G322FxT"]
@@ -119,9 +119,12 @@ const Address: React.FC<IProps> = ({ match, history }) => {
       })
 
       const txsCount = txs.length
-
+      const firstBlock = txs[0].blockNumber
+      const lastBlock = txs[txsCount - 1].blockNumber
+      setBlockRange({from: firstBlock, to: firstBlock + 100, offset: 100})
       setTransactionCount(txsCount)
       setTransactions(txs)
+      setTransactionsState(txs.slice(0, 100))
     })
     .catch(error => console.log('error: ', error));
 
@@ -168,7 +171,6 @@ const Address: React.FC<IProps> = ({ match, history }) => {
   if (transactionCount === undefined || balance === undefined || code === undefined) {
     return <div className="curcular-wrapper"><CircularProgress /></div>;
   }
-
   return (
     <div className="address-page">
       <AddressView
@@ -180,18 +182,31 @@ const Address: React.FC<IProps> = ({ match, history }) => {
       />
       <AddressTransactions
         className="transactions"
-        from={from}
-        to={to}
-        transactions={transactions}
-        disablePrev={blockNum >= blockNumber}
-        disableNext={blockNum === 0}
+        from={blockRange.from}
+        to={blockRange.to}
+        transactions={transactionsState}
+        disablePrev={blockRange.offset <= 100}
+        disableNext={
+          !transactions.slice(blockRange.offset, blockRange.offset + 100).length || blockRange.offset >= 600
+        }
         onPrev={() => {
-          const newQuery = blockNum + 100;
-          history.push(`/address/${address}/${newQuery}`);
+          const endOffset = blockRange.offset - 100
+          const startOffset = endOffset - 100
+          const newSlice = transactions.slice(startOffset, endOffset)
+          const startBlock = newSlice[0].blockNumber
+
+          setBlockRange(() => ({from: newSlice[newSlice.length - 1].blockNumber, to: newSlice[0].blockNumber, offset: endOffset}))
+          setTransactionsState(newSlice)
+          history.push(`/address/${address}/${startBlock}`);
         }}
         onNext={() => {
-          const newQuery = Math.max(blockNum - 100, 0);
-          history.push(`/address/${address}/${newQuery}`);
+          const endOffset = blockRange.offset + 100
+          const startOffset = blockRange.offset
+          const newSlice = transactions.slice(startOffset, endOffset)
+          const startBlock = newSlice[0].blockNumber
+          setBlockRange(() => ({from: newSlice[newSlice.length - 1].blockNumber, to: newSlice[0].blockNumber, offset: endOffset}))
+          setTransactionsState(newSlice)
+          history.push(`/address/${address}/${startBlock}`);
         }}
       />
     </div>

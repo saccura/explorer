@@ -35,8 +35,12 @@ const AddressTransactions: React.FC<IProps> = (props) => {
           <IconButton onClick={props.onNext} disabled={props.disableNext}>
             <ArrowForwardIos />
           </IconButton> */}
-          <IconButton className={`left-button ${props.disablePrev ? '' : 'active'}`} onClick={props.onPrev} disabled={props.disablePrev}/>
-          <IconButton className={`right-button ${props.disableNext ? '' : 'active'}`} onClick={props.onNext} disabled={props.disableNext}/>
+          <IconButton className={`left-button`} onClick={props.onPrev} disabled={props.disablePrev}>
+            <div className={`arrowLeftIcon ${props.disablePrev ? '' : 'active'}`}></div>
+          </IconButton>
+          <IconButton className={`right-button`} onClick={props.onNext} disabled={props.disableNext}>
+          <div className={`arrowRightButton ${props.disableNext ? '' : 'active'}`}></div>
+          </IconButton>
         </Grid>
       </div>
       <TableScrollCustomize

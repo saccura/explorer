@@ -9,7 +9,7 @@
     }
     .block-view {
         margin: 0 16px;
-        margin-top: -19px;
+        margin-top: -17px;
         position: relative;
         .view-raw {
             display: none;
@@ -190,19 +190,19 @@
                                 //padding: 0px 37px 0 23px;
                                 padding: 0;
                                 &:nth-child(1) {
-                                    min-width: 27%;
+                                    min-width: 28%;
                                     //min-width: 18%;
                                     //min-width: 4.3%;
                                     //min-width: 643px;
                                 }
                                 &:nth-child(2) {
-                                    min-width: 26.6%;
+                                    min-width: 28.6%;
                                     //min-width: 21%;
                                     //min-width: 20.1%;
                                     //min-width: 467px;
                                 }
                                 &:nth-child(3) {
-                                    min-width: 27%;
+                                    min-width: 28%;
                                     //min-width: 28.7%;
                                     //min-width: 20%;
                                 }
@@ -223,13 +223,13 @@
 
                                 //padding: 0px 37px 0 7px;
                                 &:nth-child(1) {
-                                    min-width: 27%;
+                                    min-width: 28%;
                                 }
                                 &:nth-child(2) {
-                                    min-width: 26.9%;
+                                    min-width: 28.6%;
                                 }
                                 &:nth-child(3) {
-                                    min-width: 26.7%;
+                                    min-width: 28%;
                                 }  
                                 a {
                                     color: $blue;
@@ -314,11 +314,13 @@
                             td {
                                 margin-right: 26px;
                                 &:nth-child(1) {
+                                    min-width: 27%;
                                 }
                                 &:nth-child(2) {
+                                    min-width: 26.6%;
                                 }
                                 &:nth-child(3) {
-                                    min-width: 33.4%;
+                                    min-width: 33.5%;
                                 }  
                                 a {
                                     max-width: 339px;
@@ -365,7 +367,10 @@
 @media screen and (min-width: 1920px) {
     #root {
         .block-view {
-
+            .view-raw {
+                right: 37px;
+                top: 12px;
+            }
             .bottom {
                 .blockinfo-table {
                     tbody {

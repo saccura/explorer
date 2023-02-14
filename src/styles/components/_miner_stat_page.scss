@@ -732,7 +732,16 @@
                     p {
                         width: 100%;
                     }
+
+                    div {
+                        &:first-child {
+                            transform: translate(1px, -21px);
+                        }
+                    }
+
                 }
+
+                
                 margin-left: 0px;
             }
         }

@@ -67,7 +67,7 @@ button.view-raw {
             background: $color;
             position: absolute;
             left: 0px;
-            top: 8px;
+            top: 13%;
         }
     }
 }
@@ -82,12 +82,30 @@ button.view-raw {
                 display: inline-block;
                 background: $color;
                 position: absolute;
-                left: 9px;
+                left: 8px;
                 top: 20%;
             }
         }
     }
 }
+
+@media screen and (min-width: 1280px) {
+    @each $ndx, $color in $colors {
+        .td-label-#{$ndx} {
+            &::after {
+                content: "";
+                width: 7px;
+                height: 41px;
+                display: inline-block;
+                background: $color;
+                position: absolute;
+                left: 8px;
+                top: 15%;
+            }
+        }
+    }
+}
+
 // .table-main__wrapper {
 //     overflow-x: auto;
 // }

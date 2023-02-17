@@ -11,17 +11,17 @@ import ChartCard from "../components/ChartCard";
 import BlockListContainer from "./BlockList";
 import { hexToNumber } from "@etclabscore/eserialize";
 import { useTranslation } from "react-i18next";
-import { ArrowForwardIos } from "@material-ui/icons";
+import { ArrowForwardIos, Height } from "@material-ui/icons";
 import StatCharts from "../components/StatCharts";
 import { Block as IBlock, IsSyncingResult as ISyncing} from "@etclabscore/ethereum-json-rpc";
 import { VictoryAxis, VictoryBar, VictoryChart, VictoryContainer, VictoryGroup } from "victory";
 import BigNumber from "bignumber.js";
 import CustomChartAxises from "../components/CustomChartAxises";
 import { 
-  gasUsedChartData, gasUsedPerTxChartData, transactionCountChartData,
-  victoryBarDynamicProps, calcChartDataCount, calcLabelsCount
+  gasUsedChartData, gasUsedPerTxChartData, transactionCountChartData, calcLabelsCount
 } from "../helpers/chartDataFormating";
 import { useWindowSize } from "usehooks-ts";
+import CustomChartContainer from "../components/CustomChartContainer";
 const unit = require("ethjs-unit"); //tslint:disable-line
 const useState = React.useState;
 
@@ -46,7 +46,8 @@ export default (props: any) => {
   const [syncing, setSyncing] = useState<ISyncing>();
   const [peerCount, setPeerCount] = useState<string>();
   const { t } = useTranslation();
-  const { width } = useWindowSize()
+  const { width } = useWindowSize();
+  const ref = React.useRef(null)
 
   React.useEffect(() => {
     if (!erpc) { return; }
@@ -91,6 +92,10 @@ export default (props: any) => {
     if (!erpc) { return; }
     erpc.eth_gasPrice().then(setGasPrice);
   }, [erpc]);
+
+  React.useEffect(() => {
+    console.log("ref: ", ref)
+  }, [blockNumber])
  
   if (blocks === undefined || chainId === undefined || gasPrice === undefined || peerCount === undefined) {
     return <div className="curcular-wrapper"><CircularProgress /></div>;
@@ -122,16 +127,35 @@ export default (props: any) => {
     };
   };
 
-  const victoryChartDynamicProps = (resolution: number) => {
-    const isMobile: boolean = resolution < 768 ? true : false
-    const isDesktop: boolean = resolution >= 1280 ? true : false
+  const victoryChartDynamicProps = (resolution: number, viewBoxOffsetX = -10, viewBoxOffsetY = 0) => {
+    const isMobile: boolean = resolution < 768 ? true : false;
+    const isDesktop: boolean = resolution >= 1280 ? true : false;
+    const isTablet: boolean = resolution >= 768 ? true : false;
+    const isFull: boolean = resolution >= 1920 ? true : false
+    const width = isMobile ? 740 : 1000;
+    const height = isFull ? 320 : (isDesktop ? 410 : isTablet ? 347 : 385)
+    const viewBox = `${viewBoxOffsetX} ${viewBoxOffsetY} ${width} ${height}`
+
     return {
-      containerComponent: <VictoryContainer responsive={isMobile ? true : false}/>,
-      width: isMobile ? 740 : (isDesktop ? 1000 : 553),
-      height: isMobile ? 385 : 192
+      containerComponent: <CustomChartContainer width={width} height={height} viewBox={viewBox}/>,
+      //<VictoryContainer responsive={isMobile ? true : false} />,
+      width,
+      height
     }
   }
   
+
+  const victoryBarDynamicProps = (resolution: number) => {
+    const isMobile: boolean = resolution < 768 ? true : false;
+    const isTablet: boolean = resolution >= 768 ? true : false;
+    const isDesktop: boolean = resolution >= 1280 ? true : false;
+  
+    return {
+      barWidth: isDesktop ? 15 : isTablet ? 12 : 15,
+      cornerRadius: isDesktop ? 7 : isTablet ? 6 : 7,
+    };
+  };
+
   const domainPadding = (resolution: number, chartName: string) => {
     enum ChartNames {
       "TransactionCount" = "TransactionCount",
@@ -144,19 +168,25 @@ export default (props: any) => {
         if (resolution < 768) {
           return {
             y: [0, 0],
+            x: [200, -300],
+          };
+        }
+        if (resolution >= 1920) {
+          return {
+            y: [0, 0],
             x: [0, 0],
           };
         }
-        if (resolution >= 1900) {
+        if (resolution >= 1280) {
           return {
             y: [0, 0],
-            x: [-20, 480],
+            x: [10, -300],
           };
         }
         if (resolution >= 768) {
           return {
             y: [0, 0],
-            x: [0, 0],
+            x: [-15, -300],
           };
         }
   
@@ -165,19 +195,25 @@ export default (props: any) => {
         if (resolution < 768) {
           return {
             y: [0, 0],
+            x: [200, -300],
+          };
+        }
+        if (resolution >= 1920) {
+          return {
+            y: [0, 0],
             x: [0, 0],
           };
         }
-        if (resolution >= 1900) {
+        if (resolution >= 1280) {
           return {
             y: [0, 0],
-            x: [-20, 480],
+            x: [10, -300],
           };
         }
         if (resolution >= 768) {
           return {
             y: [0, 0],
-            x: [0, 0],
+            x: [-10, -310],
           };
         }
         break;
@@ -185,19 +221,25 @@ export default (props: any) => {
         if (resolution < 768) {
           return {
             y: [0, 0],
-            x: [0, 35],
+            x: [40, -200],
           };
         }
-        if (resolution >= 1900) {
+        if (resolution >= 1920) {
           return {
             y: [0, 0],
-            x: [20, 442],
+            x: [20, 0],
+          };
+        }
+        if (resolution >= 1280) {
+          return {
+            y: [0, 0],
+            x: [20, -310],
           };
         }
         if (resolution >= 768) {
           return {
             y: [0, 0],
-            x: [100, 0],
+            x: [50, -300],
           };
         }
   
@@ -208,6 +250,27 @@ export default (props: any) => {
           x: [0, 0],
         };
     }
+  };
+
+
+  const calcChartDataCount = (resolution: number, custom = 0) => {
+    if(custom) {
+      return custom
+    }
+    
+    if (resolution >= 1920) {
+      return 42;
+    }
+  
+    if (resolution >= 1280) {
+      return 52;
+    }
+  
+    if (resolution >= 768) {
+      return 62;
+    }
+  
+    return 36;
   };
 
   return (
@@ -223,12 +286,10 @@ export default (props: any) => {
               <ChartCard title={t("Transaction count")}>
               <CustomChartAxises 
               xItems={transactionCountChartData(blocks, blockMapTransactionCount).slice(0, calcLabelsCount(width))} 
-              yItems={[0, 20, 40, 60, 80]}/>
+              />
               <VictoryChart
-                //containerComponent={<VictoryContainer responsive={width < 768 ? true : false}/>}
                 {...victoryChartDynamicProps(width)}
                 //@ts-ignore
-                //domainPadding={domainPadding(width)}
                 domainPadding={domainPadding(width, "TransactionCount")}
                 >
                 <VictoryBar
@@ -236,7 +297,6 @@ export default (props: any) => {
                 style={{
                   data: {fill: "#3772FF"}
                 }}
-                //data={blocks.map(blockMapTransactionCount)}
                 data={transactionCountChartData(blocks, blockMapTransactionCount, calcChartDataCount(width))}
                 />
 
@@ -250,10 +310,9 @@ export default (props: any) => {
                 />
                 <VictoryAxis
                   dependentAxis
-                  tickValues={[0, 20, 40, 60, 80]}
                   style={{
                     axis: {stroke: 'transparent'},
-                    tickLabels: {fontSize: 10, fill: "transparent"}
+                    tickLabels: {fontSize: width < 768 ? 24 : 22, fontFamily: "Poppins", fill: "#777E90", fontWeight: 500}
                   }}
                 />
               </VictoryChart>
@@ -271,11 +330,10 @@ export default (props: any) => {
                 <ChartCard title={t("Gas Used (Millions)")}>
                 <CustomChartAxises
                  xItems={gasUsedChartData(blocks, blockMapGasUsed).slice(0, calcLabelsCount(width))} 
-                 yItems={["1.0", "2.0", "3.0", "4.0", "5.0", "6.0"]}/>
+                 />
                   <VictoryChart 
                     {...victoryChartDynamicProps(width)}
                     //@ts-ignore
-                    // domainPadding={domainPadding(width)}
                     domainPadding={domainPadding(width, "GasUsed")}
                   >
                     <VictoryBar
@@ -283,7 +341,6 @@ export default (props: any) => {
                     style={{
                       data: {fill: "#18B04D"}
                     }}
-                    //data={blocks.map(blockMapGasUsed)}
                     data={gasUsedChartData(blocks, blockMapGasUsed, calcChartDataCount(width))}
                     />
                     <VictoryAxis
@@ -296,10 +353,9 @@ export default (props: any) => {
                     />
                     <VictoryAxis
                       dependentAxis
-                      tickValues={[1, 2, 3, 4, 5, 6]}
                       style={{
                         axis: {stroke: 'transparent'},
-                        tickLabels: {fontSize: 10, fill: "transparent"}
+                        tickLabels: {fontSize: width < 768 ? 24 : 22, fontFamily: "Poppins", fill: "#777E90", fontWeight: 500}
                       }}
                     />
                   </VictoryChart>
@@ -334,21 +390,18 @@ export default (props: any) => {
                 <ChartCard title={t("Gas Used per Tx")}>
                 <CustomChartAxises 
                 xItems={gasUsedPerTxChartData(blocks, blockMapGasUsedPerTx).slice(0, calcLabelsCount(width))} 
-                yItems={["100,000", "200,000", "300,000", "400,000","500,000"]}/>
-                <VictoryChart 
-                  // domainPadding={{x: [chartSizeCalculate("domainPaddingX", width), 0]}}
-                  {...victoryChartDynamicProps(width)}
-                  //height={200}
-                  //domainPadding={ {y: width >= 768 ? [0, 160] : [0, 0], x: width >= 768 ? [-20, 480] : [0, 30]} }
+                />
+                <VictoryChart
+                  {...victoryChartDynamicProps(width, -65, 0)}
                   //@ts-ignore
                   domainPadding={domainPadding(width, "GasPrice")}
+                  ref={ref}
                 >
                   <VictoryBar
                     {...victoryBarDynamicProps(width)}
                     style={{
                       data: {fill: () => "#FD9821"}
                     }}
-                    //data={blocks.map(blockMapGasUsedPerTx)} 
                     data={gasUsedPerTxChartData(blocks, blockMapGasUsedPerTx, calcChartDataCount(width))}
                   />
                   <VictoryAxis
@@ -361,10 +414,9 @@ export default (props: any) => {
                   />
                   <VictoryAxis
                     dependentAxis
-                    tickValues={[100000, 200000, 300000, 400000, 500000]}
                     style={{
                       axis: {stroke: 'transparent'},
-                      tickLabels: {fontSize: 10, fill: "transparent"}
+                      tickLabels: {fontSize: width < 768 ? 24 : 22, fontFamily: "Poppins", fill: "#777E90", fontWeight: 500}
                     }}
                   />
                   </VictoryChart>

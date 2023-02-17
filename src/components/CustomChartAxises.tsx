@@ -2,12 +2,12 @@ import React, {FC} from 'react'
 
 interface IProps {
     xItems: {x: string, y: number}[]
-    yItems: any[],
+    yItems?: any[],
     className?: string
 }
 const CustomChartAxises:FC<IProps> = ({xItems, yItems, className}) => {
     return <>
-        <div className={`x-axis ${className ? className : ''}`}>
+        <div id="x-axis" className={`x-axis ${className ? className : ''}`}>
             {xItems.map((item) => {
                 return <div key={item.x} className="x-item">{item.x}</div>
             })}
@@ -18,16 +18,11 @@ const CustomChartAxises:FC<IProps> = ({xItems, yItems, className}) => {
             <div className="x-item">2,865</div>
             <div className="x-item">2,866</div> */}
         </div>
-        <div className={`y-axis ${className ? className : ''}`}> 
+        {yItems?.length && <div id="y-axis" className={`y-axis ${className ? className : ''}`}> 
             {yItems.map((item: any) => {
-                return <div key={item} className="y-item">{item}</div>
+                return <div key={item.y} className="y-item">{item.y}</div>
             })}
-            
-            {/* <div className="y-item">20</div>
-            <div className="y-item">40</div>
-            <div className="y-item">60</div>
-            <div className="y-item">80</div> */}
-        </div>
+        </div>}
     </>
 }
 

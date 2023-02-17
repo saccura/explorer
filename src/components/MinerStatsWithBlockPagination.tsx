@@ -70,9 +70,9 @@ const MinerStatsWithBlockPagination: React.FC<IProps> = ({blocks, config, from, 
     if(resolution < 768) {
       return "translate(-49px, -52px)" 
     } else if(width >= 1920) {
-      return "translate(-60px, -31px)"
+      return "translate(-57px, -15px)"
     } else if(width >= 1280) {
-      return "translate(-50px, -50px)"
+      return "translate(-50px, -20px)"
     } else if (width >= 768) {
       return "translate(-43px, -50px)"
     }
@@ -153,7 +153,7 @@ const MinerStatsWithBlockPagination: React.FC<IProps> = ({blocks, config, from, 
               style={{
                 width: width < 1280 ? "45%" : "61%",
                 background: "#E6E8EC",
-                transform: width < 1280 ? "translate(170px, -215px)" : "translate(170px, -197px)",
+                transform: width < 1280 ? "translate(170px, -215px)" : "translate(174px, -173px)",
                 wordBreak: "break-all",
                 borderRadius: 8,
                 padding: 8

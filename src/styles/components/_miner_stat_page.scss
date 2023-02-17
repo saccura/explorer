@@ -163,6 +163,13 @@
                     //max-height: 188px;
                     //margin-bottom: 32px;
                 }
+
+                .VictoryContainer {
+                    // /margin-left: 13px;
+                    svg > g:nth-child(3) {
+                        //transform: translate(0px, 0px);
+                    }
+                }
             }
             .chart-item.first, .chart-item.second, .chart-item.third {
                 &::after {
@@ -183,7 +190,7 @@
                 .x-axis {
                     bottom: 1px;
                     right: -1px;
-                    width: 88%;
+                    width: 90%;
                 }
 
                 .y-axis {
@@ -191,7 +198,9 @@
                 }
 
                 .VictoryContainer {
-                    margin-left: 15px;
+                    svg>g:nth-child(3) {
+                        transform: translate(-10px, 0px);
+                    }
                 }
             }
 
@@ -199,7 +208,7 @@
                 //margin-top: 5px;
 
                 .x-axis {
-                    width: 88%;
+                    width: 90%;
                     right: -1px;
                     bottom: -1px;
                 }
@@ -208,7 +217,11 @@
                     bottom: 17px;
                 }
                 .VictoryContainer {
-                    margin-left: 15px;
+                    //margin-left: 15px;
+                    svg>g:nth-child(3) {
+                        transform: translate(-10px, 0px);
+                    }
+                    
                 }
             }
 
@@ -216,7 +229,7 @@
                 .x-axis {
                     bottom: 2px;
                     right: -1px;
-                    width: 86%;
+                    width: 83%;
                 }
 
                 .y-axis {
@@ -224,7 +237,10 @@
                 }
 
                 .VictoryContainer {
-                    margin-left: 25px;
+                    //margin-left: 25px;
+                    svg>g:nth-child(3) {
+                        transform: translate(15px, 0px);
+                    }
                 }
             }
 
@@ -454,7 +470,7 @@
             min-width: 684px;
             margin: 0 42px;
             .miner-table {
-                margin-top: 97px;
+                margin-top: 46px;
                 overflow-x: clip;
                 thead {
                     tr {
@@ -511,37 +527,47 @@
             &-charts {
                 .MuiGrid-item {
                     justify-content: space-between;
+                    align-items: baseline;
                     //flex-wrap: nowrap;
                     .chart-item {
                         //margin-bottom: 32px;
                         //max-width: 324px;
-                        max-height: 188px;
+                        //max-height: 188px;
                         width: 47%;
                     }
                 }
 
                 .chart-item {
                     margin-bottom: 0px;
-    
+                    //margin-top: 10px;
+                    .VictoryContainer {
+                        svg > g:nth-child(3) {
+                            //transform: translate(0px, 0px);
+                            transform: translate(-15px, 0px);
+                        }
+                    }
                     .MuiGrid-root {
                         //max-height: 100%;
                         //margin-bottom: 32px;
                     }
                     h6 {
-                        padding-left: 10px;
-                        padding-top: 10px;
+                        //padding-left: 10px;
+                        //padding-top: 10px;
                     }
                 }
 
                 .chart-item.first {
-                    margin-bottom: 32px;
+                    margin-top: 10px;
                     .VictoryContainer {
-                        //margin-top: -310px;
+                        svg > g:nth-child(3) {
+                            //transform: translate(0px, 0px);
+                            //transform: translate(10px, 0px);
+                        }
                     }
                     .x-axis {
-                        bottom: -12px;
+                        bottom: -3px;
                         right: 0px;
-                        left: 25px;
+                        //left: 22px;
                         width: 93%;
                     }
                     .y-axis {
@@ -550,15 +576,18 @@
                     }
                 }
                 .chart-item.second {
-                    margin-bottom: 32px;
+                    margin-top: 10px;
                     .VictoryContainer {
                         //margin-top: -310px;
                         margin-left: 4px;
+                        svg > g:nth-child(3) {
+                            transform: translate(-14px, 0px);
+                        }
                     }
                     .x-axis {
-                        bottom: -11px;
+                        bottom: -4px;
                         width: 93%;
-                        left: 25px;
+                        //left: 22px;
                     }
                     .y-axis {
                         bottom: 7px;
@@ -566,20 +595,25 @@
                     }
                 }
                 .chart-item.third {
+                    margin-top: 32px;
                     .VictoryContainer {
                         //margin-top: -310px;
+                        svg > g:nth-child(3) {
+                            transform: translate(12px, 0px);
+                        }
                     }
                     .x-axis {
-                        bottom: -12px;
-                        right: -8px;
-                        width: 80%;
+                        bottom: -5px;
+                        width: 87%;
                     }
                     .y-axis {
                         bottom: 17px;
                         left: 10px;
                     }
                 }
-
+                .chart-item.fourth {
+                    margin-top: 32px;
+                }
                 .chart-item.first, .chart-item.second, .chart-item.third {
                     &::after {
                         all: unset;
@@ -594,7 +628,7 @@
             &-pagination {
                 height: 20px;
                 margin-bottom: 10px;
-                margin-left: 10px;
+                //margin-left: 10px;
                 .block-pagination {
                     display: flex;
                     flex-direction: row;
@@ -664,7 +698,12 @@
                 }
 
                 .chart-item {
-    
+                    //height: 220px;
+                    .VictoryContainer {
+                        //margin-top: -25px;
+                        margin-top: -29px;
+
+                    }
                     .MuiGrid-root {
                         //max-height: 100%;
                         //margin-bottom: 32px;
@@ -676,11 +715,14 @@
 
                 .chart-item.first {
                     .VictoryContainer {
-                        margin-left: 28px;
+                        svg > g:nth-child(3) {
+                            transform: translate(0px, 10%);
+                         }
                     }
                     .x-axis {
                         left: 35px;
                         width: 94%;
+                        bottom: 8px;
                     }
                     .y-axis {
                     }
@@ -690,25 +732,35 @@
                     }
                 }
                 .chart-item.second {
+                
                     .VictoryContainer {
+                        margin-left: 0px;
+                        svg > g:nth-child(3) {
+                            transform: translate(-10px, 10%);
+                         }
                     }
                     .x-axis {
-                        left: 24px;
-                        width: 96%;
+                        left: 28px;
+                        width: 95%;
+                        bottom: 9px;
                     }
                     .y-axis {
                         left: 0px;
                     }
                 }
                 .chart-item.third {
-                    
+                    margin-top: 20px;
                     .VictoryContainer {
                         //margin-top: -310px;
+                        svg > g:nth-child(3) {
+                            transform: translate(15px, 10%);
+                         }
                     }
                     .x-axis {
                         right: 0px;
                         left: 70px;
                         width: 88%;
+                        bottom: 8px;
                     }
                     .y-axis {
                     }
@@ -716,7 +768,9 @@
                         margin-left: 9px;
                     }
                 }
-
+                .chart-item.fourth {
+                    margin-top: 20px;
+                }
                 .chart-item.first, .chart-item.second, .chart-item.third {
                     &::after {
                     }
@@ -757,6 +811,7 @@
                 .MuiGrid-item {
                     .chart-item {
                         width: 445px;
+                        height: 208px;
                         &:nth-child(4) {
                             //background-color: red;
                             //min-width: 555px;
@@ -764,8 +819,9 @@
                     }
 
                     h6 {
-                        padding-top: 19px;
+                        //padding-top: 19px;
                         padding-left: 0px;
+                        margin-bottom: 10px;
                     }
                 }
 
@@ -774,13 +830,15 @@
                     //margin-bottom: 32px;
                     .VictoryContainer {
                         margin-left: 0px;
-                        //margin-top: -306px;
+                        svg > g:nth-child(3) {
+                            transform: translate(-15px, 10%);
+                        }
                     }
                     .x-axis {
-                        bottom: -24px;
+                        bottom: 14px;
                         right: 0;
-                        width: 94%;
-                        left: 29px;
+                        width: 92%;
+                        left: 23px;
                     }
                     .y-axis {
                         bottom: 18px;
@@ -788,21 +846,22 @@
                     }
 
                     h6 {
-                        padding-left: 8px;
+                        padding-left: 0px;
+                        margin-left: 0px;
                     }
                 }
                 .chart-item.second {
                     //margin-bottom: 32px;
                     .VictoryContainer {
-                        margin-left: -6px;
-                        //margin-top: -306px;
-                        //margin-top: -310px;
-                        //margin-left: 4px;
+                        svg > g:nth-child(3) {
+                            transform: translate(-10px, 10%);
+                        }
                     }
                     .x-axis {
-                        width: 94%;
-                        bottom: -25px;
-                        left: 25px;
+                        bottom: 14px;
+                        right: 0;
+                        width: 91%;
+                        left: 23px;
                     }
                     .y-axis {
                         bottom: -6px;
@@ -811,15 +870,18 @@
                 }
                 .chart-item.third {
                     .VictoryContainer {
+                        margin-left: -5px;
                         //margin-top: -310px;
-                        margin-left: -19px;
                         //margin-top: -306px;
+                        svg > g:nth-child(3) {
+                            transform: translate(15px, 10%);
+                        }
                     }
                     .x-axis {
-                        bottom: -25px;
-                        right: 0px;
-                        width: 92%;
-                        left: 37px;
+                        bottom: 14px;
+                        right: 0;
+                        width: 86%;
+                        left: 38px;
                     }
                     .y-axis {
                         bottom: 17px;
@@ -849,13 +911,15 @@
                     div {
                         &:first-child {
                             order: 1;
-                            transform: translate(17px,18px);
+                            transform: translate(17px, 8px);
                             width: 110px;
                         }
     
                         &:nth-child(2) {
                             width: 156px;
-                            margin: 25px 0px 0px 10px;
+                            margin-left: 12px;
+                            margin-top: 5px;
+                            //margin: 10px 0px 0px 20px;
                             //margin: 0 41px;
                         }
                     }
@@ -887,7 +951,7 @@
 
 
             .miner-table {
-                margin-top: 73px;
+                margin-top: 65px;
 
                 thead {
                     tr {

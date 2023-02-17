@@ -10,13 +10,12 @@ import {
   gasUsedChartData, 
   gasUsedPerTxChartData, 
   transactionCountChartData,
-  victoryBarDynamicProps,
-  calcChartDataCount
 } from "../../helpers/chartDataFormating";
 import CustomChartAxises from "../CustomChartAxises";
 import { useBlockNumber } from "../../helpers";
 import useEthRPCStore from "../../stores/useEthRPCStore";
 import { useWindowSize } from "usehooks-ts";
+import CustomChartContainer from "../CustomChartContainer";
 
 const config = {
   blockTime: 15, // seconds
@@ -90,15 +89,24 @@ const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme, minerChart, blockN
   //   }
   // }
 
-  const victoryChartDynamicProps = (resolution: number) => {
-    const isMobile: boolean = resolution < 768 ? true : false
-    const isDesktop: boolean = resolution >= 1280 ? true : false
+  const victoryChartDynamicProps = (resolution: number, viewBoxOffsetX = -10, viewBoxOffsetY = 0) => {
+    const isMobile: boolean = resolution < 768 ? true : false;
+    const isDesktop: boolean = resolution >= 1280 ? true : false;
+    const isTablet: boolean = resolution >= 768 ? true : false;
+    const isFull: boolean = resolution >= 1920 ? true : false
+    const width = isMobile ? 740 : 1000;
+    const height = isFull ? 415 : (isDesktop ? 345 : isTablet ? 485 : 385)
+
+    const viewBox = `${viewBoxOffsetX} ${viewBoxOffsetY} ${width} ${height}`
+
     return {
-      containerComponent: <VictoryContainer responsive={isMobile ? true : false}/>,
-      width: isMobile ? 740 : (isDesktop ? 1000 : 553),
-      height: isMobile ? 385 : 192
+      containerComponent: <CustomChartContainer width={width} height={height} viewBox={viewBox}/>,
+      //<VictoryContainer responsive={isMobile ? true : false} />,
+      width,
+      height
     }
   }
+
   const domainPadding = (resolution: number, chartName: string) => {
     enum ChartNames {
       "TransactionCount" = "TransactionCount",
@@ -111,19 +119,25 @@ const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme, minerChart, blockN
         if (resolution < 768) {
           return {
             y: [0, 0],
-            x: [0, -10],
+            x: [200, -300],
           };
         }
-        if (resolution >= 1900) {
+        if (resolution >= 1920) {
           return {
             y: [0, 0],
-            x: [-20, 480],
+            x: [0, 0],
+          };
+        }
+        if (resolution >= 1280) {
+          return {
+            y: [0, 0],
+            x: [15, -290],
           };
         }
         if (resolution >= 768) {
           return {
             y: [0, 0],
-            x: [-37, 0],
+            x: [200, -50],
           };
         }
   
@@ -132,19 +146,25 @@ const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme, minerChart, blockN
         if (resolution < 768) {
           return {
             y: [0, 0],
-            x: [0, 0],
+            x: [200, -300],
           };
         }
-        if (resolution >= 1900) {
+        if (resolution >= 1920) {
           return {
             y: [0, 0],
-            x: [-20, 450],
+            x: [0, 10],
+          };
+        }
+        if (resolution >= 1280) {
+          return {
+            y: [0, 0],
+            x: [0, -290],
           };
         }
         if (resolution >= 768) {
           return {
             y: [0, 0],
-            x: [-25, 0],
+            x: [10, -10],
           };
         }
         break;
@@ -152,20 +172,25 @@ const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme, minerChart, blockN
         if (resolution < 768) {
           return {
             y: [0, 0],
-            x: [0, 0],
+            x: [40, -280],
           };
         }
-        if (resolution >= 1900) {
+        if (resolution >= 1920) {
           return {
             y: [0, 0],
-            x: [20, 450],
-            //x: [-20, 450],
+            x: [20, 75],
+          };
+        }
+        if (resolution >= 1280) {
+          return {
+            y: [0, 0],
+            x: [25, -310],
           };
         }
         if (resolution >= 768) {
           return {
             y: [0, 0],
-            x: [0, 0],
+            x: [200, 0],
           };
         }
   
@@ -179,13 +204,12 @@ const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme, minerChart, blockN
   };
 
   const calcLabelsCount = (resolution: number) => {
-    // > 1280 === 
     if (resolution >= 1920) {
       return 10
     }
   
     if (resolution >= 1280) {
-      return 10;
+      return 7;
     }
     
     if(resolution >= 768) {
@@ -195,6 +219,38 @@ const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme, minerChart, blockN
   
     return 6;
   };
+
+  const victoryBarDynamicProps = (resolution: number) => {
+    const isMobile: boolean = resolution < 768 ? true : false;
+    const isTablet: boolean = resolution >= 768 ? true : false;
+    const isDesktop: boolean = resolution >= 1280 ? true : false;
+  
+    return {
+      barWidth: isDesktop ? 15 : isTablet ? 19 : 15,
+      cornerRadius: isDesktop ? 7 : isTablet ? 10 : 7,
+    };
+  };
+
+  const calcChartDataCount = (resolution: number, custom = 0) => {
+    if(custom) {
+      return custom
+    }
+    
+    if (resolution >= 1920) {
+      return 42;
+    }
+  
+    if (resolution >= 1280) {
+      return 52;
+    }
+  
+    if (resolution >= 768) {
+      return 32;
+    }
+  
+    return 36;
+  };
+
   return (
     <Grid item container>
       <div className="chart-item first">
@@ -205,14 +261,12 @@ const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme, minerChart, blockN
         </div>}
         <Grid className="transaction-count tx-count__chart">
           <ChartCard title={t("Transaction count")}>
-            <CustomChartAxises 
-            xItems={transactionCountChartData(blocks, blockMapTransactionCount).slice(0, calcLabelsCount(width))} 
-            yItems={[0, 20, 40, 60, 80]}/>
+          <CustomChartAxises 
+              xItems={transactionCountChartData(blocks, blockMapTransactionCount).slice(0, calcLabelsCount(width))} 
+              />
               <VictoryChart
-                //containerComponent={<VictoryContainer responsive={width < 768 ? true : false}/>}
                 {...victoryChartDynamicProps(width)}
                 //@ts-ignore
-                //domainPadding={domainPadding(width)}
                 domainPadding={domainPadding(width, "TransactionCount")}
                 >
                 <VictoryBar
@@ -220,7 +274,6 @@ const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme, minerChart, blockN
                 style={{
                   data: {fill: "#3772FF"}
                 }}
-                //data={blocks.map(blockMapTransactionCount)}
                 data={transactionCountChartData(blocks, blockMapTransactionCount, calcChartDataCount(width))}
                 />
 
@@ -234,10 +287,9 @@ const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme, minerChart, blockN
                 />
                 <VictoryAxis
                   dependentAxis
-                  tickValues={[0, 20, 40, 60, 80]}
                   style={{
                     axis: {stroke: 'transparent'},
-                    tickLabels: {fontSize: 10, fill: "transparent"}
+                    tickLabels: {fontSize: width < 768 ? 24 : 22, fontFamily: "Poppins", fill: "#777E90", fontWeight: 500}
                   }}
                 />
               </VictoryChart>
@@ -255,40 +307,36 @@ const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme, minerChart, blockN
         <Grid className="gas-used" key="gasUsed" item>
           <ChartCard title={t("Gas Used (Millions)")}>
           <CustomChartAxises
-            xItems={gasUsedChartData(blocks, blockMapGasUsed).slice(0, calcLabelsCount(width))} 
-            yItems={["1.0", "2.0", "3.0", "4.0", "5.0", "6.0"]}
-            />
-          <VictoryChart 
-            {...victoryChartDynamicProps(width)}
-            //@ts-ignore
-            // domainPadding={domainPadding(width)}
-            domainPadding={domainPadding(width, "GasUsed")}
-          >
-            <VictoryBar
-            {...victoryBarDynamicProps(width)}
-            style={{
-              data: {fill: "#18B04D"}
-            }}
-            //data={blocks.map(blockMapGasUsed)}
-            data={gasUsedChartData(blocks, blockMapGasUsed, calcChartDataCount(width))}
-            />
-            <VictoryAxis
-              style={{
-                axis: {stroke: 'transparent'},
-                tickLabels: {fontSize: 14, fill: "transparent"},
-              }}
-               tickCount={6}
-              fixLabelOverlap={true}
-            />
-            <VictoryAxis
-              dependentAxis
-              tickValues={[1, 2, 3, 4, 5, 6]}
-              style={{
-                axis: {stroke: 'transparent'},
-                tickLabels: {fontSize: 10, fill: "transparent"}
-              }}
-            />
-          </VictoryChart>
+                 xItems={gasUsedChartData(blocks, blockMapGasUsed).slice(0, calcLabelsCount(width))} 
+                 />
+                  <VictoryChart 
+                    {...victoryChartDynamicProps(width)}
+                    //@ts-ignore
+                    domainPadding={domainPadding(width, "GasUsed")}
+                  >
+                    <VictoryBar
+                    {...victoryBarDynamicProps(width)}
+                    style={{
+                      data: {fill: "#18B04D"}
+                    }}
+                    data={gasUsedChartData(blocks, blockMapGasUsed, calcChartDataCount(width))}
+                    />
+                    <VictoryAxis
+                      style={{
+                        axis: {stroke: 'transparent'},
+                        tickLabels: {fontSize: 14, fill: "transparent"},
+                      }}
+                      tickCount={6}
+                      fixLabelOverlap={true}
+                    />
+                    <VictoryAxis
+                      dependentAxis
+                      style={{
+                        axis: {stroke: 'transparent'},
+                        tickLabels: {fontSize: width < 768 ? 24 : 22, fontFamily: "Poppins", fill: "#777E90", fontWeight: 500}
+                      }}
+                    />
+                  </VictoryChart>
           </ChartCard>
         </Grid>
       </div>
@@ -305,39 +353,38 @@ const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme, minerChart, blockN
           </div>}
           <Grid className="gas-used__pertx" key="gasUsedPerTx" item>
             <ChartCard title={t("Gas Used per Tx")}>
-            <CustomChartAxises xItems={gasUsedPerTxChartData(blocks, blockMapGasUsedPerTx).slice(0, width >= 1280 ? 10 : 5)} yItems={["100,000", "200,000", "300,000", "400,000","500,000"]}/>
-            <VictoryChart 
-            // domainPadding={{x: [chartSizeCalculate("domainPaddingX", width), 0]}}
-            {...victoryChartDynamicProps(width)}
-            //domainPadding={ {y: width >= 768 ? [0, 160] : [0, 0], x: width >= 768 ? [-20, 480] : [0, 30]} }
-            //@ts-ignore
-            domainPadding={domainPadding(width, "GasPrice")}
-          >
-            <VictoryBar
-              {...victoryBarDynamicProps(width)}
-              style={{
-                data: {fill: () => "#FD9821"}
-              }}
-              //data={blocks.map(blockMapGasUsedPerTx)} 
-              data={gasUsedPerTxChartData(blocks, blockMapGasUsedPerTx, calcChartDataCount(width))}
-            />
-            <VictoryAxis
-              style={{
-                axis: {stroke: 'transparent'},
-                tickLabels: {fontSize: 14, fill: "transparent"},
-              }}
-              tickCount={6}
-              fixLabelOverlap={true}
-            />
-            <VictoryAxis
-              dependentAxis
-              tickValues={[100000, 200000, 300000, 400000, 500000]}
-              style={{
-                axis: {stroke: 'transparent'},
-                tickLabels: {fontSize: 10, fill: "transparent"}
-              }}
-            />
-            </VictoryChart>
+            <CustomChartAxises 
+                xItems={gasUsedPerTxChartData(blocks, blockMapGasUsedPerTx).slice(0, calcLabelsCount(width))} 
+                />
+                <VictoryChart
+                  {...victoryChartDynamicProps(width, -65)}
+                  //@ts-ignore
+                  domainPadding={domainPadding(width, "GasPrice")}
+                >
+                  <VictoryBar
+                    {...victoryBarDynamicProps(width)}
+                    style={{
+                      data: {fill: () => "#FD9821"}
+                    }}
+                    data={gasUsedPerTxChartData(blocks, blockMapGasUsedPerTx, calcChartDataCount(width))}
+                  />
+                  <VictoryAxis
+                    style={{
+                      axis: {stroke: 'transparent'},
+                      tickLabels: {fontSize: 14, fill: "transparent"},
+                    }}
+                    tickCount={6}
+                    fixLabelOverlap={true}
+                  />
+                  <VictoryAxis
+                    dependentAxis
+                    style={{
+                      axis: {stroke: 'transparent'},
+                      tickLabels: {fontSize: width < 768 ? 24 : 22, fontFamily: "Poppins", fill: "#777E90", fontWeight: 500}
+                    }}
+                    //offsetX={60}
+                  />
+                  </VictoryChart>
                 {/* <VictoryBar
                 containerComponent={<VictoryContainer responsive={false}/>}
                 width={310}

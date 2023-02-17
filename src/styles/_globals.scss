@@ -56,6 +56,12 @@ button.view-raw {
     justify-content: center;
 }
 
+.VictoryContainer {
+    svg>g:nth-child(3) {
+        transform: translate(-15px, 0px);
+    }
+}
+
 
 @each $ndx, $color in $colors {
     .td-label-#{$ndx} {
@@ -69,6 +75,12 @@ button.view-raw {
             left: 0px;
             top: 13%;
         }
+    }
+}
+
+@media screen and (max-width: 375px) {
+    #x-axis, #y-axis  {
+        font-size: 12px;
     }
 }
 

@@ -45,6 +45,7 @@ const MinerStatsWithBlockPagination: React.FC<IProps> = ({blocks, config, from, 
   const [activeAddress, setActiveAddress] = useState("");
   const [eventMutation, setEventMutation] = useState<ChartMutation>({externalMutations: undefined});
   const [eventKey, setEventKey] = useState(-1)
+  const [isPressedPiece, setPressPiece] = useState(false)
   const { width } = useWindowSize()
   const { t } = useTranslation();
 
@@ -112,24 +113,65 @@ const MinerStatsWithBlockPagination: React.FC<IProps> = ({blocks, config, from, 
             events={[{
               target: "data",
               eventHandlers: {
-                //onMouseOver
+                onMouseOver: () => {
+                  return [{
+                    target: "data",
+                    mutation: (props) => {
+                      if(width <= 768) {
+                        return
+                      }
+                      if(props.datum.x === activeAddress && isPressedPiece) {
+                        return { padAngle: 6, radius: 80 }
+                      }
+
+                      clearClicks(eventKey)
+                      setEventKey(props.index)
+                      setActiveAddress(props.datum.x)
+                      return { padAngle: 6, radius: 80 }
+                    },
+                  }];
+                },
+                onMouseLeave: () => {
+                  return [{
+                    target: "data",
+                    mutation: (props) => {
+                      if(width <= 768) {
+                        return
+                      }
+                      if(props.datum.x === activeAddress && isPressedPiece) {
+                        return { padAngle: 6, radius: 80 }
+                      }
+                      setActiveAddress("")
+                      setEventKey(-1)
+                      return { padAngle: 0, radius: 75 }
+                    },
+                  }];
+                },
                 onClick: () => {
                   return [
                     {
                       target: "data",
                       mutation: (props) => {
-                        if(props.datum.x === activeAddress) {
-                          setActiveAddress("")
+                        if(props.datum.x === activeAddress && isPressedPiece) {
+                          clearClicks(eventKey)
                           setEventKey(-1)
+                          setActiveAddress("")
+                          setPressPiece(false)
                           return { padAngle: 0, radius: 75 }
+                        }
+
+                        if(props.datum.x === activeAddress) {
+                          setEventKey(props.index)
+                          setActiveAddress(props.datum.x)
+                          setPressPiece(true)
+                          return { padAngle: 6, radius: 80 }
                         }
 
                         clearClicks(eventKey)
                         setEventKey(props.index)
                         setActiveAddress(props.datum.x)
-
+                        setPressPiece(true)
                         return { padAngle: 6, radius: 80 }
- 
                       },
                     }
                   ];

@@ -262,6 +262,25 @@
 
             .chart-item.fourth {
                 //margin-top: 3px;
+                width: 100%;
+
+                .MuiGrid-root {
+                    .MuiGrid-root {
+                        flex-grow: 1;
+                    }
+                }
+
+                .miner-info {
+                    .miner-pagination {
+                        .block-pagination {
+                            div {
+                                &:nth-child(2) {
+                                    justify-content: start;
+                                }
+                            }
+                        }
+                    }
+                }
             }
 
         }
@@ -345,6 +364,7 @@
                     &:first-child {
                         order: 1;
                         transform: translate(1px, -20px);
+                        align-items: center;
                         //width: 80px;
                     }
                     &:nth-child(2) {
@@ -361,53 +381,54 @@
             //     width: 40px;
             //     height: 40px;
             // }
-            .left-button {
-                width: 40px;
-                height: 40px;
-            }
 
-            .arrowLeftIcon {
-                // width: 40px;
-                // height: 40px;
-                &::before {
-                    content: url("../../assets/arrowLeft.svg");
-                    display: inline-block;
-                    width: 16px;
-                    height: 16px;
-                    margin-right: 21px;
-                    position: absolute;
-                    top: -2px;
-                    left: -9px;
-                }
-            }
+            // .left-button {
+            //     width: 40px;
+            //     height: 40px;
+            // }
 
-            .left-button.active {
-                border: 2px solid #E6E8EC;
-                border-radius: 40px;
-            }
+            // .arrowLeftIcon {
+            //     // width: 40px;
+            //     // height: 40px;
+            //     &::before {
+            //         content: url("../../assets/arrowLeft.svg");
+            //         display: inline-block;
+            //         width: 16px;
+            //         height: 16px;
+            //         margin-right: 21px;
+            //         position: absolute;
+            //         top: -2px;
+            //         left: -9px;
+            //     }
+            // }
+
+            // .left-button.active {
+            //     border: 2px solid #E6E8EC;
+            //     border-radius: 40px;
+            // }
 
 
-            .right-button {
-                width: 40px;
-                height: 40px;
-            }
+            // .right-button {
+            //     width: 40px;
+            //     height: 40px;
+            // }
 
-            .arrowRightButton {
-                &::after {
-                    content: url("../../assets/arrowRight.svg");
-                    display: inline-block;
-                    width: 16px;
-                    height: 16px;
-                    position: absolute;
-                    top: -2px;
-                    left: -9px;
-                }
-            }
+            // .arrowRightButton {
+            //     &::after {
+            //         content: url("../../assets/arrowRight.svg");
+            //         display: inline-block;
+            //         width: 16px;
+            //         height: 16px;
+            //         position: absolute;
+            //         top: -2px;
+            //         left: -9px;
+            //     }
+            // }
 
-            .right-button.active {
-                border: 2px solid #E6E8EC;
-                border-radius: 40px;
-            }
+            // .right-button.active {
+            //     border: 2px solid #E6E8EC;
+            //     border-radius: 40px;
+            // }
         }
 
         .miner-table::-webkit-scrollbar-track {
@@ -663,7 +684,7 @@
 
                     div {
                         &:first-child {
-                            transform: translate(0px, -22px);
+                            transform: translate(-2px, -24px);
                         }
                     }
                 }
@@ -821,7 +842,7 @@
 
                     div {
                         &:first-child {
-                            transform: translate(1px, -21px);
+                            transform: translate(-2px, -23px);
                         }
                     }
 
@@ -944,7 +965,7 @@
                     div {
                         &:first-child {
                             order: 1;
-                            transform: translate(17px, 8px);
+                            transform: translate(3px, -1px);
                             width: 110px;
                         }
     

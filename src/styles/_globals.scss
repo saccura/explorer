@@ -157,6 +157,77 @@ button.view-raw {
 
 }
 
+.left-button {
+    all: unset;
+    position: relative;
+    width: 36px;
+    height: 36px;
+    &::before {
+        content: url("../assets/arrowLeft.svg");
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        top: 20%;
+        left: 35%;
+    }
+}
+
+// .arrowLeftIcon {
+//     // width: 40px;
+//     // height: 40px;
+//     &::before {
+//         content: url("../assets/arrowLeft.svg");
+//         display: inline-block;
+//         width: 16px;
+//         height: 16px;
+//         margin-right: 21px;
+//         position: absolute;
+//         top: -2px;
+//         left: -9px;
+//     }
+// }
+
+.left-button.active {
+    border: 2px solid #E6E8EC;
+    border-radius: 40px;
+}
+
+
+.right-button {
+    all: unset;
+    position: relative;
+    width: 36px;
+    height: 36px;
+
+    &::after {
+        content: url("../assets/arrowRight.svg");
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        top: 20%;
+        left: 35%;
+    }
+}
+
+// .arrowRightButton {
+//     &::after {
+//         content: url("../assets/arrowRight.svg");
+//         display: inline-block;
+//         width: 16px;
+//         height: 16px;
+//         position: absolute;
+//         top: -2px;
+//         left: -9px;
+//     }
+// }
+
+.right-button.active {
+    border: 2px solid #E6E8EC;
+    border-radius: 40px;
+}
+
 
 @media screen and (min-width: 768px) {
     .table-scroll__wrapper {

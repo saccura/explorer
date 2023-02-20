@@ -17,12 +17,8 @@ const BlockPagination: React.FC<IProps> = (props) => {
   return (
     <Grid className="block-pagination" container>
       <Grid container justify="flex-end">
-        <IconButton className={`left-button ${props.disablePrev ? '' : 'active'}`} onClick={props.onPrev} disabled={props.disablePrev}>
-          <div className="arrowLeftIcon"></div>
-        </IconButton>
-        <IconButton className={`right-button ${props.disableNext ? '' : 'active'}`} onClick={props.onNext} disabled={props.disableNext}>
-          <div className="arrowRightButton"></div>
-        </IconButton>
+        <button className={`left-button ${props.disablePrev ? '' : 'active'}`} onClick={props.onPrev} disabled={props.disablePrev}></button>
+        <button className={`right-button ${props.disableNext ? '' : 'active'}`} onClick={props.onNext} disabled={props.disableNext}></button>
       </Grid>
       <Grid className="showing" container justify="flex-end">
         <Typography>Showing {(props.to - props.from) + 1} Block Range: <b>{props.to}</b> - <b>{props.from}</b></Typography>

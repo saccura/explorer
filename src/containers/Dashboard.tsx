@@ -92,10 +92,6 @@ export default (props: any) => {
     if (!erpc) { return; }
     erpc.eth_gasPrice().then(setGasPrice);
   }, [erpc]);
-
-  React.useEffect(() => {
-    console.log("ref: ", ref)
-  }, [blockNumber])
  
   if (blocks === undefined || chainId === undefined || gasPrice === undefined || peerCount === undefined) {
     return <div className="curcular-wrapper"><CircularProgress /></div>;

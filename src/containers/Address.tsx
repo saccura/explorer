@@ -185,6 +185,7 @@ const Address: React.FC<IProps> = ({ match, history }) => {
         from={blockRange.from}
         to={blockRange.to}
         transactions={transactionsState}
+        totalxsLength={transactions.length}
         disablePrev={blockRange.offset <= 100}
         disableNext={
           !transactions.slice(blockRange.offset, blockRange.offset + 100).length || blockRange.offset >= 600

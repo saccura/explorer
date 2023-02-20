@@ -112,109 +112,70 @@
                         width: 40px;
                         height: 40px;
                     }
-
-                    // .left-button {
-                    //     width: 40px;
-                    //     height: 40px;
-                    //     &::before {
-                    //         content: url("../../assets/arrowLeft.svg");
-                    //         display: inline-block;
-                    //         width: 16px;
-                    //         height: 16px;
-                    //         margin-right: 21px;
-                    //         position: absolute;
-                    //         top: -3%;
-                    //         left: 29%;
-                    //     }
-                    // }
-        
-                    // .left-button.active {
-                    //     border: 2px solid #E6E8EC;
-                    //     border-radius: 40px;
-                    // }
-        
-        
-                    // .right-button {
-                    //     width: 40px;
-                    //     height: 40px;
-                    //     &::after {
-                    //         content: url("../../assets/arrowRight.svg");
-                    //         display: inline-block;
-                    //         width: 16px;
-                    //         height: 16px;
-                    //         position: absolute;
-                    //         top: -10%;
-                    //     }
-                    // }
-        
-                    // .right-button.active {
-                    //     border: 2px solid #E6E8EC;
-                    //     border-radius: 40px;
-                    // }
                 }
 
-                .left-button {
-                    width: 40px;
-                    height: 40px;
-                    span {
-                        width: 40px;
-                        height: 40px;
-                    }
-                }
+                // .left-button {
+                //     width: 40px;
+                //     height: 40px;
+                //     span {
+                //         width: 40px;
+                //         height: 40px;
+                //     }
+                // }
     
-                .arrowLeftIcon {
-                    // width: 40px;
-                    // height: 40px;
-                    &::before {
-                        content: url("../../assets/arrowLeft.svg");
-                        display: inline-block;
-                        width: 16px;
-                        height: 16px;
-                        margin-right: 21px;
-                        position: absolute;
-                        top: -2px;
-                        left: 12px;
-                    }
+                // .arrowLeftIcon {
+                //     // width: 40px;
+                //     // height: 40px;
+                //     &::before {
+                //         content: url("../../assets/arrowLeft.svg");
+                //         display: inline-block;
+                //         width: 16px;
+                //         height: 16px;
+                //         margin-right: 21px;
+                //         position: absolute;
+                //         top: -2px;
+                //         left: 12px;
+                //     }
 
-                    width: 38px;
-                    height: 38px;
-                }
+                //     width: 38px;
+                //     height: 38px;
+                // }
     
-                .arrowLeftIcon.active {
-                    border: 2px solid #E6E8EC;
-                    border-radius: 40px;
-                }
+                // .arrowLeftIcon.active {
+                //     border: 2px solid #E6E8EC;
+                //     border-radius: 40px;
+                // }
 
 
-                .right-button {
-                    width: 40px;
-                    height: 40px;
+                // .right-button {
+                //     width: 40px;
+                //     height: 40px;
 
-                    span {
-                        width: 40px;
-                        height: 40px;
-                    }
-                }
+                //     span {
+                //         width: 40px;
+                //         height: 40px;
+                //     }
+                // }
     
-                .arrowRightButton {
-                    &::after {
-                        content: url("../../assets/arrowRight.svg");
-                        display: inline-block;
-                        width: 16px;
-                        height: 16px;
-                        position: absolute;
-                        top: -2px;
-                        left: 12px;
-                    }
+                // .arrowRightButton {
+                //     &::after {
+                //         content: url("../../assets/arrowRight.svg");
+                //         display: inline-block;
+                //         width: 16px;
+                //         height: 16px;
+                //         position: absolute;
+                //         top: -2px;
+                //         left: 12px;
+                //     }
 
-                    width: 38px;
-                    height: 38px;
-                }
+                //     width: 38px;
+                //     height: 38px;
+                // }
     
-                .arrowRightButton.active {
-                    border: 2px solid #E6E8EC;
-                    border-radius: 40px;
-                }
+                // .arrowRightButton.active {
+                //     border: 2px solid #E6E8EC;
+                //     border-radius: 40px;
+                // }
 
                 p {
                     line-height: 14px;
@@ -534,7 +495,7 @@
 
                 &-address {
                     position: relative;
-                    margin-right: 152px;
+                    margin-right: 121px;
                     &::after {
                         content: "";
                         width: 1px;

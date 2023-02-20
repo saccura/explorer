@@ -10,6 +10,7 @@ import { AddressTransaction } from "../../containers/Address";
 
 export interface IProps {
   transactions: AddressTransaction[];
+  totalxsLength: number;
   from: number;
   to: number;
   disableNext?: boolean;
@@ -21,10 +22,10 @@ export interface IProps {
 }
 const AddressTransactions: React.FC<IProps> = (props) => {
   const { t } = useTranslation();
-  const { width } = useWindowSize()
+  const { width } = useWindowSize();
   return (
     <div className={props.className} style={props.style}>
-      <div className="transactions-top">
+      {props.totalxsLength > 100 && <div className="transactions-top">
         <Grid className="transactions-top__blockrange">
           <Typography>Showing block range: {props.to} - {props.from}</Typography>
         </Grid>
@@ -35,14 +36,11 @@ const AddressTransactions: React.FC<IProps> = (props) => {
           <IconButton onClick={props.onNext} disabled={props.disableNext}>
             <ArrowForwardIos />
           </IconButton> */}
-          <IconButton className={`left-button`} onClick={props.onPrev} disabled={props.disablePrev}>
-            <div className={`arrowLeftIcon ${props.disablePrev ? '' : 'active'}`}></div>
-          </IconButton>
-          <IconButton className={`right-button`} onClick={props.onNext} disabled={props.disableNext}>
-          <div className={`arrowRightButton ${props.disableNext ? '' : 'active'}`}></div>
-          </IconButton>
+          <button className={`left-button ${props.disablePrev ? '' : 'active'}`} onClick={props.onPrev} disabled={props.disablePrev}></button>
+          <button className={`right-button ${props.disableNext ? '' : 'active'}`} onClick={props.onNext} disabled={props.disableNext}></button>
         </Grid>
-      </div>
+      </div>}
+
       <TableScrollCustomize
           mainTableWrapperClass="transactions-bottom"
           //scrollChildContentWidth={1736} 

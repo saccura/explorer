@@ -1,6 +1,11 @@
 @import "../variables";
 #root {
     .address-page {
+        background: $white;
+        margin: 0 16px;
+        margin-top: 12px;
+        border-radius: 16px;
+        overflow: hidden;
         .table-scroll__wrapper {
             .scroll-content {
                 min-width: 1736px;
@@ -8,10 +13,10 @@
         }
         .view {
             &-wrapper {
+                margin-top: 16px;
                 padding: 0 16px;
             }
         }
-        margin: 0 16px;
         h6 {
             font-weight: 500;
             font-size: 16px;
@@ -47,7 +52,7 @@
                 }
                 display: flex;
                 position: relative;
-                margin: 16px 0 24px 0;
+                margin: 40px 0 24px 0;
                 &__left {
                     flex-grow: 1;
                     &::after {
@@ -510,6 +515,7 @@
 @media screen and (min-width: 1920px) {
     #root {
         .address-page {
+            
             .view-code__content.content {
                 margin-top: 5px;
             }
@@ -528,7 +534,7 @@
 
                 &-address {
                     position: relative;
-                    margin-right: 142px;
+                    margin-right: 152px;
                     &::after {
                         content: "";
                         width: 1px;

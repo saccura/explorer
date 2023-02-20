@@ -8,13 +8,17 @@
 
     }
     .block-view {
+        background: $white;
         margin: 0 16px;
         margin-top: -17px;
         position: relative;
+        margin-top: 19px;
+        border-radius: 16px;
         .view-raw {
             display: none;
         }
         .bottom {
+            //margin-top: 36px;
             overflow-x: auto;
             transform: rotateX(180deg);
 
@@ -141,6 +145,7 @@
 @media screen and (min-width: 768px) {
     #root {
         .block-view {
+            margin-top: -17px;
             .view-raw {
                 display: block;
                 position: absolute;

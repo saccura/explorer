@@ -160,7 +160,7 @@ export default (props: IProps) => {
       mainTableWrapperClass="miner-table"
       //scrollChildContentWidth={1736} 
       scrollChildContentHeight={20} 
-      scrollWrappertranslateY={width < 768 ? 29 : 116}
+      scrollWrappertranslateY={width < 768 ? 11 : 116}
       //scrollWrappertranslateY={0}
     >
       <div className="miner-right">

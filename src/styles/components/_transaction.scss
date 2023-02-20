@@ -10,11 +10,16 @@
 
 #root {
     .transaction-view {
+        background: $white;
+        border-radius: 16px;
+        margin-top: -16px;
         h6 {
-            margin: 19px 0;
+            // /margin: 19px 0;
             font-weight: 500;
             font-size: 16px;
             line-height: 24px;
+            padding: 22px 16px;
+            //padding: 18px 16px 0px 16px;
         }
 
         .tx-title {
@@ -38,9 +43,9 @@
             text-decoration: underline;
         }
         margin: 0 16px;
-        h6 {
-            padding: 0 16px;
-        }
+        // h6 {
+        //     padding: 0 16px;
+        // }
 
         table {
             tbody {
@@ -130,7 +135,8 @@
             }
     
             .tx-title {
-                margin-top: 45px;
+                margin-top: 26px;
+                padding: 19px 25px
             }
             .receipt-title {
                 margin: 45px 0 19px 0;
@@ -183,7 +189,7 @@
                                 max-height: 100%;
                                 td {
                                     &:nth-child(2) {
-                                        max-width: 100%;
+                                        max-width: 80%;
                                         word-break: break-all;
                                     }
                                 }

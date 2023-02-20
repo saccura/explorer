@@ -70,7 +70,7 @@ const MinerStatsWithBlockPagination: React.FC<IProps> = ({blocks, config, from, 
     if(resolution < 768) {
       return "translate(-49px, -52px)" 
     } else if(width >= 1920) {
-      return "translate(-57px, -15px)"
+      return "translate(-67px, -15px)"
     } else if(width >= 1280) {
       return "translate(-50px, -20px)"
     } else if (width >= 768) {

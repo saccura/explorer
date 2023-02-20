@@ -119,7 +119,7 @@ const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme, minerChart, blockN
         if (resolution < 768) {
           return {
             y: [0, 0],
-            x: [200, -300],
+            x: [0, 0],
           };
         }
         if (resolution >= 1920) {
@@ -131,13 +131,13 @@ const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme, minerChart, blockN
         if (resolution >= 1280) {
           return {
             y: [0, 0],
-            x: [15, -290],
+            x: [15, 0],
           };
         }
         if (resolution >= 768) {
           return {
             y: [0, 0],
-            x: [200, -50],
+            x: [200, 0],
           };
         }
   
@@ -146,25 +146,25 @@ const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme, minerChart, blockN
         if (resolution < 768) {
           return {
             y: [0, 0],
-            x: [200, -300],
+            x: [200, 0],
           };
         }
         if (resolution >= 1920) {
           return {
             y: [0, 0],
-            x: [0, 10],
+            x: [0, 0],
           };
         }
         if (resolution >= 1280) {
           return {
             y: [0, 0],
-            x: [0, -290],
+            x: [0, 0],
           };
         }
         if (resolution >= 768) {
           return {
             y: [0, 0],
-            x: [10, -10],
+            x: [10, 0],
           };
         }
         break;
@@ -172,7 +172,7 @@ const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme, minerChart, blockN
         if (resolution < 768) {
           return {
             y: [0, 0],
-            x: [40, -280],
+            x: [40, 0],
           };
         }
         if (resolution >= 1920) {
@@ -184,7 +184,7 @@ const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme, minerChart, blockN
         if (resolution >= 1280) {
           return {
             y: [0, 0],
-            x: [25, -310],
+            x: [25, 0],
           };
         }
         if (resolution >= 768) {
@@ -241,14 +241,14 @@ const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme, minerChart, blockN
     }
   
     if (resolution >= 1280) {
-      return 52;
+      return 42;
     }
   
     if (resolution >= 768) {
       return 32;
     }
   
-    return 36;
+    return 32;
   };
 
   return (

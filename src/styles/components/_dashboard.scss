@@ -2,6 +2,9 @@
 
 #root {
     .dashboard {
+        background: $white;
+        border-radius: 16px;
+        margin: 0 16px;
         * {
             padding: 0;
             font-family: 'Poppins';
@@ -28,12 +31,17 @@
             //transform: translateY(0px);
         }
         &-entities {
-
+            //margin-bottom: 16px;
+            border-radius: 16px;
         }
         &-entity {
-            margin: 0 32px;
+            border-radius: 16px;
             color: $black;
             padding: 0px;
+            margin: 0px 16px;
+            &:nth-child(1) {
+                margin-top: 18px;
+            }
             // .block-height__title {
 
             // }
@@ -170,6 +178,19 @@
                 }
             }
 
+            
+            .entity-right.first, .entity-right.second {
+                &::after {
+                    content: "";
+                    display: inline-block;
+                    height: 1px;
+                    background: #E6E8EC;
+                    width: 100%;
+                    position: absolute;
+                    bottom: -12px;
+                }
+            }
+
         }
 
         // .chainIdEntity  {
@@ -179,8 +200,8 @@
         // }
 
         .table {
-            margin: 0 32px;
-            margin-top: 8px;
+            margin: 0 16px;
+            margin-top: -8px;
             * {
                 font-size: 14px;
 
@@ -267,10 +288,16 @@
         // }
 
         .more-stats__button {
+            background: $bgColor;
             text-align: right;
-            margin-top: 28px;
-            margin-right: 16px;
+            //margin-left: 10px;
+            height: 86px;
+            width: 100%;
+            align-items: center;
+            display: flex;
+            justify-content: end;
             button {
+                margin-top: 10px;
                 color: $white;
                 font-size: 14px;
                 line-height: 16px;
@@ -429,8 +456,7 @@
                     h6 {
                         //margin-top: 9px;
                     }
-                }
-    
+                }    
     
                 .entity-right.second {
                     //margin-top: -55px;
@@ -486,6 +512,12 @@
                         margin-left: 10px;
                     }
                 }
+
+                .entity-right.first, .entity-right.second {
+                    &::after {
+                        all: unset;
+                    }
+                }
             }
 
             .chainIdEntity {
@@ -510,7 +542,7 @@
             //     transform: translateY(10px);
             // }
             .table {
-                margin-top: 38px;
+                margin-top: 10px;
                 .table-wrapper {
                     overflow-x: clip;
                 }
@@ -622,9 +654,12 @@
             }
 
             .more-stats__button {
-                margin-top: 34px;
+                height: 100px;
+                //margin-top: 34px;
                 margin-right: 6px;
+                align-items: center;
                 button {
+                    margin-right: 9px;
                 }
             }
 
@@ -655,6 +690,7 @@
                 margin: 0;
                 width: 30.4%;
                 justify-content: start;
+                margin-top: 18px;
                 //margin-left: 32px;
                 .tx-count__chart {
                     h6 {
@@ -681,6 +717,12 @@
                 .entity-left {
                     margin-left: 0px;
                     .gas-price__title {
+                    }
+
+                    div {
+                        &:nth-child(2) {
+                            width: 34px;
+                        }
                     }
                 }
 
@@ -794,19 +836,19 @@
             
             .blockHeightEntity {
                 //margin-left: 32px;
-                margin-left: 51px;
+                margin-left: 35px;
             }
 
             .chainIdEntity {
-                margin-left: 13px;
+                margin-left: 24px;
             }
 
             .gasPriceEntity {
-                margin-left: 16px;
+                margin-left: 24px;
             }
 
             .table {
-                margin-top: 38px;
+                margin-top: 14px;
                 thead {
                     tr {
                         th {
@@ -881,7 +923,7 @@
             }
 
             .more-stats__button {
-                margin-top: 39px;
+                margin-top: 9px;
                 button {
                 }
             }
@@ -1092,11 +1134,11 @@
             }
 
             .chainIdEntity {
-                margin-left: 30px;
+                margin-left: 36px;
             }
 
             .gasPriceEntity {
-                margin-left: 23px;
+                margin-left: 38px;
             }
 
             .table {
@@ -1160,8 +1202,11 @@
 
 
             .more-stats__button {
-                margin-top: 39px;
+                margin-top: 7px;
                 margin-right: 46px;
+                button {
+                    margin-right: 30px;
+                }
             }
         }
     }

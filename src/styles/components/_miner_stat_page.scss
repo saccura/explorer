@@ -4,7 +4,8 @@
     .miner {
         //margin: 0 45px;
         // min-width: 684px;
-        margin: 0 32px;
+        margin: 0 16px;
+        margin-top: 16px;
         * {
             padding: 0;
             font-family: 'Poppins';
@@ -22,6 +23,16 @@
             // ::-webkit-scrollbar {
             //     height: 4px;
             // }
+        }
+
+        &-left, &-right {
+            padding: 16px;
+            background: $white;
+            border-radius: 16px;
+        }
+
+        &-right {
+            margin-top: -37px;
         }
 
         .table-scroll__wrapper {
@@ -169,6 +180,10 @@
                     svg > g:nth-child(3) {
                         //transform: translate(0px, 0px);
                     }
+                }
+
+                &:nth-child(1) {
+                    //margin-top: 16px;
                 }
             }
             .chart-item.first, .chart-item.second, .chart-item.third {
@@ -468,7 +483,7 @@
     #root { 
         .miner {
             min-width: 684px;
-            margin: 0 42px;
+            //margin: 0 42px;
             .miner-table {
                 margin-top: 46px;
                 overflow-x: clip;
@@ -558,6 +573,7 @@
 
                 .chart-item.first {
                     margin-top: 10px;
+                    margin-left: 19px;
                     .VictoryContainer {
                         svg > g:nth-child(3) {
                             //transform: translate(0px, 0px);
@@ -596,6 +612,7 @@
                 }
                 .chart-item.third {
                     margin-top: 32px;
+                    margin-left: 19px;
                     .VictoryContainer {
                         //margin-top: -310px;
                         svg > g:nth-child(3) {
@@ -636,7 +653,7 @@
 
                     div {
                         &:first-child {
-                            transform: translate(5px, -21px);
+                            transform: translate(0px, -22px);
                         }
                     }
                 }
@@ -673,11 +690,14 @@
     
                             td {
                                 min-width: 11.5%;
+                                &:nth-child(3) {
+                                    flex-grow: 1;
+                                }
                                 table {
                                     tbody {
                                         tr {
                                             td {
-                                                max-width: 80.386%;
+                                                min-width: 88%;
                                             }
                                         }
                                     }
@@ -714,14 +734,15 @@
                 }
 
                 .chart-item.first {
+                    margin-left: 10px;
                     .VictoryContainer {
                         svg > g:nth-child(3) {
                             transform: translate(0px, 10%);
                          }
                     }
                     .x-axis {
-                        left: 35px;
-                        width: 94%;
+                        left: 40px;
+                        width: 90%;
                         bottom: 8px;
                     }
                     .y-axis {
@@ -740,9 +761,9 @@
                          }
                     }
                     .x-axis {
-                        left: 28px;
-                        width: 95%;
-                        bottom: 9px;
+                        left: 30px;
+                        width: 92%;
+                        bottom: 8px;
                     }
                     .y-axis {
                         left: 0px;
@@ -750,6 +771,7 @@
                 }
                 .chart-item.third {
                     margin-top: 20px;
+                    margin-left: 10px;
                     .VictoryContainer {
                         //margin-top: -310px;
                         svg > g:nth-child(3) {
@@ -860,7 +882,7 @@
                     .x-axis {
                         bottom: 14px;
                         right: 0;
-                        width: 91%;
+                        width: 92%;
                         left: 23px;
                     }
                     .y-axis {
@@ -869,6 +891,7 @@
                     }
                 }
                 .chart-item.third {
+                    margin-left: -25px;
                     .VictoryContainer {
                         margin-left: -5px;
                         //margin-top: -310px;

@@ -168,7 +168,7 @@ export default (props: any) => {
         if (resolution < 768) {
           return {
             y: [0, 0],
-            x: [200, -300],
+            x: [200, 0],
           };
         }
         if (resolution >= 1920) {
@@ -180,13 +180,13 @@ export default (props: any) => {
         if (resolution >= 1280) {
           return {
             y: [0, 0],
-            x: [10, -300],
+            x: [10, 0],
           };
         }
         if (resolution >= 768) {
           return {
             y: [0, 0],
-            x: [-15, -300],
+            x: [-15, 0],
           };
         }
   
@@ -195,7 +195,7 @@ export default (props: any) => {
         if (resolution < 768) {
           return {
             y: [0, 0],
-            x: [200, -300],
+            x: [200, 0],
           };
         }
         if (resolution >= 1920) {
@@ -207,13 +207,13 @@ export default (props: any) => {
         if (resolution >= 1280) {
           return {
             y: [0, 0],
-            x: [10, -300],
+            x: [10, 0],
           };
         }
         if (resolution >= 768) {
           return {
             y: [0, 0],
-            x: [-10, -310],
+            x: [-10, 0],
           };
         }
         break;
@@ -221,7 +221,7 @@ export default (props: any) => {
         if (resolution < 768) {
           return {
             y: [0, 0],
-            x: [40, -200],
+            x: [40, 0],
           };
         }
         if (resolution >= 1920) {
@@ -233,13 +233,13 @@ export default (props: any) => {
         if (resolution >= 1280) {
           return {
             y: [0, 0],
-            x: [20, -310],
+            x: [20, 0],
           };
         }
         if (resolution >= 768) {
           return {
             y: [0, 0],
-            x: [50, -300],
+            x: [50, 0],
           };
         }
   
@@ -263,14 +263,14 @@ export default (props: any) => {
     }
   
     if (resolution >= 1280) {
-      return 52;
+      return 42;
     }
   
     if (resolution >= 768) {
-      return 62;
+      return 52;
     }
   
-    return 36;
+    return 32;
   };
 
   return (

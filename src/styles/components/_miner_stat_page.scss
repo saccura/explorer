@@ -37,7 +37,8 @@
 
         .table-scroll__wrapper {
             .scroll-content {
-                min-width: 1140px;
+                // min-width: 1140px;
+                width: 740px;
             }
         }
 
@@ -435,7 +436,7 @@
                             min-width: 160px;
                         }
                         &:nth-child(1) {
-                            min-width: 380px;
+                            //min-width: 380px;
                         }
                     }
                 }
@@ -453,10 +454,10 @@
                             //padding: 40px 16px;
                             //padding-right: 59px;
                             //padding-top: 33px;
-                            padding: 3.5px 0;
+                            padding: 3.5px;
                         }
                         td {
-                            padding: 3.5px 0;
+                            padding: 3.5px;
                             table {
                                 tbody {
                                     tr {
@@ -465,7 +466,7 @@
                                             //flex-wrap: wrap;
                                             display: flex;
                                             flex-wrap: wrap;
-                                            width: 1142px;
+                                            //width: 1142px;
                                             border: none;
                                         }
                                     }
@@ -492,11 +493,14 @@
                         display: flex;
                         th {
                             //padding-right: 0px;
+                            padding-right: 12px;
                             &:nth-child(1) {
                                 min-width: 10%;
+                                padding-left: 11px;
+
                             }
                             &:nth-child(2) {
-                                //min-width: 380px;
+                                min-width: 9.5%;
                             }
                         }
                     }
@@ -506,17 +510,23 @@
                         tr {
                             display: flex;
                             th {
-                                min-width: 10.9%;
+                                //min-width: 10.9%;
+                                min-width: 132px;
+                                padding-left: 9px;
                             }
     
                             td {
-                                min-width: 6.2%;
+                                padding: 3.5px 0;
+                                &:nth-child(2) {
+                                    min-width: 10.9%;
+                                    //padding-right: 3.5px;
+                                }
                                 table {
                                     tbody {
                                         tr {
                                             td {
-                                                min-width: auto;
-                                                max-width: 43.433%;
+                                                //min-width: auto;
+                                                //max-width: 43.433%;
                                                 //max-width: 496px;
 
                                                 button {
@@ -697,7 +707,7 @@
                                     tbody {
                                         tr {
                                             td {
-                                                min-width: 88%;
+                                                //min-width: 88%;
                                             }
                                         }
                                     }

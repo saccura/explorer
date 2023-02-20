@@ -58,7 +58,7 @@ const MinerStatsTable: React.FC<IProps> = ({ blocks }) => {
             <TableCell component="th" scope="row">
               {minerData.blocksMined}
             </TableCell>
-            <TableCell>{width < 1920 ? minerData.address.slice(0, 6) + "..." : minerData.address}</TableCell>
+            <TableCell>{width >= 768 ? minerData.address.slice(0, 6) + "..." : minerData.address}</TableCell>
             <TableCell colSpan={2}>
               <Table>
                 <TableBody>

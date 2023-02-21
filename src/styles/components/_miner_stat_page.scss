@@ -186,6 +186,12 @@
                 &:nth-child(1) {
                     //margin-top: 16px;
                 }
+
+                .x-axis {
+                    bottom: 1%;
+                    width: 89%;
+                    left: 8%;
+                }
             }
             .chart-item.first, .chart-item.second, .chart-item.third {
                 &::after {
@@ -204,9 +210,9 @@
                 //margin-top: 13px;
 
                 .x-axis {
-                    bottom: 1px;
-                    right: -1px;
-                    width: 90%;
+                    // bottom: 1px;
+                    // right: -1px;
+                    // width: 90%;
                 }
 
                 .y-axis {
@@ -215,7 +221,7 @@
 
                 .VictoryContainer {
                     svg>g:nth-child(3) {
-                        transform: translate(-10px, 0px);
+                        //transform: translate(-10px, 0px);
                     }
                 }
             }
@@ -224,9 +230,9 @@
                 //margin-top: 5px;
 
                 .x-axis {
-                    width: 90%;
-                    right: -1px;
-                    bottom: -1px;
+                    // width: 90%;
+                    // right: -1px;
+                    // bottom: -1px;
                 }
 
                 .y-axis {
@@ -235,7 +241,7 @@
                 .VictoryContainer {
                     //margin-left: 15px;
                     svg>g:nth-child(3) {
-                        transform: translate(-10px, 0px);
+                        //transform: translate(-10px, 0px);
                     }
                     
                 }
@@ -243,9 +249,13 @@
 
             .chart-item.third {
                 .x-axis {
-                    bottom: 2px;
-                    right: -1px;
-                    width: 83%;
+                    // bottom: 2px;
+                    // right: -1px;
+                    // width: 83%;
+                    //left: 33px;
+                    right: 0;
+                    left: 19%;
+                    width: 80%;
                 }
 
                 .y-axis {
@@ -255,7 +265,7 @@
                 .VictoryContainer {
                     //margin-left: 25px;
                     svg>g:nth-child(3) {
-                        transform: translate(15px, 0px);
+                        //transform: translate(15px, 0px);
                     }
                 }
             }
@@ -589,7 +599,7 @@
                     .VictoryContainer {
                         svg > g:nth-child(3) {
                             //transform: translate(0px, 0px);
-                            transform: translate(-15px, 0px);
+                            //transform: translate(-15px, 0px);
                         }
                     }
                     .MuiGrid-root {
@@ -599,6 +609,12 @@
                     h6 {
                         //padding-left: 10px;
                         //padding-top: 10px;
+                    }
+
+                    .x-axis {
+                        width: 92%;
+                        left: 8.5%;
+                        bottom: 0%;
                     }
                 }
 
@@ -612,10 +628,10 @@
                         }
                     }
                     .x-axis {
-                        bottom: -3px;
-                        right: 0px;
+                        //bottom: -3px;
+                        //right: 0px;
                         //left: 22px;
-                        width: 93%;
+                        //width: 93%;
                     }
                     .y-axis {
                         bottom: 30px;
@@ -628,12 +644,12 @@
                         //margin-top: -310px;
                         margin-left: 4px;
                         svg > g:nth-child(3) {
-                            transform: translate(-14px, 0px);
+                            //transform: translate(-14px, 0px);
                         }
                     }
                     .x-axis {
-                        bottom: -4px;
-                        width: 93%;
+                        // bottom: -4px;
+                        // width: 92%;
                         //left: 22px;
                     }
                     .y-axis {
@@ -647,12 +663,14 @@
                     .VictoryContainer {
                         //margin-top: -310px;
                         svg > g:nth-child(3) {
-                            transform: translate(12px, 0px);
+                            //transform: translate(12px, 0px);
                         }
                     }
                     .x-axis {
-                        bottom: -5px;
-                        width: 87%;
+                        // bottom: -5px;
+                        width: 85%;
+                        right: 0;
+                        left: 15%;
                     }
                     .y-axis {
                         bottom: 17px;
@@ -753,7 +771,9 @@
                     .VictoryContainer {
                         //margin-top: -25px;
                         margin-top: -29px;
-
+                        svg > g:nth-child(3) {
+                            transform: translate(-23px, 25px);
+                         }
                     }
                     .MuiGrid-root {
                         //max-height: 100%;
@@ -762,19 +782,25 @@
                     h6 {
                         padding-left: 0px;
                     }
+
+                    .x-axis {
+                        //left: 45px;
+                        width: 90%;
+                        bottom: 8px;
+                    }
                 }
 
                 .chart-item.first {
                     margin-left: 10px;
                     .VictoryContainer {
                         svg > g:nth-child(3) {
-                            transform: translate(0px, 10%);
+                            //transform: translate(-23px, 25px);
                          }
                     }
                     .x-axis {
-                        left: 40px;
-                        width: 90%;
-                        bottom: 8px;
+                        // left: 40px;
+                        // width: 90%;
+                        // bottom: 8px;
                     }
                     .y-axis {
                     }
@@ -788,13 +814,13 @@
                     .VictoryContainer {
                         margin-left: 0px;
                         svg > g:nth-child(3) {
-                            transform: translate(-10px, 10%);
+                            //transform: translate(-10px, 10%);
                          }
                     }
                     .x-axis {
-                        left: 30px;
-                        width: 92%;
-                        bottom: 8px;
+                        // left: 30px;
+                        // width: 92%;
+                        // bottom: 8px;
                     }
                     .y-axis {
                         left: 0px;
@@ -806,14 +832,15 @@
                     .VictoryContainer {
                         //margin-top: -310px;
                         svg > g:nth-child(3) {
-                            transform: translate(15px, 10%);
+                            //transform: translate(15px, 10%);
                          }
                     }
                     .x-axis {
-                        right: 0px;
-                        left: 70px;
-                        width: 88%;
-                        bottom: 8px;
+                        // right: 0px;
+                        // left: 70px;
+                        // width: 88%;
+                        // bottom: 8px;
+                        left: 14%;
                     }
                     .y-axis {
                     }
@@ -876,6 +903,15 @@
                         padding-left: 0px;
                         margin-bottom: 10px;
                     }
+
+                    .x-axis {
+                        bottom: 10px;
+                        left: 6%;
+                        width: 92.5%;
+                        // right: 0;
+                        // width: 92%;
+                        // left: 23px;
+                    }
                 }
 
 
@@ -884,14 +920,14 @@
                     .VictoryContainer {
                         margin-left: 0px;
                         svg > g:nth-child(3) {
-                            transform: translate(-15px, 10%);
+                            //transform: translate(-15px, 10%);
                         }
                     }
                     .x-axis {
-                        bottom: 14px;
-                        right: 0;
-                        width: 92%;
-                        left: 23px;
+                        // bottom: 14px;
+                        // right: 0;
+                        // width: 92%;
+                        // left: 23px;
                     }
                     .y-axis {
                         bottom: 18px;
@@ -907,14 +943,14 @@
                     //margin-bottom: 32px;
                     .VictoryContainer {
                         svg > g:nth-child(3) {
-                            transform: translate(-10px, 10%);
+                            //transform: translate(-10px, 10%);
                         }
                     }
                     .x-axis {
-                        bottom: 14px;
-                        right: 0;
-                        width: 92%;
-                        left: 23px;
+                        // bottom: 14px;
+                        // right: 0;
+                        // width: 92%;
+                        // left: 23px;
                     }
                     .y-axis {
                         bottom: -6px;
@@ -928,14 +964,14 @@
                         //margin-top: -310px;
                         //margin-top: -306px;
                         svg > g:nth-child(3) {
-                            transform: translate(15px, 10%);
+                            //transform: translate(15px, 10%);
                         }
                     }
                     .x-axis {
-                        bottom: 14px;
-                        right: 0;
-                        width: 86%;
-                        left: 38px;
+                        // bottom: 14px;
+                        // right: 0;
+                        // width: 86%;
+                        // left: 38px;
                     }
                     .y-axis {
                         bottom: 17px;

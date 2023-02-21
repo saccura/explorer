@@ -58,7 +58,7 @@ button.view-raw {
 
 .VictoryContainer {
     svg>g:nth-child(3) {
-        transform: translate(-15px, 0px);
+        transform: translate(-23px, 0px);
     }
 }
 
@@ -173,21 +173,6 @@ button.view-raw {
     }
 }
 
-// .arrowLeftIcon {
-//     // width: 40px;
-//     // height: 40px;
-//     &::before {
-//         content: url("../assets/arrowLeft.svg");
-//         display: inline-block;
-//         width: 16px;
-//         height: 16px;
-//         margin-right: 21px;
-//         position: absolute;
-//         top: -2px;
-//         left: -9px;
-//     }
-// }
-
 .left-button.active {
     border: 2px solid #E6E8EC;
     border-radius: 40px;
@@ -211,18 +196,6 @@ button.view-raw {
     }
 }
 
-// .arrowRightButton {
-//     &::after {
-//         content: url("../assets/arrowRight.svg");
-//         display: inline-block;
-//         width: 16px;
-//         height: 16px;
-//         position: absolute;
-//         top: -2px;
-//         left: -9px;
-//     }
-// }
-
 .right-button.active {
     border: 2px solid #E6E8EC;
     border-radius: 40px;
@@ -239,6 +212,10 @@ button.view-raw {
             display: none;
         }
     }
+}
+
+.editor-scrollable {
+    margin: 32px;
 }
 
 // @media screen and (min-width: 768px) {

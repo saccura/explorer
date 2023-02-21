@@ -14,7 +14,7 @@ const BlockRaw: React.FC<IProps> = (props) => {
   const { block } = props;
 
   return (
-    <div style={{ margin: "0px -25px 0px -25px" }}>
+    <div>
       <Button
         onClick={() => {
           history.push(`/block/${block.hash}`);

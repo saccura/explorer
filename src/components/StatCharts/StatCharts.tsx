@@ -89,7 +89,7 @@ const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme, minerChart, blockN
   //   }
   // }
 
-  const victoryChartDynamicProps = (resolution: number, viewBoxOffsetX = -10, viewBoxOffsetY = 0) => {
+  const victoryChartDynamicProps = (resolution: number, viewBoxOffsetX = -22, viewBoxOffsetY = 0) => {
     const isMobile: boolean = resolution < 768 ? true : false;
     const isDesktop: boolean = resolution >= 1280 ? true : false;
     const isTablet: boolean = resolution >= 768 ? true : false;
@@ -137,7 +137,7 @@ const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme, minerChart, blockN
         if (resolution >= 768) {
           return {
             y: [0, 0],
-            x: [200, 0],
+            x: [200, -20],
           };
         }
   
@@ -146,7 +146,7 @@ const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme, minerChart, blockN
         if (resolution < 768) {
           return {
             y: [0, 0],
-            x: [200, 0],
+            x: [0, 0],
           };
         }
         if (resolution >= 1920) {
@@ -164,7 +164,7 @@ const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme, minerChart, blockN
         if (resolution >= 768) {
           return {
             y: [0, 0],
-            x: [10, 0],
+            x: [10, -30],
           };
         }
         break;
@@ -172,7 +172,7 @@ const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme, minerChart, blockN
         if (resolution < 768) {
           return {
             y: [0, 0],
-            x: [40, 0],
+            x: [-15, 80],
           };
         }
         if (resolution >= 1920) {
@@ -184,13 +184,13 @@ const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme, minerChart, blockN
         if (resolution >= 1280) {
           return {
             y: [0, 0],
-            x: [25, 0],
+            x: [25, 90],
           };
         }
         if (resolution >= 768) {
           return {
             y: [0, 0],
-            x: [200, 0],
+            x: [200, -10],
           };
         }
   
@@ -357,7 +357,7 @@ const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme, minerChart, blockN
                 xItems={gasUsedPerTxChartData(blocks, blockMapGasUsedPerTx).slice(0, calcLabelsCount(width))} 
                 />
                 <VictoryChart
-                  {...victoryChartDynamicProps(width, -65)}
+                  {...victoryChartDynamicProps(width, -115)}
                   //@ts-ignore
                   domainPadding={domainPadding(width, "GasPrice")}
                 >
@@ -366,7 +366,8 @@ const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme, minerChart, blockN
                     style={{
                       data: {fill: () => "#FD9821"}
                     }}
-                    data={gasUsedPerTxChartData(blocks, blockMapGasUsedPerTx, calcChartDataCount(width))}
+                    //data={gasUsedPerTxChartData(blocks, blockMapGasUsedPerTx, calcChartDataCount(width))}
+                    data={gasUsedPerTxChartData(blocks, blockMapGasUsedPerTx, calcChartDataCount(width, width < 768 ? 28 : 0))}
                   />
                   <VictoryAxis
                     style={{

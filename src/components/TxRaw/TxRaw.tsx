@@ -16,13 +16,12 @@ const TxRaw: React.FC<IProps> = (props) => {
   const { tx, receipt } = props;
 
   return (
-    <div style={{ margin: "0px -25px 0px -25px" }}>
+    <div>
       <Button
-        className="view-raw"
         onClick={() => {
           history.push(`/tx/${tx.hash}`);
         }}
-        style={{ position: "absolute", right: "10px", top: "75px", zIndex: 1 }}
+        style={{ position: "absolute", right: "10px", top: "100px", zIndex: 1 }}
       >View Transaction</Button>
       <br />
       <Typography variant="h5" gutterBottom style={{ marginLeft: "10px" }}>Transaction</Typography>

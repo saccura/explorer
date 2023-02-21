@@ -29,20 +29,22 @@
             margin: 37px 0 19px 0;
         }
         .view-raw {
-            //style={{ position: "absolute", right: "10px", top: "75px" }}
             position: absolute;
             right: 23px;
             transform: translateY(-5px);
             text-transform: capitalize;
             color: rgb(55, 114, 255);
-            // top: 80px;
+            top: 100px;
             display: none;
+            z-index: 1;
         }
         a {
             color: $blue;
             text-decoration: underline;
         }
         margin: 0 16px;
+        margin-bottom: 16px;
+
         // h6 {
         //     padding: 0 16px;
         // }
@@ -241,7 +243,7 @@
             }
             .view-raw {
                 display: block;
-                transform: translate(10px, -30px);
+                transform: translate(10px, 3px);
             }
             a {
 
@@ -335,12 +337,12 @@
                 }
             }
             
-            .view-raw {
-                position: absolute;
-                right: 62px;
-                top: 132px;
-                display: block;
-            }
+            // .view-raw {
+            //     position: absolute;
+            //     right: 62px;
+            //     top: 132px;
+            //     display: block;
+            // }
 
 
             .receipt-title {

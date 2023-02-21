@@ -123,7 +123,7 @@ export default (props: any) => {
     };
   };
 
-  const victoryChartDynamicProps = (resolution: number, viewBoxOffsetX = -10, viewBoxOffsetY = 0) => {
+  const victoryChartDynamicProps = (resolution: number, viewBoxOffsetX = -22, viewBoxOffsetY = 0) => {
     const isMobile: boolean = resolution < 768 ? true : false;
     const isDesktop: boolean = resolution >= 1280 ? true : false;
     const isTablet: boolean = resolution >= 768 ? true : false;
@@ -131,7 +131,6 @@ export default (props: any) => {
     const width = isMobile ? 740 : 1000;
     const height = isFull ? 320 : (isDesktop ? 410 : isTablet ? 347 : 385)
     const viewBox = `${viewBoxOffsetX} ${viewBoxOffsetY} ${width} ${height}`
-
     return {
       containerComponent: <CustomChartContainer width={width} height={height} viewBox={viewBox}/>,
       //<VictoryContainer responsive={isMobile ? true : false} />,
@@ -217,28 +216,27 @@ export default (props: any) => {
         if (resolution < 768) {
           return {
             y: [0, 0],
-            x: [40, 0],
+            x: [-15, 115],
           };
         }
         if (resolution >= 1920) {
           return {
             y: [0, 0],
-            x: [20, 0],
+            x: [20, 115],
           };
         }
         if (resolution >= 1280) {
           return {
             y: [0, 0],
-            x: [20, 0],
+            x: [20, 115],
           };
         }
         if (resolution >= 768) {
           return {
             y: [0, 0],
-            x: [50, 0],
+            x: [-15, 100],
           };
         }
-  
         break;
       default:
         return {
@@ -385,10 +383,11 @@ export default (props: any) => {
               <Grid className="gas-used__pertx" key="gasUsedPerTx" item>
                 <ChartCard title={t("Gas Used per Tx")}>
                 <CustomChartAxises 
-                xItems={gasUsedPerTxChartData(blocks, blockMapGasUsedPerTx).slice(0, calcLabelsCount(width))} 
+                xItems={gasUsedPerTxChartData(blocks, blockMapGasUsedPerTx).slice(0, calcLabelsCount(width))}
+                //yItems={gasUsedPerTxChartData(blocks, blockMapGasUsedPerTx).slice(0, 5)}
                 />
                 <VictoryChart
-                  {...victoryChartDynamicProps(width, -65, 0)}
+                  {...victoryChartDynamicProps(width, -115, 0)}
                   //@ts-ignore
                   domainPadding={domainPadding(width, "GasPrice")}
                   ref={ref}
@@ -398,7 +397,7 @@ export default (props: any) => {
                     style={{
                       data: {fill: () => "#FD9821"}
                     }}
-                    data={gasUsedPerTxChartData(blocks, blockMapGasUsedPerTx, calcChartDataCount(width))}
+                    data={gasUsedPerTxChartData(blocks, blockMapGasUsedPerTx, calcChartDataCount(width, width >=1280 ? 38 : width < 768 ? 28 : 0))}
                   />
                   <VictoryAxis
                     style={{

@@ -2,10 +2,11 @@ import React, {FC} from 'react'
 
 interface IProps {
     xItems: {x: string, y: number}[]
-    yItems?: any[],
+    yItems?: {x: string, y: number}[],
     className?: string
 }
 const CustomChartAxises:FC<IProps> = ({xItems, yItems, className}) => {
+    console.log("Y items: ", yItems)
     return <>
         <div id="x-axis" className={`x-axis ${className ? className : ''}`}>
             {xItems.map((item) => {
@@ -20,7 +21,7 @@ const CustomChartAxises:FC<IProps> = ({xItems, yItems, className}) => {
         </div>
         {yItems?.length && <div id="y-axis" className={`y-axis ${className ? className : ''}`}> 
             {yItems.map((item: any) => {
-                return <div key={item.y} className="y-item">{item.y}</div>
+                return <div key={item.y.toString()} className="y-item">{item.y.toString()}</div>
             })}
         </div>}
     </>

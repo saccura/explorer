@@ -720,10 +720,11 @@
                         th {
                             //padding-right: 0px;
                             &:nth-child(1) {
+                                min-width: 11.2%
                             }
                             &:nth-child(2) {
                                 //min-width: 380px;
-                                min-width: 10%;
+                                min-width: 9.4%;
                             }
                         }
                     }
@@ -732,13 +733,14 @@
                     tbody {
                         tr {
                             th {
-                                :nth-child(2) {
-                                    //min-width: 10%;
-                                }
+                                min-width: 12%;
                             }
     
                             td {
                                 min-width: 11.5%;
+                                &:nth-child(2) {
+                                    min-width: 10%;
+                                }
                                 &:nth-child(3) {
                                     flex-grow: 1;
                                 }
@@ -1039,7 +1041,7 @@
 
 
             .miner-table {
-                margin-top: 65px;
+                margin-top: 72px;
 
                 thead {
                     tr {
@@ -1062,6 +1064,9 @@
                             }
                             td {
                                 min-width: 21.4%;
+                                &:nth-child(2) {
+                                    min-width: 21%;
+                                }
                                 table {
                                     tbody {
                                         tr {

@@ -52,7 +52,7 @@
                 }
                 display: flex;
                 position: relative;
-                margin: 40px 0 24px 0;
+                margin: 20px 0 24px 0;
                 &__left {
                     flex-grow: 1;
                     &::after {
@@ -88,6 +88,8 @@
                     word-break: break-all;
                     line-height: 22px;
                     margin-top: 4px;
+                    max-height: 150px;
+                    overflow-y: auto;
                 }
 
             }
@@ -98,7 +100,7 @@
             flex-direction: column;
             &-top {
                 display: flex;
-                margin-top: 165px;
+                margin-top: 34px;
                 &__blockrange {
                     max-width: 212px;
                     padding-left: 16px;
@@ -108,10 +110,6 @@
 
                 &__arrows {
                     margin-top: -7px;
-                    button {
-                        width: 40px;
-                        height: 40px;
-                    }
                 }
 
                 // .left-button {
@@ -260,6 +258,19 @@
                         min-width: 110px;
                     }
                 }
+
+
+                &-code {
+
+                    &__title {
+                    }
+    
+                    &__content.content {
+                        max-height: 66px;
+                    }
+    
+                }
+
             }
 
             .transactions {
@@ -267,7 +278,7 @@
                     max-width: 308px;
                     align-self: center;
                     margin-top: 0;
-                    transform: translate(0px, 67px);
+                    transform: translate(0px, 23px);
                     &__blockrange {
                         width: 176px;
                         margin-right: 0px;
@@ -283,7 +294,7 @@
                 }
 
                 &-bottom {
-                    margin-top: 118px;
+                    margin-top: 74px;
                     overflow-x: clip;
                     .txlist-table {
                         thead {
@@ -393,7 +404,11 @@
 
             .transactions {
                 &-top {
-                    transform: translate(476px, -130px);
+                    //transform: translate(176%, -173px);
+                    transform: none;
+                    position: absolute;
+                    right: 2.5%;
+                    top: 20.1%;
                     &__blockrange {
                     }
 
@@ -408,7 +423,7 @@
                 }
 
                 &-bottom {
-                    margin-top: 30px;
+                    margin-top: 18px;
                     .txlist-table {
                         thead {
                             tr {
@@ -486,6 +501,7 @@
                 height: 44px;
             }
             .view {
+                overflow: visible;
                 padding: 0px 20px 12px 20px;
                 &-wrapper {
                     display: flex;
@@ -495,7 +511,7 @@
 
                 &-address {
                     position: relative;
-                    margin-right: 121px;
+                    margin-right: 148px;
                     &::after {
                         content: "";
                         width: 1px;
@@ -528,7 +544,10 @@
                 margin-top: -16px;
                 //margin-top: -20px;
                 &-top {
+                    position: static;
                     transform: translate(755px, -121px);
+                    // right: 4%;
+                    // top: 12.9%;
                 }
 
                 &-bottom {

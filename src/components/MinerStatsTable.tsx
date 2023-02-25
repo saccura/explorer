@@ -32,6 +32,22 @@ const groupByMiner = (blocks: any[]) => {
   return result;
 };
 
+const renderAdaptiveWalletFormat = (resolution: number, wallet: string) => {
+  if(resolution >= 1920) {
+    return <TableCell>{wallet}</TableCell>
+  }
+
+  if(resolution >= 1280) {
+    return <TableCell>{wallet.slice(0, 4) + "..." + wallet.slice(4, 8)}</TableCell>
+  }
+
+  if(resolution >= 768) {
+    return <TableCell>{wallet.slice(0, 6) + "..."}</TableCell>
+  }
+
+  return <TableCell>{wallet}</TableCell>
+}
+
 interface IProps {
   blocks: any[];
 }
@@ -58,7 +74,9 @@ const MinerStatsTable: React.FC<IProps> = ({ blocks }) => {
             <TableCell component="th" scope="row">
               {minerData.blocksMined}
             </TableCell>
-            <TableCell>{width >= 768 ? minerData.address.slice(0, 6) + "..." : minerData.address}</TableCell>
+            
+            {renderAdaptiveWalletFormat(width, minerData.address)}
+
             <TableCell colSpan={2}>
               <Table>
                 <TableBody>

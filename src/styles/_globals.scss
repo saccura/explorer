@@ -201,6 +201,9 @@ button.view-raw {
     border-radius: 40px;
 }
 
+.left-button, .right-button {
+    cursor: pointer;
+}
 
 @media screen and (min-width: 768px) {
     .table-scroll__wrapper {

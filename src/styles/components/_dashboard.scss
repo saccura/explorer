@@ -303,7 +303,7 @@
             width: 100%;
             align-items: center;
             display: flex;
-            justify-content: end;
+            justify-content: flex-end;
             button {
                 margin-top: 10px;
                 color: $white;
@@ -690,14 +690,14 @@
         }
         .dashboard {
             &-entities {
-                justify-content: start;
+                justify-content: flex-start;
                 //margin: 0 30px;
             }
             &-entity {
                 flex-direction: column;
                 margin: 0;
                 width: 30.4%;
-                justify-content: start;
+                justify-content: flex-start;
                 margin-top: 18px;
                 //margin-left: 32px;
                 .tx-count__chart {
@@ -961,7 +961,7 @@
             &-entity {
                 //max-width: 585px;
                 flex-direction: column;
-                justify-content: start;
+                justify-content: flex-start;
                 //margin-top: 10px;
                 .entity-left {
                     margin-bottom: 20px;

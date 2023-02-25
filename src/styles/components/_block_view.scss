@@ -208,7 +208,7 @@
                     margin: 0 25px;
                     thead {
                         tr {
-                            justify-content: start;
+                            justify-content: flex-start;
                             th {
                                 //padding: 0px 37px 0 23px;
                                 padding: 0;
@@ -235,7 +235,7 @@
     
                     tbody {
                         tr {
-                            justify-content: start;
+                            justify-content: flex-start;
                             margin: 0;
                             margin-bottom: 16px;
                             td {

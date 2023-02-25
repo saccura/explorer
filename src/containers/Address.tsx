@@ -165,7 +165,6 @@ const Address: React.FC<IProps> = ({ match, history }) => {
     // })
     // .then(res => console.log("eth_getFilterLogsRes: ", res))
     // .catch(err => console.log("eth_getFilterLogsErr: ", err))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [erpc]);
 
   if (transactionCount === undefined || balance === undefined || code === undefined) {

@@ -28,7 +28,6 @@ export default function BlockListContainer(props: IProps) {
   React.useEffect(() => {
     if (!erpc) { return; }
     getBlocks(from, to, erpc).then(setBlocks);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [from, to]);
 
   if (!blocks) {

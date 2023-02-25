@@ -94,7 +94,6 @@ function App(props: any) {
 
     setSelectedChain(chains[0]);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chains, selectedChain]);
 
   const [query, setQuery] = useQueryParams({
@@ -126,7 +125,6 @@ function App(props: any) {
     } else {
       setSelectedChain(chains[0]);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chains, query.network]);
 
   // keeps the window.location in sync with selected network
@@ -143,7 +141,6 @@ function App(props: any) {
         search: `?network=${name}`,
       });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedChain, setQuery]);
 
   // keep selected chain in sync with the current ethrpc instance

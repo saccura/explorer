@@ -52,7 +52,6 @@ function useEthRPC(queryUrlOverride?: string): [ERPC, Dispatch<Chain>] {
         erpc.rpc.requestManager.close();
       }
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedChain]);
 
   return [erpc as ERPC, setSelectedChain];

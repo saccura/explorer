@@ -63,7 +63,6 @@ export default (props: any) => {
       if (b === null) { return; }
       setBlock(b);
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blockNumber]);
 
   React.useEffect(() => {
@@ -75,7 +74,6 @@ export default (props: any) => {
     ).then((bl) => {
       setBlocks(bl);
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blockNumber]);
 
   useInterval(() => {

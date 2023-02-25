@@ -6,7 +6,6 @@ interface IProps {
     className?: string
 }
 const CustomChartAxises:FC<IProps> = ({xItems, yItems, className}) => {
-    console.log("Y items: ", yItems)
     return <>
         <div id="x-axis" className={`x-axis ${className ? className : ''}`}>
             {xItems.map((item) => {

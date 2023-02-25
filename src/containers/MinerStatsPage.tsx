@@ -86,7 +86,6 @@ export default (props: IProps) => {
     ).then((bl) => {
       setBlocks(_.compact(bl));
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [from, to]);
 
   if (!blocks || blockNumber === undefined || blockNum > blockNumber) {

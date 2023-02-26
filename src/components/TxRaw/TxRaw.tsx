@@ -21,7 +21,7 @@ const TxRaw: React.FC<IProps> = (props) => {
         onClick={() => {
           history.push(`/tx/${tx.hash}`);
         }}
-        style={{ position: "absolute", right: "10px", top: "100px", zIndex: 1 }}
+        style={{ position: "absolute", right: "10px", top: "100px", zIndex: 1, textTransform: 'capitalize', color: "#3772FF" }}
       >View Transaction</Button>
       <br />
       <Typography variant="h5" gutterBottom style={{ marginLeft: "10px" }}>Transaction</Typography>

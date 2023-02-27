@@ -18,7 +18,7 @@ function BlockList({ blocks }: any) {
     return b.number - a.number;
   });
   return (
-    <div className="table-wrapper" 
+    <div className="table-wrapper"
     //style={{ width: "100%", overflowX: "auto" }}
     >
       <Table>
@@ -73,9 +73,9 @@ function BlockList({ blocks }: any) {
             }
 
             return (
-              <TableRow 
-              key={b.number} 
-              className={`tr-indent-${index}`} 
+              <TableRow
+              key={b.number}
+              className={`tr-indent-${index}`}
               //style={authorHashStyle}
               >
                 <TableCell className={`td-label-${index}`}>
@@ -87,7 +87,7 @@ function BlockList({ blocks }: any) {
                       )}>
                       {authorHashShort}
                     </Link>
-                    &nbsp;<sup>{hexToString(b.extraData).substring(0, 20)}</sup>
+                    {/*&nbsp;<sup>{hexToString(b.extraData).substring(0, 20)}</sup>*/}
                 </TableCell>
                 <TableCell scope="row">
                   <Link
@@ -116,7 +116,7 @@ function BlockList({ blocks }: any) {
                       {txTypes.create === 0 ? "" : txTypes.create}
                     </Typography>
                   </Tooltip>
-                  <Typography style={{color: "#18B04D"}}> 
+                  <Typography style={{color: "#18B04D"}}>
                     {txTypes.transact}
                   </Typography>
                 </TableCell>

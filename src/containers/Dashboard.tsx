@@ -17,7 +17,7 @@ import { Block as IBlock, IsSyncingResult as ISyncing} from "@etclabscore/ethere
 import { VictoryAxis, VictoryBar, VictoryChart, VictoryContainer, VictoryGroup } from "victory";
 import BigNumber from "bignumber.js";
 import CustomChartAxises from "../components/CustomChartAxises";
-import { 
+import {
   gasUsedChartData, gasUsedPerTxChartData, transactionCountChartData, calcLabelsCount
 } from "../helpers/chartDataFormating";
 import { useWindowSize } from "usehooks-ts";
@@ -90,7 +90,7 @@ export default (props: any) => {
     if (!erpc) { return; }
     erpc.eth_gasPrice().then(setGasPrice);
   }, [erpc]);
- 
+
   if (blocks === undefined || chainId === undefined || gasPrice === undefined || peerCount === undefined) {
     return <div className="curcular-wrapper"><CircularProgress /></div>;
   }
@@ -136,13 +136,13 @@ export default (props: any) => {
       height
     }
   }
-  
+
 
   const victoryBarDynamicProps = (resolution: number) => {
     const isMobile: boolean = resolution < 768 ? true : false;
     const isTablet: boolean = resolution >= 768 ? true : false;
     const isDesktop: boolean = resolution >= 1280 ? true : false;
-  
+
     return {
       barWidth: isDesktop ? 15 : isTablet ? 12 : 15,
       cornerRadius: isDesktop ? 7 : isTablet ? 6 : 7,
@@ -155,7 +155,7 @@ export default (props: any) => {
       "GasUsed" = "GasUsed",
       "GasPrice" = "GasPrice",
     }
-  
+
     switch (chartName) {
       case ChartNames.TransactionCount:
         if (resolution < 768) {
@@ -182,7 +182,7 @@ export default (props: any) => {
             x: [-15, 0],
           };
         }
-  
+
         break;
       case ChartNames.GasUsed:
         if (resolution < 768) {
@@ -249,19 +249,19 @@ export default (props: any) => {
     if(custom) {
       return custom
     }
-    
+
     if (resolution >= 1920) {
       return 42;
     }
-  
+
     if (resolution >= 1280) {
       return 42;
     }
-  
+
     if (resolution >= 768) {
       return 52;
     }
-  
+
     return 32;
   };
 
@@ -276,8 +276,8 @@ export default (props: any) => {
             </div>
             <div className="entity-right tx-count__chart first">
               <ChartCard title={t("Transaction count")}>
-              <CustomChartAxises 
-              xItems={transactionCountChartData(blocks, blockMapTransactionCount).slice(0, calcLabelsCount(width))} 
+              <CustomChartAxises
+              xItems={transactionCountChartData(blocks, blockMapTransactionCount).slice(0, calcLabelsCount(width))}
               />
               <VictoryChart
                 {...victoryChartDynamicProps(width)}
@@ -321,9 +321,9 @@ export default (props: any) => {
               <Grid className="gas-used__chart" key="gasUsed" item>
                 <ChartCard title={t("Gas Used (Millions)")}>
                 <CustomChartAxises
-                 xItems={gasUsedChartData(blocks, blockMapGasUsed).slice(0, calcLabelsCount(width))} 
+                 xItems={gasUsedChartData(blocks, blockMapGasUsed).slice(0, calcLabelsCount(width))}
                  />
-                  <VictoryChart 
+                  <VictoryChart
                     {...victoryChartDynamicProps(width)}
                     //@ts-ignore
                     domainPadding={domainPadding(width, "GasUsed")}
@@ -371,16 +371,16 @@ export default (props: any) => {
               <ChartCard title={t("Gas Price")}>
                 <Typography variant="h4" className="gas-price__title">{unit.fromWei(hexToNumber(gasPrice), 'ether')} POPX</Typography>
               </ChartCard>
-              <Grid key="peers" item>
-                <ChartCard title={t("Peers")}>
-                  <Typography variant="h4">{hexToNumber(peerCount)}</Typography>
-                </ChartCard>
-              </Grid>
+              {/*<Grid key="peers" item>*/}
+              {/*  <ChartCard title={t("Peers")}>*/}
+              {/*    <Typography variant="h4">{hexToNumber(peerCount)}</Typography>*/}
+              {/*  </ChartCard>*/}
+              {/*</Grid>*/}
             </div>
             <div className="entity-right third">
               <Grid className="gas-used__pertx" key="gasUsedPerTx" item>
                 <ChartCard title={t("Gas Used per Tx")}>
-                <CustomChartAxises 
+                <CustomChartAxises
                 xItems={gasUsedPerTxChartData(blocks, blockMapGasUsedPerTx).slice(0, calcLabelsCount(width))}
                 //yItems={gasUsedPerTxChartData(blocks, blockMapGasUsedPerTx).slice(0, 5)}
                 />
@@ -423,7 +423,7 @@ export default (props: any) => {
                     style={{
                       data: {fill: "#FD9821"},
                     }}
-                    data={blocks.map(blockMapGasUsedPerTx)} 
+                    data={blocks.map(blockMapGasUsedPerTx)}
                     /> */}
                 </ChartCard>
               </Grid>
@@ -438,11 +438,11 @@ export default (props: any) => {
                 </HashRate>
               }
             </ChartCard>
-            
+
           </Grid> */}
       </Grid>
-      {/* <StatCharts 
-      // victoryTheme={victoryTheme} 
+      {/* <StatCharts
+      // victoryTheme={victoryTheme}
       blocks={blocks} /> */}
       {/* <Grid container justify="flex-end">
         <Button

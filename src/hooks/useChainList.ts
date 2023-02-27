@@ -8,10 +8,15 @@ import React from "react";
 export default function() {
   const [chains, setChains] = React.useState<Chain[]>([
     {
-      name: "NET123",
+      name: "POPXChain",
       network: "13579",
-      rpc: ["https://rpc.api.moonbeam.network/"],
-    },
+      rpc: ["https://rpc.popxchain.com/"],
+    }
+    // {
+    //   name: "NET123",
+    //   network: "13579",
+    //   rpc: ["https://rpc.api.moonbeam.network/"],
+    // },
   ]);
 
   // uncomment once we add 'chain list provider' concept. This list blows.

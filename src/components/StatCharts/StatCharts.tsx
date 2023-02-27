@@ -6,9 +6,9 @@ import { Grid, Typography } from "@material-ui/core";
 import ChartCard from "../ChartCard";
 import { VictoryBar, VictoryChart, VictoryAxis, VictoryContainer } from "victory";
 import { useTranslation } from "react-i18next";
-import { 
-  gasUsedChartData, 
-  gasUsedPerTxChartData, 
+import {
+  gasUsedChartData,
+  gasUsedPerTxChartData,
   transactionCountChartData,
 } from "../../helpers/chartDataFormating";
 import CustomChartAxises from "../CustomChartAxises";
@@ -113,7 +113,7 @@ const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme, minerChart, blockN
       "GasUsed" = "GasUsed",
       "GasPrice" = "GasPrice",
     }
-  
+
     switch (chartName) {
       case ChartNames.TransactionCount:
         if (resolution < 768) {
@@ -140,7 +140,7 @@ const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme, minerChart, blockN
             x: [200, -20],
           };
         }
-  
+
         break;
       case ChartNames.GasUsed:
         if (resolution < 768) {
@@ -193,7 +193,7 @@ const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme, minerChart, blockN
             x: [200, -10],
           };
         }
-  
+
         break;
       default:
         return {
@@ -207,16 +207,16 @@ const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme, minerChart, blockN
     if (resolution >= 1920) {
       return 10
     }
-  
+
     if (resolution >= 1280) {
       return 7;
     }
-    
+
     if(resolution >= 768) {
       return 7
     }
-  
-  
+
+
     return 6;
   };
 
@@ -224,7 +224,7 @@ const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme, minerChart, blockN
     const isMobile: boolean = resolution < 768 ? true : false;
     const isTablet: boolean = resolution >= 768 ? true : false;
     const isDesktop: boolean = resolution >= 1280 ? true : false;
-  
+
     return {
       barWidth: isDesktop ? 15 : isTablet ? 19 : 15,
       cornerRadius: isDesktop ? 7 : isTablet ? 10 : 7,
@@ -235,19 +235,19 @@ const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme, minerChart, blockN
     if(custom) {
       return custom
     }
-    
+
     if (resolution >= 1920) {
       return 42;
     }
-  
+
     if (resolution >= 1280) {
       return 42;
     }
-  
+
     if (resolution >= 768) {
       return 32;
     }
-  
+
     return 32;
   };
 
@@ -261,8 +261,8 @@ const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme, minerChart, blockN
         </div>}
         <Grid className="transaction-count tx-count__chart">
           <ChartCard title={t("Transaction count")}>
-          <CustomChartAxises 
-              xItems={transactionCountChartData(blocks, blockMapTransactionCount).slice(0, calcLabelsCount(width))} 
+          <CustomChartAxises
+              xItems={transactionCountChartData(blocks, blockMapTransactionCount).slice(0, calcLabelsCount(width))}
               />
               <VictoryChart
                 {...victoryChartDynamicProps(width)}
@@ -307,9 +307,9 @@ const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme, minerChart, blockN
         <Grid className="gas-used" key="gasUsed" item>
           <ChartCard title={t("Gas Used (Millions)")}>
           <CustomChartAxises
-                 xItems={gasUsedChartData(blocks, blockMapGasUsed).slice(0, calcLabelsCount(width))} 
+                 xItems={gasUsedChartData(blocks, blockMapGasUsed).slice(0, calcLabelsCount(width))}
                  />
-                  <VictoryChart 
+                  <VictoryChart
                     {...victoryChartDynamicProps(width)}
                     //@ts-ignore
                     domainPadding={domainPadding(width, "GasUsed")}
@@ -345,16 +345,16 @@ const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme, minerChart, blockN
             <ChartCard title={t("Gas Price")}>
               <Typography variant="h4" className="gas-price__title">{weiToGwei(hexToNumber(gasPrice))} POPX</Typography>
             </ChartCard>
-            <Grid key="peers" item>
-              <ChartCard title={t("Peers")}>
-                <Typography className="peers-title" variant="h4">{hexToNumber(peerCount)}</Typography>
-              </ChartCard>
-            </Grid>
+            {/*<Grid key="peers" item>*/}
+            {/*  <ChartCard title={t("Peers")}>*/}
+            {/*    <Typography className="peers-title" variant="h4">{hexToNumber(peerCount)}</Typography>*/}
+            {/*  </ChartCard>*/}
+            {/*</Grid>*/}
           </div>}
           <Grid className="gas-used__pertx" key="gasUsedPerTx" item>
             <ChartCard title={t("Gas Used per Tx")}>
-            <CustomChartAxises 
-                xItems={gasUsedPerTxChartData(blocks, blockMapGasUsedPerTx).slice(0, calcLabelsCount(width))} 
+            <CustomChartAxises
+                xItems={gasUsedPerTxChartData(blocks, blockMapGasUsedPerTx).slice(0, calcLabelsCount(width))}
                 />
                 <VictoryChart
                   {...victoryChartDynamicProps(width, -115)}
@@ -396,7 +396,7 @@ const StatCharts: React.FC<IProps> = ({ blocks, victoryTheme, minerChart, blockN
                 style={{
                   data: {fill: "#FD9821"},
                 }}
-                data={blocks.map(blockMapGasUsedPerTx)} 
+                data={blocks.map(blockMapGasUsedPerTx)}
                 /> */}
             </ChartCard>
           </Grid>

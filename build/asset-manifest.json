@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/static/css/main.0c4aed6e.css",
+    "main.js": "/static/js/main.ac0ea03b.js",
+    "static/media/logo.svg": "/static/media/logo.5296f8e97982c68f683bcdcb70c92024.svg",
+    "static/media/gasPriceIcon.svg": "/static/media/gasPriceIcon.3cbd184841b1765e2a84.svg",
+    "static/media/searchIcon.svg": "/static/media/searchIcon.adeeff3e29e77512b4de7d9dac4a8775.svg",
+    "static/media/arrowRight.svg": "/static/media/arrowRight.5332aee3ddebbedc4739.svg",
+    "static/media/arrowLeft.svg": "/static/media/arrowLeft.26b788eaa947e97df9c7.svg",
+    "index.html": "/index.html",
+    "main.0c4aed6e.css.map": "/static/css/main.0c4aed6e.css.map",
+    "main.ac0ea03b.js.map": "/static/js/main.ac0ea03b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0c4aed6e.css",
+    "static/js/main.ac0ea03b.js"
+  ]
+}

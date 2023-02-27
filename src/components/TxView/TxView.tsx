@@ -180,7 +180,7 @@ function TxView(props: ITxViewProps) {
 
               <TableRow>
                 <TableCell>{t("Value")}</TableCell>
-                <TableCell>{unit.fromWei(tx.value, "ether")} Tokens</TableCell>
+                <TableCell>{unit.fromWei(tx.value, "ether")} POPX</TableCell>
               </TableRow>
 
               <TableRow>

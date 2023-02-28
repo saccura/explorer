@@ -19,7 +19,6 @@ import React, {
   SyntheticEvent,
 } from "react";
 import { Link as RouterLink, Router, Route, Switch } from "react-router-dom";
-import useDarkMode from "use-dark-mode";
 import "./App.css";
 import Address from "./containers/Address";
 import Block from "./containers/Block";
@@ -64,9 +63,7 @@ const history = createPreserveQueryHistory(createBrowserHistory, [
 
 function App(props: any) {
   const { t } = useTranslation();
-  const darkMode = useDarkMode();
   const [search, setSearch] = useState();
-  const theme = darkMode.value ? darkTheme : lightTheme;
 
   const [selectedChain, setSelectedChain] = useState<Chain>();
   const [chains, setChains] = useChainListStore<[Chain[], Dispatch<Chain[]>]>();

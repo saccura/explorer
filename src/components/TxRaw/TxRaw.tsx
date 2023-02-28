@@ -2,7 +2,6 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { Button, Typography } from "@material-ui/core";
 import Editor from "@monaco-editor/react";
-import useDarkMode from "use-dark-mode";
 import { Transaction } from "@etclabscore/ethereum-json-rpc";
 
 interface IProps {
@@ -12,7 +11,6 @@ interface IProps {
 
 const TxRaw: React.FC<IProps> = (props) => {
   const history = useHistory();
-  const darkMode = useDarkMode();
   const { tx, receipt } = props;
 
   return (
@@ -37,7 +35,7 @@ const TxRaw: React.FC<IProps> = (props) => {
           readOnly: true,
           showFoldingControls: "always",
         }}
-        theme={darkMode.value ? "dark" : "light"}
+        //theme={darkMode.value ? "dark" : "light"}
         width="100vw"
         height="35vh"
         language="json"
@@ -57,7 +55,7 @@ const TxRaw: React.FC<IProps> = (props) => {
           readOnly: true,
           showFoldingControls: "always",
         }}
-        theme={darkMode.value ? "dark" : "light"}
+        //theme={darkMode.value ? "dark" : "light"}
         width="100vw"
         height="35vh"
         language="json"

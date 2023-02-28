@@ -2,7 +2,6 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import Editor from "@monaco-editor/react";
-import useDarkMode from "use-dark-mode";
 
 interface IProps {
   block: any;
@@ -10,7 +9,6 @@ interface IProps {
 
 const BlockRaw: React.FC<IProps> = (props) => {
   const history = useHistory();
-  const darkMode = useDarkMode();
   const { block } = props;
 
   return (
@@ -32,7 +30,7 @@ const BlockRaw: React.FC<IProps> = (props) => {
           readOnly: true,
           showFoldingControls: "always",
         }}
-        theme={darkMode.value ? "dark" : "light"}
+        //theme={darkMode.value ? "dark" : "light"}
         width="100vw"
         height="93vh"
         language="json"
